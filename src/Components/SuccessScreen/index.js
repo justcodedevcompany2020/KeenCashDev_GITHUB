@@ -1,11 +1,9 @@
-import { View } from "react-native"
-import { Text } from "react-native-svg"
+import { View,Text } from "react-native"
 import { Svgs } from "../../Svg"
 import { Button } from "../Button.js"
 import { styles } from "./styles"
 
-export const SuccessScreen = ({children,title,onPress,button_title='Proceed to secret words',opt}) => {
-    console.log(opt)
+export const SuccessScreen = ({children,title,onPress,button_title='Proceed to secret words',opt,onPress2}) => {
     return <View style = {styles.success_screen}>
         <View></View>
         <View>
@@ -17,7 +15,7 @@ export const SuccessScreen = ({children,title,onPress,button_title='Proceed to s
         <View>
             <Button onPress ={onPress} title={button_title} />
             <View>
-                <Text style = {styles.opt}>opt</Text>
+                <Text onPress={onPress2} style = {styles.opt}>{opt}</Text>
             </View>
         </View>
        

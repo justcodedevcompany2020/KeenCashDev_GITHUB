@@ -44,7 +44,6 @@ export const YourRecoveryPhrase = ({navigation}) => {
             navigation.navigate('popupPage')
         }
         else if(!accept&&click >= 2){
-            console.log()
             navigation.navigate('PopUp2')
         }
     }

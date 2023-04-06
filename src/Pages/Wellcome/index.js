@@ -19,7 +19,7 @@ export const Wellcome = ({navigation}) => {
         <TouchableOpacity onPress={()=>navigation.navigate('WalletCreadet')}  style = {styles.button}>
             <Text style = {styles.button_text}>Create new TON wallet</Text>
         </TouchableOpacity>
-        <Text style = {styles.text}>Import existing TON wallet</Text>
+        <Text onPress={()=>navigation.navigate('InportStart')} style = {styles.text}>Import existing TON wallet</Text>
       </View>
     </View>
 }

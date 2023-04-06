@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {View,Text,ScrollView} from 'react-native'
+import {View,Text,ScrollView,StatusBar} from 'react-native'
 import { Button } from '../../Components/Button.js'
 import { Input } from '../../Components/Input'
 import { Gstyles } from '../../Gstyle'
@@ -33,14 +33,17 @@ export const InportStart = ({navigation}) => {
         {value:""},
     ])
     return <ScrollView style = {Gstyles.wrapper}>
+        <StatusBar
+            backgroundColor="#000"
+        />
         <View>
             <Text style = {[Gstyles.title,{marginVertical:20}]}>24 Secret Words</Text>
             <Text style = {[Gstyles.text,{paddingHorizontal:25}]}>You can restore access to your wallet by entering 24 words you wrote when down you creating the wallet.</Text>
-            <Text style = {{color:'#8A8A8A',fontSize:15,fontWeight:500,textAlign:"center",marginVertical:20}}>I don’t have those</Text>
+            <Text onPress={()=>navigation.navigate('WhatADay')} style = {{color:'#8A8A8A',fontSize:15,fontWeight:500,textAlign:"center",marginVertical:20}}>I don’t have those</Text>
         </View>
         <View>
             {input.map((elm,i)=>(
-                <View style = {{marginVertical:10}}>
+                <View key={i} style = {{marginVertical:10}}>
                     <Input id ={i+1} />
                 </View>
             ))

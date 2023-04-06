@@ -9,5 +9,6 @@ export const styles = StyleSheet.create({
         color:'#EAEAEA',
         fontSize:15,
         fontWeight:600, 
+        marginTop:40
     }
 })
