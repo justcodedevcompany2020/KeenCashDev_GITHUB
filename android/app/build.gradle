@@ -111,6 +111,12 @@ android {
         }
     }
     signingConfigs {
+        release {
+        storeFile file('keen_cash.keystore')
+        storePassword '11111111'
+        keyAlias 'keen_cash'
+        keyPassword '11111111'
+        }
         debug {
             storeFile file('debug.keystore')
             storePassword 'android'

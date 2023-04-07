@@ -12,5 +12,21 @@ export const styles = StyleSheet.create({
         color:'#161616',
         fontSize:15,
         fontWeight:600,
+    },
+    blue_button:{
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor:'#2400FF',
+        borderRadius:15,
+    },
+    text_wrapper:{
+        flexDirection:'row',
+        alignItems:'center'
+    },
+    blue_button_text:{
+        fontSize:15,
+        fontWeight:600,
+        color:'#EAEAEA',
+        marginLeft:10
     }
 })

@@ -1,6 +1,8 @@
 import {NavigationContainer} from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { StatusBar } from 'react-native';
 import { Header } from './Components/Header';
+import { HomeHeader } from './Components/Header/HomeHeader';
 import { ConfirmPassword } from './Pages/ConfirmPassword';
 import { ImportComplete } from './Pages/ImportComplelty';
 import { InportStart } from './Pages/ImportStart';
@@ -14,11 +16,15 @@ import { Wellcome } from './Pages/Wellcome';
 import { WellDone } from './Pages/WellDone';
 import { WhatADay } from './Pages/WhatADay';
 import { YourRecoveryPhrase } from './Pages/YourRecoveryPhrase';
+import NavigationMenu from './TabNavigation';
 export default Navigatiob = () => {
   const Stack = createStackNavigator();
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="welcome">
+      <StatusBar
+            backgroundColor="#161616"
+        />
+      <Stack.Navigator initialRouteName="NavigationMenu">
         <Stack.Screen
           name="welcome"
           component={Wellcome}
@@ -139,14 +145,18 @@ export default Navigatiob = () => {
               }
             }
         />
+        <Stack.Screen
+            name = 'NavigationMenu'
+            component={NavigationMenu}
+            options={
+              {
+                header: ({navigation}) => (
+                  <HomeHeader  onPress={() => navigation.goBack()}  />
+                ),
+              }
+            }
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
-// ConfirmPassword
-// WellDone
-// Notifications
-// InportStart
-// ImportComplete
-// WhatADay
-// PopUp2

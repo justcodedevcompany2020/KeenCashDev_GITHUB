@@ -7,9 +7,15 @@ export const Gstyles = StyleSheet.create({
         justifyContent:'space-around',
         alignItems:"center"
     },
+    home:{
+        backgroundColor:'#161616',
+        paddingHorizontal:20,
+        height:'100%',
+        paddingTop:40,
+    },
     wrapper:{
         height:'100%',
-        backgroundColor:'#000000',
+        backgroundColor:'#161616',
         paddingHorizontal:20,
     },
     text:{
@@ -26,5 +32,8 @@ export const Gstyles = StyleSheet.create({
     },
     wrapper2:{
         justifyContent:'space-around'
+    },
+    container:{
+        flex:1,
     }
 })
