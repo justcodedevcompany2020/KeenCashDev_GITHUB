@@ -19,12 +19,23 @@ import { YourRecoveryPhrase } from './Pages/YourRecoveryPhrase';
 import NavigationMenu from './TabNavigation';
 export default Navigatiob = () => {
   const Stack = createStackNavigator();
+  const MyTheme = {
+    dark: false,
+    colors: {
+      primary: '#161616',
+      background: '#161616',
+      border: '#161616',
+    },
+  };
   return (
-    <NavigationContainer>
+    <NavigationContainer 
+    
+    theme ={MyTheme}
+    >
       <StatusBar
             backgroundColor="#161616"
         />
-      <Stack.Navigator initialRouteName="NavigationMenu">
+      <Stack.Navigator initialRouteName="welcome">
         <Stack.Screen
           name="welcome"
           component={Wellcome}

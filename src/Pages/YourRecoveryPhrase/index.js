@@ -1,8 +1,9 @@
-import {SafeAreaView,Text,View,ScrollView} from 'react-native'
+import {SafeAreaView,Text,View,ScrollView,Modal} from 'react-native'
 import { useEffect,useState } from 'react'
 import { Button } from '../../Components/Button.js'
 import { Gstyles } from '../../Gstyle'
 import { styles } from './styles.js'
+import { PopUp } from '../../Components/PopUp/index.js'
 
 export const YourRecoveryPhrase = ({navigation}) => {
     const item = [
@@ -31,24 +32,43 @@ export const YourRecoveryPhrase = ({navigation}) => {
         'collision',
         'hoverbike',
     ]
-    const [click,setClick] = useState(1)
+    const [click,setClick] = useState(0)
     const [accept,setAccept] = useState(false)
     useEffect(() => {
+        setClick(0)
         setTimeout(() => {
             setAccept(true)
         }, 40000);
-    });
+    },[]);
+    const [open,setOpen] = useState(false)
     const handleCliclk = () => {
-        setClick(click+1)
-        if(!accept &&click===1){
-            navigation.navigate('popupPage')
+        setOpen(true)
+        if(!accept){
+            setOpen(true)
+            setClick(click+1)
         }
-        else if(!accept&&click >= 2){
-            navigation.navigate('PopUp2')
+        else{
+            setOpen(false)
+            navigation.navigate('SecurityNerdCheck')
         }
     }
     return <SafeAreaView style = {[Gstyles.wrapper,styles.wrapper]}>
         <ScrollView>
+        <View style = {Gstyles.pop_up_centers}>
+            {click == 1 ?
+            <PopUp open ={open} onPress = {()=>setOpen(false)} title = {'Sure done?'}  text = {'You didn’t have enough time to write these words down.'} button_text ={'Ok, sorry'}/>
+            :<PopUp open ={open} onPress = {()=>setOpen(false)} 
+            title = {'Sure done?'} 
+             text = {'You didn’t have enough time to write these words down.'} button_text ={'Ok, sorry'} 
+             text_2 = {'Skip anyway'}
+             onPress1 ={()=>{navigation.navigate('SecurityNerdCheck') 
+                setOpen(false)
+                setClick(0)
+
+            }}
+             />
+            }
+        </View>
         <View>
             <Text style ={[Gstyles.title,{marginVertical:10}]}>Your Recovery Phrase</Text>
             <Text style = {Gstyles.text}>Write down these 24 words in this exact order and keep them in a secure place.</Text>

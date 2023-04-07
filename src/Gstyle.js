@@ -35,5 +35,8 @@ export const Gstyles = StyleSheet.create({
     },
     container:{
         flex:1,
+    },
+    pop_up_centers:{
+        marginVertical:20,
     }
 })

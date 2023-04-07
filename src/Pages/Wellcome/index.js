@@ -3,7 +3,6 @@ import {styles} from './styles'
 import { Gstyles } from '../../Gstyle'
 import { Svgs } from '../../Svg'
 export const Wellcome = ({navigation}) => {
-  
     return <View style = {Gstyles.welcome} >
         <StatusBar
         backgroundColor="#4DFF7E"

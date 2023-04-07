@@ -5,14 +5,14 @@ export const styles = StyleSheet.create({
         alignItems:'center',
     },
     button_wrapper:{
+        width:'100%',
         alignItems:'center',
         justifyContent:'center',
-
     },
     button:{
         backgroundColor:'#2400FF',
         borderRadius:15,
-        width:360,
+        width:'90%',
         height:70,
         justifyContent:'center',
         alignItems:'center',
