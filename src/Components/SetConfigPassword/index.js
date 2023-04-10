@@ -44,8 +44,9 @@ export const SetConfigPassword = ({title, text, options,navigation,action}) => {
   };
   const ref = useBlurOnFulfill({value, cellCount: count});
   useEffect(()=>{
-    if(password.passwordLength){
-      setCount(password.passwordLength)
+    console.log(password)
+    if(password.password.length){
+      setCount(password.password.length)
     }
     else {
       setCount(4)
@@ -71,6 +72,7 @@ export const SetConfigPassword = ({title, text, options,navigation,action}) => {
       <View style={styles.password_continer}>
         {!opt ? (
           <CodeField
+            autoFocus={true}
             ref={ref}
             {...props}
             value={value}
@@ -90,7 +92,7 @@ export const SetConfigPassword = ({title, text, options,navigation,action}) => {
                 ]}
                 onPress={() => {
                   setCount(4);
-
+                  setValue('')
                   setOpt(false);
                 }}>
                 <Text style={styles.text}>4-digit code</Text>
@@ -99,6 +101,7 @@ export const SetConfigPassword = ({title, text, options,navigation,action}) => {
                 style={styles.touchableOpacity}
                 onPress={() => {
                   setCount(6);
+                  setValue('')
                   setOpt(false);
                 }}>
                 <Text style={styles.text}>6-digit code</Text>

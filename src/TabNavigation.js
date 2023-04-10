@@ -11,7 +11,6 @@ export default function NavigationMenu() {
             tabBarStyle: { height: 80,backgroundColor:'#161616',borderTopColor:'#000' ,borderTopWidth:1},
         })}
         >
-         
             <Tab.Screen 
                 name="Main"
                 component={MainPage}
@@ -21,7 +20,7 @@ export default function NavigationMenu() {
             />
             <Tab.Screen 
                 name="Code"
-                component={''}
+                component={MainPage}
                 options={()=>({
                     tabBarIcon:({focused})=> <QR focused={focused} />
                 })}
@@ -29,7 +28,7 @@ export default function NavigationMenu() {
             />
             <Tab.Screen 
                 name="Menu"
-                component={''}
+                component={MainPage}
                 options={{
                     tabBarIcon:({focused})=> <Menu focused={focused} />
                 }}

@@ -579,8 +579,9 @@ export const Svgs = ({title}) => {
   }
 };
 
-export const HomeSvg = focused => {
-  return !focused ? (
+export const HomeSvg = ({focused}) => {
+  if(!focused){
+  return (
     <Svg
       width={50}
       height={50}
@@ -595,8 +596,10 @@ export const HomeSvg = focused => {
         fill="#EAEAEA"
       />
     </Svg>
-  ) : (
-    <Svg
+    )
+  }
+  else {
+   return <Svg
     width={50}
     height={50}
     viewBox="0 0 50 50"
@@ -611,11 +614,10 @@ export const HomeSvg = focused => {
       fill="#6BA6FE"
     />
   </Svg>
-  );
+  }
 };
 
 export const QR = ({focused}) => {
-  console.log(focused)
   if(focused){
     return   <Svg
     width={50}
