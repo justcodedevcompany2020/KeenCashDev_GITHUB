@@ -11,3 +11,18 @@ export const change_header_title = (price,price_$) => {
         price_$,
     }
 }
+
+export const nftInfo = (img,title,text) =>{
+    return {
+        type:'nftInfo',
+        img,
+        title,
+        text,
+    }
+}
+export const SendToken = (value) => {
+    return {
+        type:'send_token',
+        value
+    }
+}

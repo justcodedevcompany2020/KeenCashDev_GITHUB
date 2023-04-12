@@ -2,14 +2,21 @@ import {NavigationContainer} from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'react-native';
 import { Header } from './Components/Header';
+import { Header1 } from './Components/Header/header2';
+import { Header3 } from './Components/Header/header3';
 import { HomeHeader } from './Components/Header/HomeHeader';
+import { Confirm } from './Pages/Confirm';
 import { ConfirmPassword } from './Pages/ConfirmPassword';
 import { ImportComplete } from './Pages/ImportComplelty';
 import { InportStart } from './Pages/ImportStart';
+import { NftInfo } from './Pages/NftInfo';
 import { Notifications } from './Pages/Notifications';
 import { PopUp2 } from './Pages/PopUp2';
 import { PopUpPage } from './Pages/PopUpPage';
+import { Resive } from './Pages/Receive';
 import { SecurityNerdCheck } from './Pages/Securitynerdcheck';
+import { Send } from './Pages/Send';
+import { SendTo } from './Pages/SendTo';
 import { SetPassword } from './Pages/SetPassword';
 import { WalletCreadet } from './Pages/WalletCreated';
 import { Wellcome } from './Pages/Wellcome';
@@ -23,7 +30,7 @@ export default Navigatiob = () => {
     dark: false,
     colors: {
       primary: '#161616',
-      background: '#161616',
+      background: '#000',
       border: '#161616',
     },
   };
@@ -35,7 +42,7 @@ export default Navigatiob = () => {
       <StatusBar
             backgroundColor="#161616"
         />
-      <Stack.Navigator initialRouteName="welcome">
+      <Stack.Navigator initialRouteName="NavigationMenu">
         <Stack.Screen
           name="welcome"
           component={Wellcome}
@@ -166,6 +173,61 @@ export default Navigatiob = () => {
                 ),
               }
             }
+        />
+        <Stack.Screen 
+          name="nftinfo"
+          component={NftInfo}
+          options={
+            {
+              header: ({navigation}) => (
+                <Header1  onPress={() => navigation.goBack()}  />
+              ),
+            }
+        }
+        />
+         <Stack.Screen 
+          name="recive"
+          component={Resive}
+          options={
+            {
+              header: ({navigation}) => (
+                <Header1  onPress={() => navigation.goBack()}  />
+              ),
+            }
+        }
+        />
+        <Stack.Screen 
+          name="send"
+          component={Send}
+          options={
+            {
+              header: ({navigation}) => (
+                <Header3  onPress={() => navigation.goBack()}  />
+              ),
+            }
+        }
+        />
+        <Stack.Screen 
+          name="SendTo"
+          component={SendTo}
+          options={
+            {
+              header: ({navigation}) => (
+                <Header3  onPress={() => navigation.goBack()}  />
+              ),
+            }
+        }
+        />
+        <Stack.Screen 
+          name="Confirm"
+          component={Confirm}
+          options={
+            {
+              header: ({navigation}) => (
+                <Header3  onPress={() => navigation.goBack()}  />
+              ),
+            }
+        }
         />
       </Stack.Navigator>
     </NavigationContainer>

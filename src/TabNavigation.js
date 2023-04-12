@@ -1,5 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { MenuNavigation } from './menuNavigation';
 import { MainPage } from './Pages/MainPage';
+import { NftListPage } from './Pages/NftListPage';
 import { HomeSvg, Menu, QR } from './Svg';
 const Tab = createBottomTabNavigator();
 export default function NavigationMenu() {
@@ -27,8 +29,8 @@ export default function NavigationMenu() {
                 
             />
             <Tab.Screen 
-                name="Menu"
-                component={MainPage}
+                name="menunavigation"
+                component={MenuNavigation}
                 options={{
                     tabBarIcon:({focused})=> <Menu focused={focused} />
                 }}

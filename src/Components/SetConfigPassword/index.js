@@ -19,6 +19,7 @@ export const SetConfigPassword = ({title, text, options,navigation,action}) => {
   const [opt, setOpt] = useState(false);
   const dispatch = useDispatch()
   const {password} = useSelector((st)=>st)
+  const [match,setMatch] = useState(true)
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
     setValue,
@@ -36,15 +37,15 @@ export const SetConfigPassword = ({title, text, options,navigation,action}) => {
     return (
       <Text
         key={index}
-        style={[styles.cell, color && styles.focusCell]}
+        style={[styles.cell, color && styles.focusCell, !match && {borderColor:'red'}]}
         onLayout={getCellOnLayoutHandler(index)}>
         {textChild}
       </Text>
     );
   };
   const ref = useBlurOnFulfill({value, cellCount: count});
+  const ref2 = useBlurOnFulfill({});
   useEffect(()=>{
-    console.log(password)
     if(password.password.length){
       setCount(password.password.length)
     }
@@ -61,6 +62,10 @@ export const SetConfigPassword = ({title, text, options,navigation,action}) => {
         else if(value == password.password){
           navigation.navigate('WellDone')
         }
+        else if(value != password.password){
+          setValue('')
+          setMatch(false)
+        }
     }
   },[value])
   return (
@@ -73,7 +78,7 @@ export const SetConfigPassword = ({title, text, options,navigation,action}) => {
         {!opt ? (
           <CodeField
             autoFocus={true}
-            ref={ref}
+            ref={!match ?ref:ref2}
             {...props}
             value={value}
             onChangeText={setValue}

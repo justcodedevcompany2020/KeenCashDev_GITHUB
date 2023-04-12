@@ -34,5 +34,14 @@ export const styles = StyleSheet.create({
         color:'#8A8A8A',
         fontWeight:400,
         fontSize:10,
+    },
+    header1:{
+        marginTop:50,
+        backgroundColor:'#161616' ,
+        justifyContent:'center',
+        paddingHorizontal:20,
+        height:50,
+        borderTopLeftRadius:15,
+        borderTopRightRadius:15,
     }
 })

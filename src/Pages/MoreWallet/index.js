@@ -4,7 +4,7 @@ import { Gstyles } from "../../Gstyle"
 import { Svgs } from "../../Svg"
 
 export const MoreWallet = () => {
-    return <View style = {[Gstyles.wrapper,{justifyContent:'center'}]}>
+    return <View style = {[Gstyles.homeWrapper,{justifyContent:'center'}]}>
         <View style = {{alignItems:'center'}}>
             <Svgs title={'more_wallet'}/>
             <Text style = {[Gstyles.text,{marginVertical:20}]}>
@@ -12,7 +12,7 @@ export const MoreWallet = () => {
             </Text>
         </View>
         <View>
-            <BlueButton  height={70} text = 'Create new TON wallet' />
+            <BlueButton   height={70} text = 'Create new TON wallet' />
             <Text style = {{color:'#FFFFFF',textAlign:'center',marginTop:20,fontSize:15,fontWeight:600}}>Import existing TON wallet</Text>
         </View>
     </View>

@@ -18,6 +18,11 @@ export const Gstyles = StyleSheet.create({
         backgroundColor:'#161616',
         paddingHorizontal:20,
     },
+    homeWrapper:{
+        height:'100%',
+        paddingHorizontal:10,
+        backgroundColor:'#161616',
+    },
     text:{
         color:'#EAEAEA',
         fontWeight:300,

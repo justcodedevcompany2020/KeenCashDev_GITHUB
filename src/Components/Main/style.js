@@ -18,7 +18,8 @@ export const styles = StyleSheet.create({
     },
     main:{
         // height:500,
-        alignItems:'center',
+        // alignItems:'center',
+        paddingHorizontal:4,
     },
     header:{
         // height:'35%'

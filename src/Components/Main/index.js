@@ -8,15 +8,15 @@ import Clipboard from '@react-native-clipboard/clipboard';
 import Item from './item';
 import { useDispatch } from 'react-redux';
 import { change_header_title } from '../../store/action/action';
+import { Card } from './card';
 
-export const Main = ({data, loading,price,price_$,token}) => {
+export const Main = ({data, loading,price,price_$,token,navigation}) => {
 
     const [refreshing, setRefreshing] = useState(false);
     const dispatch = useDispatch()
     const handelScroll = (e)=>{
         const currentOffset  = e.nativeEvent.contentOffset.y
         if(currentOffset>62){
-            console.log('sss')
             dispatch(change_header_title(price,price_$))
         }
         else {
@@ -40,26 +40,23 @@ export const Main = ({data, loading,price,price_$,token}) => {
     >
         <View style = {[styles.main]}>
             <View >
-                <View style={styles.card}>
-                    <View style = {styles.price_wrapper}>
-                        <Text style={[styles.price,{marginBottom:-8}]}>{price}</Text>
-                        <Text style = {[styles.price_$]}> ≈ ${price_$}</Text>
-                    </View>
-                    <View style = {styles.token_wrapper}>
-                        <Text style ={[styles.price_$,{width:'65%'}]}>{token}</Text>
-                        {token && <TouchableOpacity onPress={()=>Clipboard.setString(token)}>
-                            <Svgs title={'copy'} />
-                            </TouchableOpacity>}
-                    </View>
-                </View>
+                <Card price={price} price_$ = {price_$} token = {token} />
                 <View style={styles.button_wrapper}>
                 <BlueButton
                     width={'47%'}
                     height={50}
                     text={'Receive'}
                     svg={'vector2'}
+                    onPress = {()=>navigation.navigate('recive')}
                 />
-                <BlueButton width={'47%'} height={50} text={'Send'} svg={'vector1'} />
+                <BlueButton 
+                    width={'47%'} 
+                    height={50} 
+                    text={'Send'} 
+                    svg={'vector1'} 
+                    onPress = {()=>navigation.navigate('send')}
+                    
+                    />
                 </View>
             </View>
             <View style={styles.data}>

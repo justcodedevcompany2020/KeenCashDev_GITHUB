@@ -16,7 +16,6 @@ export const styles = StyleSheet.create({
     blue_button:{
         justifyContent:'center',
         alignItems:'center',
-        backgroundColor:'#2400FF',
         borderRadius:15,
     },
     text_wrapper:{
