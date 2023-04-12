@@ -1,10 +1,21 @@
 import {View,Dimensions} from 'react-native'
 import SwiperFlatList from 'react-native-swiper-flatlist'
+import React, { useRef,useEffect, forwardRef } from 'react';
 import { Main } from '../../Components/Main'
 import { Gstyles } from '../../Gstyle'
+
 import { MoreWallet } from '../MoreWallet'
+// import { Connetct } from '../Connect';
+import {Connetct} from '../Connect/index'
 
 export const MainPage = ({navigation}) =>{
+    const bottomSheetRef = useRef(null);
+    useEffect(()=>{
+        bottomSheetRef.current?.present()
+    },[])
+    const close = ()=>{
+        bottomSheetRef.current?.dismiss()
+    }
     const { width } = Dimensions.get('window');
     const data = [{},{},{}]
     return <View style = {Gstyles.home}>
@@ -26,6 +37,7 @@ export const MainPage = ({navigation}) =>{
                     </View>
                 ))}
             </SwiperFlatList>
+            <Connetct ref1 = {bottomSheetRef} onPress = {()=>close()} />
         </View>
          
     </View>

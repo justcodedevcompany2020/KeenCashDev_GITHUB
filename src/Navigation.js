@@ -5,17 +5,20 @@ import { Header } from './Components/Header';
 import { Header1 } from './Components/Header/header2';
 import { Header3 } from './Components/Header/header3';
 import { HomeHeader } from './Components/Header/HomeHeader';
+import { Awesome } from './Pages/Awesome';
 import { Confirm } from './Pages/Confirm';
 import { ConfirmPassword } from './Pages/ConfirmPassword';
 import { ImportComplete } from './Pages/ImportComplelty';
 import { InportStart } from './Pages/ImportStart';
 import { NftInfo } from './Pages/NftInfo';
 import { Notifications } from './Pages/Notifications';
+import { PinPage } from './Pages/PinPage';
 import { PopUp2 } from './Pages/PopUp2';
 import { PopUpPage } from './Pages/PopUpPage';
 import { Resive } from './Pages/Receive';
 import { SecurityNerdCheck } from './Pages/Securitynerdcheck';
 import { Send } from './Pages/Send';
+import { Sending } from './Pages/Sending';
 import { SendTo } from './Pages/SendTo';
 import { SetPassword } from './Pages/SetPassword';
 import { WalletCreadet } from './Pages/WalletCreated';
@@ -229,7 +232,42 @@ export default Navigatiob = () => {
             }
         }
         />
+        <Stack.Screen 
+          name="PinPage"
+          component={PinPage}
+          options={
+            {
+              header: ({navigation}) => (
+                <Header3  onPress={() => navigation.goBack()}  />
+              ),
+            }
+        }
+        />
+        <Stack.Screen 
+          name="Sending"
+          component={Sending}
+          options={
+            {
+              header: ({navigation}) => (
+                <Header3  onPress={() => navigation.goBack()}  />
+              ),
+            }
+        }
+        />
+        <Stack.Screen 
+          name="Awesome"
+          component={Awesome}
+          options={
+            {
+              header: ({navigation}) => (
+                <Header3  onPress={() => navigation.goBack()}  />
+              ),
+            }
+        }
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
+// Sending
+// Awesome

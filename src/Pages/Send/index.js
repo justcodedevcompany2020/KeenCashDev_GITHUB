@@ -38,7 +38,7 @@ export const Send = ({navigation}) => {
                 </View>
             })}
             </ScrollView>
-            <ErrorPopUp  visible = {true}/>
+            {false && <ErrorPopUp  visible = {false}/>}
             <View style = {{marginVertical:20}}>
                 <BlueButton onPress={()=>{
                     navigation.navigate('SendTo')

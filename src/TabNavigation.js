@@ -3,9 +3,13 @@ import { MenuNavigation } from './menuNavigation';
 import { MainPage } from './Pages/MainPage';
 import { NftListPage } from './Pages/NftListPage';
 import { HomeSvg, Menu, QR } from './Svg';
+import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
+
 const Tab = createBottomTabNavigator();
 export default function NavigationMenu() {
     return (
+      <BottomSheetModalProvider>
+
         <Tab.Navigator 
         screenOptions = {()=> ({
             tabBarShowLabel: false,
@@ -36,5 +40,7 @@ export default function NavigationMenu() {
                 }}
             />
         </Tab.Navigator>
+      </BottomSheetModalProvider>
+
     )
 }   

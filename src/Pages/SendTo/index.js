@@ -16,17 +16,22 @@ export const SendTo = ({navigation}) => {
             <View style = {{justifyContent:'center',alignItems:'center',flexDirection:'row'}}>
             <TextInput 
                 value = {value} 
+                keyboardType="numeric"
                 onChangeText = {(e)=>setValue(e)} 
                 placeholder="0 TON" 
                 placeholderTextColor = {'#8A8A8A'} 
                 style = {[styles.input,value>+price && {color:"red"}]} />
             {value !=='' &&<Text style = {[{fontSize:30,top:0,color:"#fff"},value>+price && {color:"red"}]}>TON</Text>}
             </View>
-         <Text style = {{color:'red',textAlign:'center'}}>{value>price && 'Insufficient funds'}</Text>
+            <Text style = {{color:'red',textAlign:'center'}}>{value>+price && 'Insufficient funds'}</Text>
         </View> 
         <View>
             <Text onPress={()=>setValue(price)} style = {{color:"#EAEAEA",textAlign:'center',marginBottom:30}}>Send all: {price} TON</Text>
-            <BlueButton onPress={()=>navigation.navigate('Confirm')} backgroundColor="#4DFF7E" color="#161616" text='Continue' height ={50} />
+            <BlueButton onPress={()=>{
+                    if(value<=+price){
+                        navigation.navigate('Confirm')
+                    }
+                }} backgroundColor="#4DFF7E" color="#161616" text='Continue' height ={50} />
         </View>
     </View>
-}
+}   
