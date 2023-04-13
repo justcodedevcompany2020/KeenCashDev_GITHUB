@@ -22,7 +22,6 @@ export const Main = ({data, loading,price,price_$,token,navigation}) => {
         else {
             dispatch(change_header_title('',''))
         }
-        console.log(currentOffset)
     }
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
@@ -80,7 +79,7 @@ export const Main = ({data, loading,price,price_$,token,navigation}) => {
                     <View style={[styles.data,styles.data_iten]}>
                     <Text style ={styles.date} >25 March, Sat</Text>
                     { data.map((elm,i)=>(
-                            <Item plus={true} key={i} token = {'EQDCAfpTMlIh6xGABPSO0oIqMgVy5ncGpq75hgeCl4-UKMY8'} date = {'22:52'} price = {'+1.091'} />
+                            <Item navigation = {navigation} plus={true} key={i} token = {'EQDCAfpTMlIh6xGABPSO0oIqMgVy5ncGpq75hgeCl4-UKMY8'} date = {'22:52'} price = {'+1.091'} />
                         ))}
                     </View> 
                 )}

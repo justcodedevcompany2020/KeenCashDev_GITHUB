@@ -4,33 +4,44 @@ import { MainPage } from './Pages/MainPage';
 import { NftListPage } from './Pages/NftListPage';
 import { HomeSvg, Menu, QR } from './Svg';
 import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
+import ScanScreen from './Components/QRCodeScanner';
+import { QrNavigation } from './QrNavigation';
+import { HomeHeader } from './Components/Header/HomeHeader';
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 
 const Tab = createBottomTabNavigator();
 export default function NavigationMenu() {
     return (
       <BottomSheetModalProvider>
-
         <Tab.Navigator 
-        screenOptions = {()=> ({
+        screenOptions = {({route})=> ({
+            header: ({navigation}) => (
+                <HomeHeader navigation = {navigation} onPress={() => navigation.goBack()}  />
+              ),
             tabBarShowLabel: false,
-            headerShown:false,
-            tabBarStyle: { height: 80,backgroundColor:'#161616',borderTopColor:'#000' ,borderTopWidth:1},
+            // headerShown:false,
+            tabBarStyle: ( () => { 
+                const routeName = getFocusedRouteNameFromRoute(route) ?? ''
+                console.log(routeName);
+                return routeName == 'QrNavigation' ? {display: 'none'} : {height: 80,backgroundColor:'#161616',borderTopColor:'#000' ,borderTopWidth:1}
+            })(route),
         })}
         >
             <Tab.Screen 
                 name="Main"
                 component={MainPage}
-                options={()=>({
+                options={()=>({  
                     tabBarIcon:({focused})=> <HomeSvg focused={focused} />
                 })}
             />
             <Tab.Screen 
-                name="Code"
-                component={MainPage}
+                name="QrNavigation"
+                component={QrNavigation}
                 options={()=>({
+                    headerShown: false,
+                    tabBarStyle:{display:'none'},
                     tabBarIcon:({focused})=> <QR focused={focused} />
                 })}
-                
             />
             <Tab.Screen 
                 name="menunavigation"

@@ -6,9 +6,9 @@ export const MenuNavigation = () => {
   const Stack = createStackNavigator();
     return <Stack.Navigator >
         <Stack.Screen 
-        name="NftListPage"
-        component={NftListPage}
-        options={{headerShown:false}}
+          name="NftListPage"
+          component={NftListPage}
+          options={{headerShown:false}}
         />
         
     </Stack.Navigator>

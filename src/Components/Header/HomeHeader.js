@@ -1,11 +1,12 @@
-import { View,Text } from "react-native"
+import { View,Text,TouchableOpacity } from "react-native"
 import { styles } from './styles'
 
 import { Svgs } from "../../Svg"
 import { useSelector } from "react-redux"
 import {  } from "react-native-svg"
+import {  } from "@gorhom/bottom-sheet"
 
-export const HomeHeader = () => {
+export const HomeHeader = ({navigation}) => {
     const {header} = useSelector((st)=>st)
     return <View style = {styles.home_header}>
         {header.price ==='' && header.price_$ ==='' ?
@@ -15,6 +16,8 @@ export const HomeHeader = () => {
                 <Text style = {styles.new_price$}> ≈ {header.price_$ }</Text>
             </View>
         }
-        <Svgs title={'settings'} />
+        <TouchableOpacity onPress={()=>navigation.navigate('Settings')}>
+            <Svgs  title={'settings'} />
+        </TouchableOpacity>
     </View>
 }

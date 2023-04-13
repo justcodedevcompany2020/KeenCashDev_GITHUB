@@ -95,11 +95,13 @@ android {
 
     namespace "com.keen_cash"
     defaultConfig {
+        
         applicationId "com.keen_cash"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        missingDimensionStrategy 'react-native-camera', 'general'
     }
 
     splits {

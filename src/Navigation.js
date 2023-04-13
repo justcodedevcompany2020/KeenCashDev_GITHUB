@@ -6,6 +6,7 @@ import { Header1 } from './Components/Header/header2';
 import { Header3 } from './Components/Header/header3';
 import { HomeHeader } from './Components/Header/HomeHeader';
 import { NameHEader } from './Components/Header/nameHeader';
+import ScanScreen from './Components/QRCodeScanner';
 import { Awesome } from './Pages/Awesome';
 import { Confirm } from './Pages/Confirm';
 import { ConfirmPassword } from './Pages/ConfirmPassword';
@@ -22,6 +23,7 @@ import { Send } from './Pages/Send';
 import { Sending } from './Pages/Sending';
 import { SendTo } from './Pages/SendTo';
 import { SetPassword } from './Pages/SetPassword';
+import { Setting } from './Pages/Settings';
 import { WalletCreadet } from './Pages/WalletCreated';
 import { Wellcome } from './Pages/Wellcome';
 import { WellDone } from './Pages/WellDone';
@@ -46,7 +48,7 @@ export default Navigatiob = () => {
       <StatusBar
             backgroundColor="#161616"
         />
-      <Stack.Navigator initialRouteName="SendTo">
+      <Stack.Navigator initialRouteName="NavigationMenu">
         <Stack.Screen
           name="welcome"
           component={Wellcome}
@@ -172,9 +174,7 @@ export default Navigatiob = () => {
             component={NavigationMenu}
             options={
               {
-                header: ({navigation}) => (
-                  <HomeHeader  onPress={() => navigation.goBack()}  />
-                ),
+              headerShown: false
               }
             }
         />
@@ -266,9 +266,23 @@ export default Navigatiob = () => {
             }
         }
         />
+        <Stack.Screen 
+          name="Settings"
+          component={Setting}
+          options={
+            {
+              header: ({navigation}) => (
+                <Header1 onPress = {()=>navigation.goBack()}/>
+              ),
+            }
+        }
+        />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
 // Sending
 // Awesome
+// Setting
+// ScanScreen

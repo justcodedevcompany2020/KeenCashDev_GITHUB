@@ -18,7 +18,7 @@ export const MainPage = ({navigation}) =>{
     const { width } = Dimensions.get('window');
     const data = [{},{},{}]
     return <View style = {Gstyles.home}>
-        <View  style = {Gstyles.container}>
+        <View style = {Gstyles.container}>
             <SwiperFlatList
                 showPagination
                 paginationStyle = {{position:'absolute',top:-30}}
@@ -31,7 +31,7 @@ export const MainPage = ({navigation}) =>{
                         {i!==data.length-1 ?
                             <Main navigation = {navigation} data={data} price={'1 000.023'} price_$ ={'2.200'} token = 'EQAQxrU1G0D9-FQ3h1mO7o5qex-JJWvrAE82QnezDHqrS16B' />
                             :
-                            <MoreWallet />
+                            <MoreWallet navigation = {navigation} />
                         }
                     </View>
                 ))}

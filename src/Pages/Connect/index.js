@@ -7,7 +7,7 @@ import { SendTo } from '../SendTo';
 import { SendToBottomSheetModal } from './sendTo';
 
 export const Connetct = ({ref1,onPress}) => {
-    const snapPoints = useMemo(() => ['73%']);
+    const snapPoints = useMemo(() => ['63%']);
       const renderBackdrop = useCallback(
         (props) => (
           <BottomSheetBackdrop
