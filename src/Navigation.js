@@ -5,6 +5,7 @@ import { Header } from './Components/Header';
 import { Header1 } from './Components/Header/header2';
 import { Header3 } from './Components/Header/header3';
 import { HomeHeader } from './Components/Header/HomeHeader';
+import { NameHEader } from './Components/Header/nameHeader';
 import { Awesome } from './Pages/Awesome';
 import { Confirm } from './Pages/Confirm';
 import { ConfirmPassword } from './Pages/ConfirmPassword';
@@ -45,7 +46,7 @@ export default Navigatiob = () => {
       <StatusBar
             backgroundColor="#161616"
         />
-      <Stack.Navigator initialRouteName="NavigationMenu">
+      <Stack.Navigator initialRouteName="SendTo">
         <Stack.Screen
           name="welcome"
           component={Wellcome}
@@ -216,7 +217,7 @@ export default Navigatiob = () => {
           options={
             {
               header: ({navigation}) => (
-                <Header3  onPress={() => navigation.goBack()}  />
+                <Header3  text = {'Send to:'} onPress={() => navigation.goBack()}  />
               ),
             }
         }
@@ -227,7 +228,7 @@ export default Navigatiob = () => {
           options={
             {
               header: ({navigation}) => (
-                <Header3  onPress={() => navigation.goBack()}  />
+                <Header1 text = 'Send to' onPress={() => navigation.goBack()}  />
               ),
             }
         }
@@ -238,7 +239,7 @@ export default Navigatiob = () => {
           options={
             {
               header: ({navigation}) => (
-                <Header3  onPress={() => navigation.goBack()}  />
+                <Header1  onPress={() => navigation.goBack()}  />
               ),
             }
         }
@@ -249,7 +250,7 @@ export default Navigatiob = () => {
           options={
             {
               header: ({navigation}) => (
-                <Header3  onPress={() => navigation.goBack()}  />
+                <NameHEader name = {'Sending...'}/>
               ),
             }
         }
@@ -260,7 +261,7 @@ export default Navigatiob = () => {
           options={
             {
               header: ({navigation}) => (
-                <Header3  onPress={() => navigation.goBack()}  />
+                <NameHEader name = {'Success!'}/>
               ),
             }
         }

@@ -26,15 +26,16 @@ export const PinPage =({navigation}) => {
                 setCoint(count-1)
             }
         }
-        if(count == 4){
+        if(count == 3){
             navigation.navigate('Awesome')
         }
         setPin(item)
     }
     return <View style = {Gstyles.home}>
-        <View style = {{justifyContent:'center',alignItems:'center',marginVertical:20}}>
+        <View style = {{justifyContent:'center',alignItems:'center'}}>
             <Svgs title={'diamond'} />
         </View>
+        <View style = {{marginVertical:20}}>
         <Text style = {{color:'#EAEAEA',textAlign:'center',fontSize:15,fontWeight:500,marginVertical:0}}>Enter your keen.cash wallet passcode</Text>
         <View style = {{justifyContent:'center',alignItems:'center',flexDirection:'row',marginVertical:20}}>
             {pin.map((elm,i)=>{
@@ -45,6 +46,7 @@ export const PinPage =({navigation}) => {
                    return <View key={i} style = {styles.activePin}></View>
                 }
             })}
+        </View>
         </View>
         <View style = {{marginTop:20,flexDirection:'row',justifyContent:'center'}}>
             <TouchableOpacity style = {styles.button} onPress ={()=>handelClick(1)}>

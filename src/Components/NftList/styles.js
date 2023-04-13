@@ -3,11 +3,11 @@ export const styles = StyleSheet.create({
     img:{
         borderTopLeftRadius:15,
         borderTopRightRadius:15,
-        width:'100%'
+        width:'100%',
+        height:150,
     },
     title:{
         backgroundColor:'#313131',
-        // width:180,
         height:60,
         paddingVertical:10,
         paddingLeft:10,

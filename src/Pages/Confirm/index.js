@@ -14,6 +14,7 @@ export const Confirm = ({navigation}) => {
         if(!errorMsg){
             navigation.navigate('PinPage')
         }
+        setErrorMSg('')
     }
     const handelChange = (e) => {
         setComment(e)
@@ -30,10 +31,10 @@ export const Confirm = ({navigation}) => {
                 <Text style = {{color:'#8A8A8A',textAlign:'center',fontSize:15}}>≈ 0.007 fee</Text>
             </View>
             <View>
-                <Input value={comment } onChange={(e)=>handelChange(e)} placeholder={'Add comment...'} height = {80} x = {true} onPress ={()=>setComment('')} />
+                <Input value={comment } onChange={(e)=>handelChange(e)} placeholder={'Add comment...'} height = {80} x = {comment.length>30} onPress ={()=>setComment('')} />
             </View>
             <View>
-                <Text style = {{color:"#8A8A8A",fontWeight:300,fontSize:12,marginTop:10,lineHeight:13}}>
+                <Text style = {{color:"#8A8A8A",fontWeight:300,fontSize:12,marginTop:10,lineHeight:13,marginLeft:15}}>
                     The comment is optional and visible to everyone. You must include the note when sending to an exchange.(100?) characters left.{'\n'}
                     <Text style = {{color:'red'}}> {errorMsg}</Text>
                 </Text>

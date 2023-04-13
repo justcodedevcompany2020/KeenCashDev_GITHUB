@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
         backgroundColor:'#161616' ,
         justifyContent:'center',
         paddingHorizontal:20,
-        height:50,
+        paddingTop:10,
         borderTopLeftRadius:15,
         borderTopRightRadius:15,
     }

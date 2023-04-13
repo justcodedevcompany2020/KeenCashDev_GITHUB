@@ -1,14 +1,13 @@
 import React, { useCallback, useMemo, useRef } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import {BottomSheetModal,BottomSheetBackdrop} from '@gorhom/bottom-sheet';
 import { ConnectModal } from './connect';
 import { HandleComponent } from './handleComponent';
+import { SendTo } from '../SendTo';
+import { SendToBottomSheetModal } from './sendTo';
 
 export const Connetct = ({ref1,onPress}) => {
-    const snapPoints = useMemo(() => ['65%'], []);
-    const handleSheetChanges = useCallback((index) => {
-        console.log('handleSheetChanges', index);
-      }, []);
+    const snapPoints = useMemo(() => ['73%']);
       const renderBackdrop = useCallback(
         (props) => (
           <BottomSheetBackdrop
@@ -24,7 +23,6 @@ export const Connetct = ({ref1,onPress}) => {
             ref={ref1}
             index={0}
             snapPoints={snapPoints}
-            onChange={handleSheetChanges}
             handleStyle ={{backgroundColor: '#161616',borderColor:'#161616',borderWidth:0 }}
             backdropComponent={renderBackdrop}
             handleComponent = {()=>{
@@ -32,6 +30,7 @@ export const Connetct = ({ref1,onPress}) => {
             }}
           >
            <ConnectModal />
+            {/* <SendToBottomSheetModal /> */}
         </BottomSheetModal>
     </View>
 }

@@ -12,12 +12,11 @@ export const SuccessScreen = ({children,title,onPress,button_title='Proceed to s
             </View>
             {children}
         </View>
-        <View>
+        <View style = {{marginBottom:40}}>
             <Button onPress ={onPress} title={button_title} />
-            <View>
+           {opt&& <View>
                 <Text onPress={onPress2} style = {styles.opt}>{opt}</Text>
-            </View>
+            </View>}
         </View>
-       
     </View>
 }

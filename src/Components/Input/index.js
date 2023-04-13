@@ -10,6 +10,7 @@ export const Input = ({id, height = 50, placeholder, value, onChange, x,onPress}
         value={value}
         placeholder={placeholder}
         style={[styles.input, {height: height}]}
+        multiline={true}
       />
       <Text style={styles.text}>{id}</Text>
       {x && (

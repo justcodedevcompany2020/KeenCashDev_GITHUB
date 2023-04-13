@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     success_screen:{
-        justifyContent:'space-around',
+        justifyContent:'space-between',
         height:'100%'
     },
     opt:{

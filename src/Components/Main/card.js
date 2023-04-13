@@ -8,7 +8,11 @@ export const Card = ({price,price_$,token}) => {
     <View style={styles.card}>
       <View style={styles.price_wrapper}>
         <Text style={[styles.price, {marginBottom: -8}]}>{price}</Text>
-        <Text style={[styles.price_$]}> ≈ ${price_$}</Text>
+        {price_$ !=0 ?
+        <Text style={[styles.price_$]}> ≈ ${price_$}</Text>
+          :
+        <Text style={[styles.price_$]}>  ${price_$}</Text>
+        }
       </View>
       <View style={styles.token_wrapper}>
         <Text style={[styles.price_$, {width: '65%'}]}>{token}</Text>

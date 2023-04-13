@@ -5,7 +5,6 @@ import { Main } from '../../Components/Main'
 import { Gstyles } from '../../Gstyle'
 
 import { MoreWallet } from '../MoreWallet'
-// import { Connetct } from '../Connect';
 import {Connetct} from '../Connect/index'
 
 export const MainPage = ({navigation}) =>{
@@ -39,6 +38,5 @@ export const MainPage = ({navigation}) =>{
             </SwiperFlatList>
             <Connetct ref1 = {bottomSheetRef} onPress = {()=>close()} />
         </View>
-         
     </View>
 }

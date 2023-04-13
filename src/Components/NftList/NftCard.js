@@ -4,7 +4,6 @@ import { nftInfo } from "../../store/action/action"
 import {styles} from  './styles'
 
 export const NftCard = ({img,title,text,navigation}) => {
-    console.log(img,'s')
     const dispatch = useDispatch()
     return <TouchableOpacity onPress={()=>{
             dispatch(nftInfo(img,title,text))
