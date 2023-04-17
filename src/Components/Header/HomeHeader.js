@@ -13,7 +13,7 @@ export const HomeHeader = ({navigation}) => {
             <Svgs title={'home_header'} />:
             <View style = {styles.new_header}>
                 <Text style = {styles.new_price}>{header.price} </Text>
-                <Text style = {styles.new_price$}> ≈ {header.price_$ }</Text>
+                <Text style = {styles.new_price$}> ≈ ${header.price_$ }</Text>
             </View>
         }
         <TouchableOpacity onPress={()=>navigation.navigate('Settings')}>

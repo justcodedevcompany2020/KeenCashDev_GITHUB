@@ -1,6 +1,6 @@
 import {View,Dimensions} from 'react-native'
 import SwiperFlatList from 'react-native-swiper-flatlist'
-import React, { useRef,useEffect, forwardRef } from 'react';
+import React, { useRef,useEffect, } from 'react';
 import { Main } from '../../Components/Main'
 import { Gstyles } from '../../Gstyle'
 
@@ -36,7 +36,7 @@ export const MainPage = ({navigation}) =>{
                     </View>
                 ))}
             </SwiperFlatList>
-            <Connetct ref1 = {bottomSheetRef} onPress = {()=>close()} />
+            {/* <Connetct ref1 = {bottomSheetRef} onPress = {()=>close()} /> */}
         </View>
     </View>
 }

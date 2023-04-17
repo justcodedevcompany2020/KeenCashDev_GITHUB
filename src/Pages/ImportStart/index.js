@@ -32,6 +32,11 @@ export const InportStart = ({navigation}) => {
         {value:""},
         {value:""},
     ])
+    const handelChnge = (i,e) => {
+        let item =[...input]
+        item[i].value = e
+        setInput(item)
+    }
     return <ScrollView style = {Gstyles.wrapper}>
         <StatusBar
             backgroundColor="#000"
@@ -44,7 +49,7 @@ export const InportStart = ({navigation}) => {
         <View>
             {input.map((elm,i)=>(
                 <View key={i} style = {{marginVertical:10}}>
-                    <Input id ={i+1} />
+                    <Input margin={30} onChange={(e)=>handelChnge(i,e)} value = {elm.value} id ={i+1} />
                 </View>
             ))
             }

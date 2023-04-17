@@ -1,9 +1,8 @@
 import React, { useCallback, useMemo, useRef } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import {BottomSheetModal,BottomSheetBackdrop} from '@gorhom/bottom-sheet';
 import { ConnectModal } from './connect';
 import { HandleComponent } from './handleComponent';
-import { SendTo } from '../SendTo';
 import { SendToBottomSheetModal } from './sendTo';
 
 export const Connetct = ({ref1,onPress}) => {
@@ -34,10 +33,3 @@ export const Connetct = ({ref1,onPress}) => {
         </BottomSheetModal>
     </View>
 }
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      padding: 24,
-      backgroundColor: '#161616',
-    },
-  });

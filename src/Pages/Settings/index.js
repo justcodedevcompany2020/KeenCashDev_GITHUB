@@ -5,21 +5,21 @@ import { styles } from "./styles"
 
 export const Setting = () => {
     const { width } = Dimensions.get('window');
-    return <ScrollView style = {[Gstyles.home,]}>
+    return <ScrollView style = {[Gstyles.home,{paddingHorizontal:25}]}>
         <View style = {{marginBottom:50}}>
         <Svgs title = {'settings_2'} />
         <View style = {styles.continer}>
             <View style = {styles.item}>
                 <Text style = {styles.text}>Active address</Text>
-                <Text style = {styles.text}>v4R2</Text>
+                <Text style = {[styles.text,{fontWeight:400}]}>v4R2</Text>
             </View>
             <View style = {styles.item}>
                 <Text style = {styles.text}>Notifications</Text>
-                <Text style = {styles.text}>On</Text>
+                <Text style = {[styles.text,{fontWeight:400}]}>On</Text>
             </View>
             <View style = {styles.item}>
                 <Text style = {styles.text}>Primary currency</Text>
-                <Text style = {styles.text}>USD</Text>
+                <Text style = {[styles.text,{fontWeight:400}]}>USD</Text>
             </View>
         </View>
         <View style = {styles.continer}>
@@ -37,7 +37,7 @@ export const Setting = () => {
             </View>
             <View style = {styles.item}>
                 <Text style = {styles.text}>Use Face recognition</Text>
-                <Text style = {styles.text}>ON</Text>
+                <Text style = {[styles.text,{fontWeight:400}]}>On</Text>
             </View>
         </View>
 

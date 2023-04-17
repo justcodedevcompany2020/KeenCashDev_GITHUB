@@ -117,46 +117,19 @@ const ScanScreen = ({navigation}) => {
               permision={e => setPermision(e)}
             />
           }
-          // isAuthorized = {(e)=>console.log(e)}
-          checkAndroid6Permissions={e => console.log(e)}
-          cameraStyle={{width: '100%', height: '100%', opacity: 1}}
-          cameraContainerStyle={{
-            //  :'rgba(255,255,255,0.5)'
-            shadowRadius: 20,
-            shadowOffset: {height: 20, width: 20},
-          }}
+          cameraStyle={{width: '100%', height: '100%'}}
+
           customMarker={
-            <View style={{marginBottom: 60,
-                shadowRadius: 100,
+            <ImageBackground
+            source={require('../../img/blurBG.png')}
+            style={{marginBottom: 60,
+                // shadowRadius: 100,
                 shadowColor:"#fff",
                 shadowOffset: {height: 20, width: 20},
+                width:'100%',
+                height:'110%'
             }}>
-              <Text
-                style={{
-                  color: '#CCFF00',
-                  fontSize: 30,
-                  fontWeight: 900,
-                  textAlign: 'center',
-                  marginBottom: 40,
-                  opacity: 1,
-                }}>
-                scan QR code
-              </Text>
-              <View style={[{height: 250, width: 250}]}>
-                <View style={{position: 'absolute', left: -4, top: -4}}>
-                  <Svgs title={'vector_2'} />
-                </View>
-                <View style={{position: 'absolute', right: -4, top: -4}}>
-                  <Svgs title={'vector_1'} />
-                </View>
-                <View style={{position: 'absolute', left: -4, bottom: -4}}>
-                  <Svgs title={'vector_3'} />
-                </View>
-                <View style={{position: 'absolute', right: -4, bottom: -4}}>
-                  <Svgs title={'vector_4'} />
-                </View>
-              </View>
-            </View>
+            </ImageBackground>
           }
           ref={node => {
             scanner = node;
@@ -177,7 +150,7 @@ const ScanScreen = ({navigation}) => {
                   <Svgs title={'flash'} />
                 </TouchableOpacity>
                 <TouchableOpacity
-                  onPress={() => navigation.navigate('Main')}
+                  onPress={() => navigation.goBack('')}
                   style={{
                     backgroundColor: '#313131',
                     width: 200,

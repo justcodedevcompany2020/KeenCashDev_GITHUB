@@ -22,7 +22,6 @@ export default function NavigationMenu() {
             // headerShown:false,
             tabBarStyle: ( () => { 
                 const routeName = getFocusedRouteNameFromRoute(route) ?? ''
-                console.log(routeName);
                 return routeName == 'QrNavigation' ? {display: 'none'} : {height: 80,backgroundColor:'#161616',borderTopColor:'#000' ,borderTopWidth:1}
             })(route),
         })}

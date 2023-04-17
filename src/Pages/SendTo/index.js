@@ -20,7 +20,7 @@ export const SendTo = ({navigation}) => {
                 onChangeText = {(e)=>setValue(e)} 
                 placeholder="0 TON" 
                 placeholderTextColor = {'#8A8A8A'} 
-                style = {[styles.input,value>+price && {color:"red"},value !== '' && (value.length >2 ? {width:value.length*18.8}:{width:value.length*25})]} />
+                style = {[styles.input,value>+price && {color:"red"},value !== '' && (value.length >2 ? {width:value.length*19}:{width:value.length*25})]} />
             {value !=='' &&<Text style = {[{fontSize:30,top:-4,color:"#fff"},value>+price && {color:"red"}]}>TON</Text>}
             </View>
             <Text style = {{color:'red',textAlign:'center'}}>{value>+price && 'Insufficient funds'}</Text>

@@ -41,14 +41,11 @@ export default Navigatiob = () => {
     },
   };
   return (
-    <NavigationContainer 
-    
-    theme ={MyTheme}
-    >
+    <NavigationContainer theme ={MyTheme}>
       <StatusBar
             backgroundColor="#161616"
         />
-      <Stack.Navigator initialRouteName="NavigationMenu">
+      <Stack.Navigator initialRouteName="welcome">
         <Stack.Screen
           name="welcome"
           component={Wellcome}
@@ -206,7 +203,7 @@ export default Navigatiob = () => {
           options={
             {
               header: ({navigation}) => (
-                <Header3  onPress={() => navigation.goBack()}  />
+                <Header3  onPress1={() => navigation.navigate('ScanScreen')} onPress={() => navigation.goBack()}  />
               ),
             }
         }
@@ -217,7 +214,7 @@ export default Navigatiob = () => {
           options={
             {
               header: ({navigation}) => (
-                <Header3  text = {'Send to:'} onPress={() => navigation.goBack()}  />
+                <Header1 text = {'Send to:'} onPress={() => navigation.goBack()}  />
               ),
             }
         }
@@ -276,6 +273,11 @@ export default Navigatiob = () => {
               ),
             }
         }
+        />
+        <Stack.Screen 
+          name="ScanScreen"
+          component={ScanScreen}
+          options={{headerShown:false}}
         />
         
       </Stack.Navigator>
