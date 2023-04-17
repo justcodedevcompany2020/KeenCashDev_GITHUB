@@ -16,7 +16,7 @@ export const SuccessScreen = ({children,title,onPress,button_title='Proceed to s
             <Button onPress ={onPress} title={button_title} />
             <View style = {{justifyContent:'center',alignItems:'center',marginTop:20}}>
         {close && <TouchableOpacity onPress = {closePress} style = {{backgroundColor:'#313131',justifyContent:'center',width:200,height:50,borderRadius:15,alignItems:'center'}}>
-            <Text style = {{color:"#FFFFFF",fontWeight:600,fontSize:15}}>Close</Text>
+            <Text style = {{color:"#FFFFFF",fontFamily:'Lexend-SemiBold',fontSize:15}}>Close</Text>
         </TouchableOpacity>}
         </View>
            {opt&& <View>

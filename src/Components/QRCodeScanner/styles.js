@@ -17,14 +17,14 @@ const styles = {
         width: deviceWidth,
     },
     textTitle: {
-        fontWeight: 'bold',
+        fontFamily:'Lexend-Black',
         fontSize: 18,
         textAlign: 'center',
         padding: 16,
         color: 'white'
     },
     textTitle1: {
-        fontWeight: 'bold',
+        fontFamily:'Lexend-Black',
         fontSize: 18,
         textAlign: 'center',
         padding: 16,
@@ -82,7 +82,7 @@ const styles = {
         fontSize: 16
     },
     highlight: {
-        fontWeight: '700',
+        fontFamily:'Lexend-Bold',
     },
     centerText: {
         flex: 1,
@@ -92,7 +92,7 @@ const styles = {
         color: 'white',
     },
     textBold: {
-        fontWeight: '500',
+        fontFamily:'Lexend-Medium',
         color: '#000',
     },
     bottomContent: {
@@ -110,7 +110,7 @@ const styles = {
     },
     buttonTextStyle: {
         color: 'black',
-        fontWeight: 'bold',
+        fontFamily:'Lexend-Black',
     }
 }
 export default styles;

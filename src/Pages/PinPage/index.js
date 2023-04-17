@@ -36,7 +36,7 @@ export const PinPage =({navigation}) => {
             <Svgs title={'diamond'} />
         </View>
         <View style = {{marginVertical:20}}>
-        <Text style = {{color:'#EAEAEA',textAlign:'center',fontSize:15,fontWeight:500,marginVertical:0}}>Enter your keen.cash wallet passcode</Text>
+        <Text style = {{color:'#EAEAEA',textAlign:'center',fontSize:15,fontFamily:"Lexend-Medium",marginVertical:0}}>Enter your keen.cash wallet passcode</Text>
         <View style = {{justifyContent:'center',alignItems:'center',flexDirection:'row',marginVertical:20}}>
             {pin.map((elm,i)=>{
                 if(elm.key === ''){

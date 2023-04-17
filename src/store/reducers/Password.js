@@ -8,6 +8,9 @@ const initialState = {
       case 'set_password':
         item.password = action.password
         break
+      case 'clear_password':
+        item.password = ''
+        break
       default:
         break
     }

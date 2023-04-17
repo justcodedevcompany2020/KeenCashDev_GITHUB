@@ -10,12 +10,12 @@ export const NftInfo = () => {
     const {header} = useSelector((st)=>st)
     const renderViewMore = (onPress) =>{
         return(
-          <Text style = {{color:'#4DFF7E',fontSize:15,fontWeight:300}} onPress={onPress}>More</Text>
+          <Text style = {{color:'#4DFF7E',fontSize:15,fontFamily:'Lexend-Light'}} onPress={onPress}>More</Text>
         )
       }
      const renderViewLess = (onPress) =>{
         return(
-          <Text style = {{color:'#4DFF7E',fontSize:15,fontWeight:300}} onPress={onPress}>Less</Text>
+          <Text style = {{color:'#4DFF7E',fontSize:15,fontFamily:'Lexend-Light'}} onPress={onPress}>Less</Text>
         )
       }
     return <ScrollView style = {Gstyles.home}>
@@ -28,7 +28,7 @@ export const NftInfo = () => {
                 renderViewMore={renderViewMore}
                 renderViewLess={renderViewLess}
                 >
-                <Text style = {{color:'#8A8A8A'}}>Lorem ipsum dolor sit amet, in quo dolorum ponderum, nam veri molestie constituto eu. Eum enim tantas sadipscing ne, ut omnes malorum nostrum cum. Errem populo qui ne, ea ipsum antiopam definitionem eos.</Text>
+                <Text style = {{color:'#8A8A8A',fontFamily:'Lexend-Light'}}>Lorem ipsum dolor sit amet, in quo dolorum ponderum, nam veri molestie constituto eu. Eum enim tantas sadipscing ne, ut omnes malorum nostrum cum. Errem populo qui ne, ea ipsum antiopam definitionem eos.</Text>
             </ViewMoreText>
             <View style = {{marginVertical:20}}>
                 <BlueButton backgroundColor="#4DFF7E" color ='#161616' text ='Transfer' height={50}/>
@@ -39,7 +39,7 @@ export const NftInfo = () => {
                 renderViewMore={renderViewMore}
                 renderViewLess={renderViewLess}
                 >
-                <Text style = {{color:'#8A8A8A'}}>Lorem ipsum dolor sit amet, in quo dolorum ponderum, nam veri molestie constituto eu. Eum enim tantas sadipscing ne, ut omnes malorum nostrum cum. Errem populo qui ne, ea ipsum antiopam definitionem eos.</Text>
+                <Text style = {{color:'#8A8A8A',fontFamily:'Lexend-Light'}}>Lorem ipsum dolor sit amet, in quo dolorum ponderum, nam veri molestie constituto eu. Eum enim tantas sadipscing ne, ut omnes malorum nostrum cum. Errem populo qui ne, ea ipsum antiopam definitionem eos.</Text>
             </ViewMoreText>
             <Text style = {styles.title}>Properties</Text>
             <View style = {{flexDirection:'row'}}>
@@ -72,7 +72,7 @@ export const NftInfo = () => {
                     </View>
                 </View>
             </View>
-            <Text style = {{textAlign:'center',fontWeight:600,fontSize:15,color:'#EAEAEA',marginVertical:30}}>View in Tonscan {`>`} </Text>
+            <Text style = {{textAlign:'center',fontFamily:'Lexend-SemiBold',fontSize:15,color:'#EAEAEA',marginVertical:30}}>View in Tonscan {`>`} </Text>
         </View>
     </ScrollView>
 }

@@ -11,15 +11,15 @@ export const Setting = () => {
         <View style = {styles.continer}>
             <View style = {styles.item}>
                 <Text style = {styles.text}>Active address</Text>
-                <Text style = {[styles.text,{fontWeight:400}]}>v4R2</Text>
+                <Text style = {[styles.text,{fontFamily:"Lexend-Regular"}]}>v4R2</Text>
             </View>
             <View style = {styles.item}>
                 <Text style = {styles.text}>Notifications</Text>
-                <Text style = {[styles.text,{fontWeight:400}]}>On</Text>
+                <Text style = {[styles.text,{fontFamily:"Lexend-Regular"}]}>On</Text>
             </View>
             <View style = {styles.item}>
                 <Text style = {styles.text}>Primary currency</Text>
-                <Text style = {[styles.text,{fontWeight:400}]}>USD</Text>
+                <Text style = {[styles.text,{fontFamily:"Lexend-Regular"}]}>USD</Text>
             </View>
         </View>
         <View style = {styles.continer}>
@@ -37,7 +37,7 @@ export const Setting = () => {
             </View>
             <View style = {styles.item}>
                 <Text style = {styles.text}>Use Face recognition</Text>
-                <Text style = {[styles.text,{fontWeight:400}]}>On</Text>
+                <Text style = {[styles.text,{fontFamily:"Lexend-Regular"}]}>On</Text>
             </View>
         </View>
 

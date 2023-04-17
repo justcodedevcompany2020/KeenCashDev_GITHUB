@@ -18,6 +18,6 @@ export const styles = StyleSheet.create({
     text:{
         color:'#EAEAEA',
         fontSize:15,
-        fontWeight:300,
+        fontFamily:"Lexend-Light"
     }
 })

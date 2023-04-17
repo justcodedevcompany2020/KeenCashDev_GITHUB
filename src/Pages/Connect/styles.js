@@ -9,11 +9,11 @@ import { StyleSheet } from 'react-native';
     title:{
       color:'#EAEAEA',
       marginVertical:10,
-      fontWeight:500,
+      fontFamily:'Lexend-Medium',
       fonSize:20
     },
     text:{
-      fontWeight:"300",
+      fontFamily:'Lexend-Light',
       fontSize:15,
       color:'#8A8A8A',
       textAlign:'center',

@@ -7,6 +7,8 @@ import { Header3 } from './Components/Header/header3';
 import { HomeHeader } from './Components/Header/HomeHeader';
 import { NameHEader } from './Components/Header/nameHeader';
 import ScanScreen from './Components/QRCodeScanner';
+
+
 import { Awesome } from './Pages/Awesome';
 import { Confirm } from './Pages/Confirm';
 import { ConfirmPassword } from './Pages/ConfirmPassword';
@@ -45,7 +47,7 @@ export default Navigatiob = () => {
       <StatusBar
             backgroundColor="#161616"
         />
-      <Stack.Navigator initialRouteName="welcome">
+      <Stack.Navigator initialRouteName="NavigationMenu">
         <Stack.Screen
           name="welcome"
           component={Wellcome}
@@ -67,7 +69,7 @@ export default Navigatiob = () => {
               }
             }
         />
-        <Stack.Screen
+         <Stack.Screen
             name = 'popupPage'
             component={PopUpPage}
             options={

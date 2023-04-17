@@ -52,8 +52,8 @@ export const YourRecoveryPhrase = ({navigation}) => {
             navigation.navigate('SecurityNerdCheck')
         }
     }
-    return <SafeAreaView style = {[Gstyles.wrapper,styles.wrapper]}>
-        <ScrollView>
+    return <SafeAreaView  style = {[Gstyles.wrapper,styles.wrapper]}>
+        <ScrollView showsVerticalScrollIndicator = {false}>
         <View style = {Gstyles.pop_up_centers}>
             {click == 1 ?
             <PopUp open ={open} onPress = {()=>setOpen(false)} title = {'Sure done?'}  text = {'You didn’t have enough time to write these words down.'} button_text ={'Ok, sorry'}/>
@@ -64,7 +64,6 @@ export const YourRecoveryPhrase = ({navigation}) => {
              onPress1 ={()=>{navigation.navigate('SecurityNerdCheck') 
                 setOpen(false)
                 setClick(0)
-
             }}
              />
             }
@@ -73,7 +72,7 @@ export const YourRecoveryPhrase = ({navigation}) => {
             <Text style ={[Gstyles.title,{marginVertical:10}]}>Your Recovery Phrase</Text>
             <Text style = {Gstyles.text}>Write down these 24 words in this exact order and keep them in a secure place.</Text>
             <Text style = {[Gstyles.text,{marginVertical:10}]}> Do not share this list with anyone. </Text>
-            <Text style = {Gstyles.text}>If you lose it, you will irrevocably lose access to your TON account.</Text>
+            <Text style = {[Gstyles.text,{marginBottom:20}]}>If you lose it, you will irrevocably lose access to your TON account.</Text>
         </View>
         <View style = {styles.list}>
             {item.map((elm,i)=>(
@@ -83,7 +82,7 @@ export const YourRecoveryPhrase = ({navigation}) => {
                 </View>
             ))}
         </View>
-        <View style = {{marginBottom:20}}>
+        <View style = {{marginVertical:40}}>
             <Button onPress={()=>handleCliclk()} title={'I saved it carefully'} />
         </View>
         </ScrollView>

@@ -13,7 +13,7 @@ export const MoreWallet = ({navigation}) => {
         </View>
         <View>
             <BlueButton  onPress={()=>navigation.navigate('WalletCreadet')}  height={70} text = 'Create new TON wallet' />
-            <Text onPress={()=>navigation.navigate('InportStart')} style = {{color:'#FFFFFF',textAlign:'center',marginTop:20,fontSize:15,fontWeight:600}}>Import existing TON wallet</Text>
+            <Text onPress={()=>navigation.navigate('InportStart')} style = {{color:'#FFFFFF',textAlign:'center',marginTop:20,fontSize:15,fontFamily:'Lexend-SemiBold'}}>Import existing TON wallet</Text>
         </View>
     </View>
 }

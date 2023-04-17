@@ -2,7 +2,7 @@ import {TextInput, View, Text,TouchableOpacity} from 'react-native';
 import {Svgs} from '../../Svg';
 import {styles} from './style';
 
-export const Input = ({id, height = 50, placeholder, value, onChange, x,onPress,margin =10}) => {
+export const Input = ({id, height = 50, placeholder, value, onChange, x,onPress,margin =10,ref}) => {
   return (
     <View>
       <TextInput
@@ -11,6 +11,7 @@ export const Input = ({id, height = 50, placeholder, value, onChange, x,onPress,
         placeholder={placeholder}
         style={[styles.input, {height: height,paddingHorizontal:margin}]}
         multiline={true}
+        ref ={ref}
       />
       <Text style={styles.text}>{id}</Text>
       {x && (

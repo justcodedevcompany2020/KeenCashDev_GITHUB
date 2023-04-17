@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     text:{
         color:'#FFFFFF',
         fontSize:16,
-        fontWeight:400,
+        fontFamily:'Lexend-Regular ',
     },
     home_header:{
         flexDirection:"row",
@@ -26,13 +26,14 @@ export const styles = StyleSheet.create({
     },
     new_price:{
         color:'#4DFF7E',
-        fontWeight:600,
+        fontFamily:'Lexend-SemiBold  ',
+
         fontSize:15,
         lineHeight:18.75
     },
     new_price$:{
         color:'#8A8A8A',
-        fontWeight:400,
+        fontFamily:'Lexend-Regular',
         fontSize:10,
     },
     header1:{

@@ -11,12 +11,13 @@ export const styles = StyleSheet.create({
     },
     name:{
         color:'#EAEAEA',
-        fontWeight:500,
+        fontFamily:'Lexend-Medium',
         fontSize:15,
     },
     number:{
         color:'#8A8A8A',
-        fontWeight:300,
+        fontFamily:'Lexend-Light',
+
         fontSize:15,
     },
     item:{

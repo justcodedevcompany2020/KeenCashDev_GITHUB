@@ -25,12 +25,12 @@ export const Gstyles = StyleSheet.create({
     },
     text:{
         color:'#EAEAEA',
-        fontWeight:300,
+        fontFamily:"Lexend-Light",
         fontSize:15,
         textAlign:'center',
     },
     title:{
-        fontWeight:500,
+        fontFamily:'Lexend-Medium',
         fontSize:28,
         textAlign:'center',
         color:'#FFFFFF'

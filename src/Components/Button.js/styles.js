@@ -11,7 +11,8 @@ export const styles = StyleSheet.create({
     button_text:{
         color:'#161616',
         fontSize:15,
-        fontWeight:600,
+        fontFamily:'Lexend-Medium',
+
     },
     blue_button:{
         justifyContent:'center',
@@ -24,8 +25,8 @@ export const styles = StyleSheet.create({
     },
     blue_button_text:{
         fontSize:15,
-        fontWeight:600,
         color:'#EAEAEA',
+        fontFamily:'Lexend-Medium',
         marginLeft:10
     }
 })

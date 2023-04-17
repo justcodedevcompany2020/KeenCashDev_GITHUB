@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
         textAlign:'center',
         color:'#EAEAEA',
         fontSize:15,
-        fontWeight:600, 
+        fontFamily:"Lexend-SemiBold",
         marginTop:40
     }
 })

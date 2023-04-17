@@ -44,7 +44,7 @@ export const InportStart = ({navigation}) => {
         <View>
             <Text style = {[Gstyles.title,{marginVertical:20}]}>24 Secret Words</Text>
             <Text style = {[Gstyles.text,{paddingHorizontal:25}]}>You can restore access to your wallet by entering 24 words you wrote when down you creating the wallet.</Text>
-            <Text onPress={()=>navigation.navigate('WhatADay')} style = {{color:'#8A8A8A',fontSize:15,fontWeight:500,textAlign:"center",marginVertical:20}}>I don’t have those</Text>
+            <Text onPress={()=>navigation.navigate('WhatADay')} style = {{color:'#8A8A8A',fontSize:15,fontFamily:'Lexend-Medium',textAlign:"center",marginVertical:20}}>I don’t have those</Text>
         </View>
         <View>
             {input.map((elm,i)=>(

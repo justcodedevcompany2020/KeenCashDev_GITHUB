@@ -32,10 +32,10 @@ export const Confirm = ({navigation}) => {
     }
     return <View style = {[Gstyles.home,{justifyContent:'space-around'}]}>
         <View>
-            <Text style ={{color:'#4DFF7E',textAlign:'center',fontSize:15,lineHeight:18,fontWeight:300}}>markmartemianov.ton</Text>
+            <Text style ={{color:'#4DFF7E',textAlign:'center',fontSize:15,lineHeight:18,fontFamily:"Lexend-Light"}}>markmartemianov.ton</Text>
             <Text style = {{textAlign:'center',color:'#8A8A8A',fontSize:15,marginTop:15}}>{send.token}</Text>
             <View style = {{marginVertical:50}}>
-                <Text style = {{color:'#EAEAEA',fontSize:30,fontWeight:400,textAlign:'center'}}>102.6847 TON</Text>
+                <Text style = {{color:'#EAEAEA',fontSize:30,fontFamily:"Lexend-Regular",textAlign:'center'}}>102.6847 TON</Text>
                 <Text style = {{color:'#8A8A8A',textAlign:'center',fontSize:15}}>≈ 0.007r fee</Text>
             </View>
             <View>
@@ -68,7 +68,7 @@ export const Confirm = ({navigation}) => {
                         )}   
             </View>
             <View>
-                <Text style = {{color:"#8A8A8A",fontWeight:300,fontSize:12,marginTop:10,lineHeight:13,marginLeft:15}}>
+                <Text style = {{color:"#8A8A8A",fontFamily:"Lexend-Light",fontSize:12,marginTop:10,lineHeight:13,marginLeft:15}}>
                     The comment is optional and visible to everyone. You must include the note when sending to an exchange.(100?) characters left.{'\n'}
                     <Text style = {{color:'red'}}> {errorMsg}</Text>
                 </Text>

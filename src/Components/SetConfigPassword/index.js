@@ -1,5 +1,5 @@
-import {View, Text,  TouchableOpacity} from 'react-native';
-import {useState,  useEffect} from 'react';
+import {View, Text,Switch,KeyboardAvoidingView, } from 'react-native';
+import {useState,  useEffect,useRef} from 'react';
 import { useDispatch,useSelector } from 'react-redux'
 import {Gstyles} from '../../Gstyle';
 import {Svgs} from '../../Svg';
@@ -10,15 +10,17 @@ import {
   useBlurOnFulfill,
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
-import { set_password } from '../../store/action/action';
+import {  clear_password, set_password } from '../../store/action/action';
+import { PopUp } from '../PopUp';
+import {  } from 'react-native-gesture-handler';
 
-export const SetConfigPassword = ({title, text, options,navigation,action}) => {
+export const SetConfigPassword = ({title, text, options,navigation,action,Passwordcount}) => {
   const [count, setCount] = useState(4);
-  const [enableMask, setEnableMask] = useState(true);
+  const [enableMask] = useState(true);
   const [value, setValue] = useState('');
-  const [opt, setOpt] = useState(false);
   const dispatch = useDispatch()
   const {password} = useSelector((st)=>st)
+  const [open,setOpen] = useState(false)
   const [match,setMatch] = useState(true)
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
@@ -31,27 +33,43 @@ export const SetConfigPassword = ({title, text, options,navigation,action}) => {
     if (symbol) {
       color = true;
       textChild = enableMask ? '•' : symbol;
-    } else if (isFocused) {
-      textChild = <Cursor />;
     }
     return (
       <Text
         key={index}
+        ref = {ref1}
         style={[styles.cell, color && styles.focusCell, !match && {borderColor:'red'}]}
         onLayout={getCellOnLayoutHandler(index)}>
         {textChild}
       </Text>
     );
   };
+  const [constErrorPassword,setConstErrorPassword] = useState(0)
+  const [isEnabled, setIsEnabled] = useState(false);
+  const [active,setActive] = useState(true)
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   const ref = useBlurOnFulfill({value, cellCount: count});
   const ref2 = useBlurOnFulfill({});
+  const ref1 = useRef()
   useEffect(()=>{
-    if(password.password.length){
-      setCount(password.password.length)
+    setActive(false)
+    setTimeout(() => {
+      setActive(true)
+        // ref1.current.focus();
+      }, 10);
+    // ref1.current.focus()
+  },[open])
+  useEffect(()=>{
+    if(password.password.length === 6){
+      setCount(6)
     }
     else {
       setCount(4)
     }
+    if(password.password === '') {
+      setValue('')
+    }
+    ref1.current.focus()
   },[password])
   useEffect(()=>{
     if(value.length === count){
@@ -62,66 +80,73 @@ export const SetConfigPassword = ({title, text, options,navigation,action}) => {
         else if(value == password.password){
           navigation.navigate('WellDone')
         }
+        else if (constErrorPassword === 2 ){
+          setOpen(true)
+        }
         else if(value != password.password){
+          setConstErrorPassword(constErrorPassword+1)
           setValue('')
           setMatch(false)
         }
     }
   },[value])
+  useEffect(()=>{
+    if(!isEnabled){
+      setCount(4)
+    }
+    else {
+      setCount(6)
+    }
+  },[isEnabled])
   return (
-    <View style={[Gstyles.wrapper, Gstyles.wrapper2]}>
+    <View  keyboardShouldPersistTaps="handled" style={[Gstyles.wrapper, Gstyles.wrapper2]}>
+      {open&& 
+      <PopUp
+            title = {'Oh, my...'}
+            text = {'It seems there is a problem with a passcode you’ve just created?'}
+            button_text = {'Keep trying!'}
+            text_2 = {'Create new passcode'}
+            onPress = {()=>{
+              setOpen(false)
+              setConstErrorPassword(0)
+              setValue('')
+              ref1.current.focus()
+            }}
+            onPress1 = {()=>{
+              navigation.navigate('SetPassword')
+              dispatch(clear_password())
+              ref1.current.focus()
+            }}
+      />
+      }
       <View>
         <Svgs title={title} />
         <Text style={[Gstyles.text, {marginTop: 10}]}>{text}</Text>
       </View>
-      <View style={styles.password_continer}>
-        {!opt ? (
+      <View   style={[styles.password_continer]}>
           <CodeField
-            autoFocus={true}
-            ref={!match ?ref:ref2}
+            autoFocus={active}
+            ref={ref1}
             {...props}
             value={value}
             onChangeText={setValue}
-            cellCount={count}
+            cellCount={Passwordcount?Passwordcount:count}
             keyboardType="number-pad"
             textContentType="oneTimeCode"
             renderCell={renderCell}
           />
-        ) : (
-          <View style={{alignItems: 'center'}}>
-            <View style={styles.opt}>
-              <TouchableOpacity
-                style={[
-                  styles.touchableOpacity,
-                  {borderBottomWidth: 1, borderColor: '#C8C7CB'},
-                ]}
-                onPress={() => {
-                  setCount(4);
-                  setValue('')
-                  setOpt(false);
-                }}>
-                <Text style={styles.text}>4-digit code</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.touchableOpacity}
-                onPress={() => {
-                  setCount(6);
-                  setValue('')
-                  setOpt(false);
-                }}>
-                <Text style={styles.text}>6-digit code</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        )}
       </View>
-      <View>
-        <Text
-          onPress={() => setOpt(true)}
-          style={[Gstyles.text, {fontWeight: 600}]}>
-          {options}
-        </Text>
-      </View>
+      {options &&<View style = {{justifyContent:'center',alignItems:"center",flexDirection:'row'}}>
+        <Text style = {{color:'#EAEAEA',fontFamily:"Lexend-Light "}}>4 digits</Text>
+         <Switch
+              trackColor={{false: '#767577', true: '#81b0ff'}}
+              thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={toggleSwitch}
+              value={isEnabled}
+            />
+        <Text style = {{color:'#EAEAEA',fontFamily:"Lexend-Light "}}>6 digits</Text>
+      </View>}
     </View>
   );
 };

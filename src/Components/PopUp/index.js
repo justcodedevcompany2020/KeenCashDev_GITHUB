@@ -11,11 +11,10 @@ export const PopUp = ({
   onPress1,
   open,
 }) => {
-  console.log(open,'open')
   return (
 
     <Modal visible={open} transparent={true} animationType="slide">
-      <View
+      <View 
         style={{
           flex: 1,
           justifyContent: 'center',

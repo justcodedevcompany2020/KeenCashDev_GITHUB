@@ -2,8 +2,10 @@ import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   password_continer: {
-    flexDirection: 'row',
+    // flexDirection: 'row',
     justifyContent: 'center',
+    alignItems:"center",
+    flexDirection:"column"
   },
   input: {
     borderWidth: 1,
@@ -26,7 +28,7 @@ export const styles = StyleSheet.create({
   },
   text: {
     fontSize: 15,
-    fontWeight: 300,
+    fontFamily:'Lexend-Light',
     color: '#000',
     marginHorizontal: 10,
   },
@@ -42,7 +44,7 @@ export const styles = StyleSheet.create({
     height: 20,
     lineHeight: 55,
     fontSize: 30,
-    fontWeight: '700',
+    fontFamily:'Lexend-Bold',
     textAlign: 'center',
     marginLeft: 20,
     borderRadius: 1000,

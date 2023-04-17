@@ -26,3 +26,8 @@ export const SendToken = (value) => {
         value
     }
 }
+export const clear_password = () => {
+    return {
+        type:'clear_password'
+    }
+}

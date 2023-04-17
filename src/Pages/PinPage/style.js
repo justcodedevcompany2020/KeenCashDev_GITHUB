@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     },
     number:{
         fontSize:37,
-        fontWeight:400,
+        fontFamily:"Lexend-Regular",
         color:'#fff'
     },
     abc:{

@@ -13,17 +13,19 @@ export const styles = StyleSheet.create({
         fontSize:15,
         textAlign:'center',
         color:'#161616',
-        fontWeight:500,
+        fontFamily:'Lexend-Medium',
+
     },
     text:{
         marginTop:5,
-        fontWeight:300,
+        fontFamily:'Lexend-Light',
+
         color:'#161616',
         fontSize:13,
         textAlign:'center',
     },
     skip:{
-        fontWeight:400,
+        fontFamily:'Lexend-Regular',
         color:'#2400FF',
         fontSize:15,
         marginBottom:15,

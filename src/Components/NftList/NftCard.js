@@ -11,8 +11,8 @@ export const NftCard = ({img,title,text,navigation}) => {
         }}  style = {{width:'49%',marginBottom:10}}>
         <Image source={img} style = {styles.img} />
         <View  style = {styles.title}>
-            <Text style = {{color:'#8A8A8A',fontSize:13,fontWeight:300}}>{title}</Text>
-            <Text style = {{color:'#EAEAEA',fontSize:13,fontWeight:400}}>{text}</Text>
+            <Text style = {{color:'#8A8A8A',fontSize:13,fontFamily:'Lexend-Regular'}}>{title}</Text>
+            <Text style = {{color:'#EAEAEA',fontSize:13,fontFamily:'Lexend-Regular'}}>{text}</Text>
         </View>
     </TouchableOpacity>
 }

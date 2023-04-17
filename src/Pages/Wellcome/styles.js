@@ -19,12 +19,12 @@ export const styles = StyleSheet.create({
     },
     button_text:{
         color:'#FFF',
-        fontWeight:600,
+        fontFamily:'Lexend-SemiBold',
         fontSize:15,
     },
     text:{
         color:'#161616',
-        fontWeight:600,
+        fontFamily:'Lexend-SemiBold',
         fontSize:15,
         marginTop:20,
     }

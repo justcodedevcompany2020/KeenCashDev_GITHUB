@@ -10,22 +10,22 @@ export const styles = StyleSheet.create({
     title:{
         marginVertical:15,
         color:'#EAEAEA',
-        fontWeight:500,
         fontSize:20,
+        fontFamily:"Lexend-Medium"
     },
     text:{
         color:'#8A8A8A',
-        fontWeight:300,
+        fontFamily:"Lexend-Light",
         fontSize:15,
     },
     name:{
         color:'#8A8A8A',
-        fontWeight:300,
         fontSize:15,
+        fontFamily:"Lexend-Light",
     },
     name2:{
         color:'#EAEAEA',
-        fontWeight:300,
         fontSize:15,
+        fontFamily:"Lexend-Light",
     }
 })

@@ -11,7 +11,8 @@ export const SendTo = ({navigation}) => {
     const [value,setValue]= useState('')
     const[price,setPrice] = useState('500.5789')
     return <View style = {[Gstyles.home,{justifyContent:'space-around'}]}>
-        <Text style ={{color:'#4DFF7E',textAlign:'center',fontSize:15,paddingHorizontal:20,lineHeight:18,fontWeight:300}}>{send.token}</Text>
+        <Text style ={{color:'#4DFF7E',textAlign:'center',fontSize:15,paddingHorizontal:20,lineHeight:18,fontFamily:'Lexend-Light ',
+    }}>{send.token}</Text>
         <View style = {{marginVertical:40,position:'relative',}}>
             <View style = {{justifyContent:'center',alignItems:'center',flexDirection:'row'}}>
             <TextInput 

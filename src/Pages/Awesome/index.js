@@ -12,7 +12,7 @@ export const Awesome = ({navigation}) => {
         <Text
           style={{
             textAlign: 'center',
-            fontWeight: 300,
+            fontFamily:"Lexend-Light",
             fontSize: 15,
             color: '#fff',
             paddingHorizontal: 7,

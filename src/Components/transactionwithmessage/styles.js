@@ -15,5 +15,6 @@ export const styles = StyleSheet.create({
     text:{
         color:'#8A8A8A',
         padding:5,
+        fontFamily:'Lexend-Light'
     }
 })

@@ -30,12 +30,12 @@ export const styles = StyleSheet.create({
     },
     price:{
         color:'#161616',
-        fontWeight:700,
+        fontFamily:'Lexend-Bold',
         fontSize:40,
         lineHeight:50
     },
     price_$:{
-        fontWeight:400,
+        fontFamily:'Lexend-Regular',
         fontSize:12,
         lineHeight:15,
         color:'#161616'
@@ -50,7 +50,7 @@ export const styles = StyleSheet.create({
         alignItems:'center',
     },
     plus_minus:{
-        fontWeight:400,
+        fontFamily:'Lexend-Regular',
         fontSize:30,
         lineHeight:37.5,
         marginBottom:10,
@@ -61,7 +61,7 @@ export const styles = StyleSheet.create({
         justifyContent:'space-between'
     },
     date:{
-        fontWeight:300,
+        fontFamily:'Lexend-Light ',
         fontSize:13,
         color:'#EAEAEA'
     },
@@ -71,7 +71,7 @@ export const styles = StyleSheet.create({
     },
     token:{
         color:'#8A8A8A',
-        fontWeight:300,
+        fontFamily:'Lexend-Light ',
         fontSize:13,
         lineHeight:16.25
     },
