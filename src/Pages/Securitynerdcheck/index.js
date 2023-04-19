@@ -1,7 +1,6 @@
 import {useEffect, useRef, useState} from 'react';
-import {View, Text, TextInput, ScrollView, Keyboard} from 'react-native';
+import {View, Text, TextInput } from 'react-native';
 import {Button} from '../../Components/Button.js';
-import {Input} from '../../Components/Input';
 import {Gstyles} from '../../Gstyle';
 
 export const SecurityNerdCheck = ({navigation}) => {
@@ -55,7 +54,7 @@ export const SecurityNerdCheck = ({navigation}) => {
               paddingRight: 40,
             }}
             ref={ref1}
-            // autoFocus={true}
+            autoFocus={true}
             onChange={e => handelChnge(0, e)}
             onSubmitEditing={handleInput1Submit}
             keyboardAppearance="default"
@@ -82,7 +81,7 @@ export const SecurityNerdCheck = ({navigation}) => {
               paddingHorizontal: 30,
               paddingRight: 40,
             }}
-            autoFocus={true}
+            // autoFocus={true}
             editable = {a}
             onSubmitEditing={handleInput2Submit}
             onChange={e => handelChnge(1, e)}

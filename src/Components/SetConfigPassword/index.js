@@ -1,4 +1,4 @@
-import {View, Text,Switch,Keyboard,TouchableOpacity,TextInput } from 'react-native';
+import {View, Text,Switch,TextInput } from 'react-native';
 import React,{useState,  useEffect,useRef} from 'react';
 import { useDispatch,useSelector } from 'react-redux'
 import {Gstyles} from '../../Gstyle';
@@ -6,29 +6,32 @@ import {Svgs} from '../../Svg';
 import {styles} from './styles';
 import {
   CodeField,
-  useClearByFocusCell,
+  // useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
 import {  clear_password, set_password } from '../../store/action/action';
 import { PopUp } from '../PopUp';
 export const SetConfigPassword = ({title, text, options,navigation,action,Passwordcount}) => {
-  const [count, setCount] = useState(4);
-  const [enableMask] = useState(true);
+  const [count, setCount] = useState(Passwordcount?Passwordcount:4);
+  // const [enableMask] = useState(true);
   const [value, setValue] = useState('');
   const dispatch = useDispatch()
   const {password} = useSelector((st)=>st)
   const [open,setOpen] = useState(false)
   const [match,setMatch] = useState(true)
+  const [constErrorPassword,setConstErrorPassword] = useState(0)
+  const [isEnabled, setIsEnabled] = useState(false);
   // const [props, getCellOnLayoutHandler] = useClearByFocusCell({
   //   value,
   //   setValue,
   // });
-  const inputRef = useRef(null);
+  const inputRef = useRef();
+  const inputRef1 = useRef();
   const renderCell = ({index, symbol, isFocused}) => {
     let textChild = null;
     let color = false;
     if (symbol) {
       color = true;
-      textChild = enableMask ? '•' : symbol;
+      textChild = '•' ;
     }
     return (
       <Text
@@ -39,37 +42,78 @@ export const SetConfigPassword = ({title, text, options,navigation,action,Passwo
       </Text>
     );
   };
-  const [constErrorPassword,setConstErrorPassword] = useState(0)
-  const [isEnabled, setIsEnabled] = useState(false);
 
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
+  const toggleSwitch = () => {
+    dispatch(clear_password())
+    setIsEnabled(previousState => !previousState)
+  };
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', async () => {
-      setTimeout(() => inputRef.current.focus(), 500)
+      if(password.password){
+      console.log(password.password.length,'sss')
+        setCount(password.password.length)
+      }
+      if(!password.password){
+        setIsEnabled(false)
+      }
+      setTimeout(() => inputRef.current.focus(), 100)
     });
     return unsubscribe;
   }, [navigation]);
 
   const handelChnage = (e) => {
-    setValue(e)
-    if(e.length === count){
-        if(action === 'set'){
-          dispatch(set_password(e))
-          navigation.navigate('ConfirmPassword')
-        }
-        else if(e == password.password){
-          navigation.navigate('WellDone')
-        }
-        else if (constErrorPassword === 2 ){
-          setOpen(true)
-        }
-        else if(e != password.password){
-          setConstErrorPassword(constErrorPassword+1)
-          setValue('')
-          setMatch(false)
-        }
+    if(!password.password.length){
+      if(e.length <= count){
+        setValue(e)
+      }
     }
+    else {
+      if(e.length <= 6){
+      setValue(e)
+      }
+    }
+    setTimeout(()=>{
+      if(!password.password.length){
+        if(e.length === count){
+            if(action === 'set'){
+              dispatch(set_password(e))
+              navigation.navigate('ConfirmPassword')
+            }
+            else if(e == password.password){
+              navigation.navigate('WellDone')
+            }
+            else if (constErrorPassword === 2 ){
+              setOpen(true)
+            }
+            else if(e != password.password){
+              setConstErrorPassword(constErrorPassword+1)
+              setValue('')
+              setMatch(false)
+            }
+        }
+      }
+      else {
+        if(e.length === password.password.length){
+          if(action === 'set'){
+            dispatch(set_password(e))
+            navigation.navigate('ConfirmPassword')
+          }
+          else if(e == password.password){
+            navigation.navigate('WellDone')
+          }
+          else if (constErrorPassword === 2 ){
+            setOpen(true)
+          }
+          else if(e != password.password){
+            setConstErrorPassword(constErrorPassword+1)
+            setValue('')
+            setMatch(false)
+          }
+      }
+      }
+    },100)
   }
 
   useEffect(()=>{
@@ -85,48 +129,58 @@ export const SetConfigPassword = ({title, text, options,navigation,action,Passwo
   },[password])
 
   useEffect(()=>{
+    
     if(!isEnabled){
       setCount(4)
     }
     else {
       setCount(6)
     }
+    if(password.password.length){
+      setCount(password.password.length)
+    }
   },[isEnabled])
 
 
 const openKeyboard = () =>{
-  setTimeout(() => inputRef.current.focus(), 500)
+  inputRef.current.blur()
+  // inputRef1.current.focus()
+  setTimeout(() => inputRef.current.focus(), 100)
 }
   return (
     <View  style={[Gstyles.wrapper, Gstyles.wrapper2]}>
-      {open && 
       <PopUp
-            title = {'Oh, my...'}
-            text = {'It seems there is a problem with a passcode you’ve just created?'}
-            button_text = {'Keep trying!'}
-            text_2 = {'Create new passcode'}
-            onPress = {()=>{
-              setOpen(false)
+          title = {'Oh, my...'}
+          text = {'It seems there is a problem with a passcode you’ve just created?'}
+          button_text = {'Keep trying!'}
+          text_2 = {'Create new passcode'}
+          open = {open}
+          onPress = {()=>{
+            setOpen(false)
+            setTimeout(() => {
               openKeyboard()
-              setConstErrorPassword(0)
-              setValue('')
-            }}
-            onPress1 = {()=>{
-
+            },101)
+            // inputRef1.current.focus()
+            setConstErrorPassword(0)
+            setValue('')
+          }}
+          onPress1 = {()=>{
+            setOpen(false)
+            setTimeout(() => {
               navigation.navigate('SetPassword')
-              openKeyboard()
-              setValue('')
-              dispatch(clear_password())
-            }}
+            },101)
+            inputRef.current.focus()
+            setValue('')
+            dispatch(clear_password())
+          }}
       />
-      }
       <View style = {{justifyContent:'center',alignItems:'center'}}>
         <Svgs title={title} />
         <Text style={[Gstyles.text, {marginTop: 10}]}>{text}</Text>
       </View> 
       <View style={[styles.password_continer]}>
           <CodeField
-            // autoFocus={false}
+            autoFocus={true}
             ref={inputRef}
             // {...props} 
             value={value}
@@ -135,9 +189,8 @@ const openKeyboard = () =>{
             keyboardType="number-pad"
             renderCell={renderCell}
           />
-
       </View >
-       
+       {/* <TextInput ref={inputRef1} keyboardType="number-pad"  /> */}
       {options &&<View style = {{justifyContent:'center',alignItems:"center",flexDirection:'row'}}>
         <Text style = {{color:'#EAEAEA',fontFamily:"Lexend-Light "}}>4 digits</Text>
          <Switch
@@ -149,7 +202,6 @@ const openKeyboard = () =>{
           />
         <Text style = {{color:'#EAEAEA',fontFamily:"Lexend-Light "}}>6 digits</Text>
       </View>}
-
     </View>
   );
 

@@ -15,7 +15,7 @@ import { ConfirmPassword } from './Pages/ConfirmPassword';
 import { ImportComplete } from './Pages/ImportComplelty';
 import { InportStart } from './Pages/ImportStart';
 import { NftInfo } from './Pages/NftInfo';
-import { f } from './Pages/Notifications';
+// import { f } from './Pages/Notifications';
 import { PinPage } from './Pages/PinPage';
 import { PopUp2 } from './Pages/PopUp2';
 import { PopUpPage } from './Pages/PopUpPage';

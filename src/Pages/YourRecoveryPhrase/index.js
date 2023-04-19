@@ -49,8 +49,15 @@ export const YourRecoveryPhrase = ({navigation}) => {
         }
         else{
             setOpen(false)
-            navigation.navigate('SecurityNerdCheck')
+                navigation.navigate('SecurityNerdCheck')
         }
+    }
+    const PopUpClick = () =>{
+        setTimeout(() => {
+            navigation.navigate('SecurityNerdCheck') 
+        },10)
+        setOpen(false)
+        setClick(0)
     }
     return <SafeAreaView  style = {[Gstyles.wrapper,styles.wrapper]}>
         <ScrollView showsVerticalScrollIndicator = {false}>
@@ -61,10 +68,7 @@ export const YourRecoveryPhrase = ({navigation}) => {
             title = {'Sure done?'} 
              text = {'You didn’t have enough time to write these words down.'} button_text ={'Ok, sorry'} 
              text_2 = {'Skip anyway'}
-             onPress1 ={()=>{navigation.navigate('SecurityNerdCheck') 
-                setOpen(false)
-                setClick(0)
-            }}
+             onPress1 ={()=>PopUpClick()}
              />
             }
         </View>
