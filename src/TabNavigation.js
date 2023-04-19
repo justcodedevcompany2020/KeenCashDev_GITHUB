@@ -4,7 +4,6 @@ import { MainPage } from './Pages/MainPage';
 import { NftListPage } from './Pages/NftListPage';
 import { HomeSvg, Menu, QR } from './Svg';
 import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
-import ScanScreen from './Components/QRCodeScanner';
 import { QrNavigation } from './QrNavigation';
 import { HomeHeader } from './Components/Header/HomeHeader';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';

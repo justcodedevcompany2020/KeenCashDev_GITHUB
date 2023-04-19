@@ -2,10 +2,9 @@ import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   password_continer: {
-    // flexDirection: 'row',
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems:"center",
-    flexDirection:"column"
   },
   input: {
     borderWidth: 1,

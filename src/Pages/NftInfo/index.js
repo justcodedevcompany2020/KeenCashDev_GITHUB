@@ -18,7 +18,7 @@ export const NftInfo = () => {
           <Text style = {{color:'#4DFF7E',fontSize:15,fontFamily:'Lexend-Light'}} onPress={onPress}>Less</Text>
         )
       }
-    return <ScrollView style = {Gstyles.home}>
+    return <ScrollView showsVerticalScrollIndicator = {false} style = {Gstyles.home}>
         <View style = {{marginBottom:50}}>
             <Image style = {styles.img} source={img} />
             <Text style = {styles.title}>{header.title}</Text>

@@ -1,17 +1,21 @@
+import { useRef } from 'react';
 import {TextInput, View, Text,TouchableOpacity} from 'react-native';
 import {Svgs} from '../../Svg';
 import {styles} from './style';
 
-export const Input = ({id, height = 50, placeholder, value, onChange, x,onPress,margin =10,ref}) => {
+export const Input = ({handelSubmit,multiline = true,active,id, height = 50, placeholder, value, onChange, x,onPress,margin =10,ref}) => {
+
   return (
     <View>
       <TextInput
         onChangeText={e => onChange(e)}
         value={value}
+        autoFocus = {active}
         placeholder={placeholder}
         style={[styles.input, {height: height,paddingHorizontal:margin}]}
-        multiline={true}
+        multiline={multiline}
         ref ={ref}
+        onSubmitEditing = {handelSubmit}
       />
       <Text style={styles.text}>{id}</Text>
       {x && (

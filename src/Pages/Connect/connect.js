@@ -3,7 +3,7 @@ import { styles } from './styles';
 import { BlueButton } from '../../Components/Button.js/BlueButton';
 import img from '../../img/2.png'
 export const ConnectModal = () => {
-return <ScrollView style ={styles.container}>
+return <ScrollView style ={styles.container} showsVerticalScrollIndicator = {false}>
     <View style = {{justifyContent:'center',alignItems:'center'}}>
         <Image source={img} style = {{borderRadius:20}} />
         <Text style = {styles.title}>Connect to Fragment</Text>

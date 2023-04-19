@@ -16,6 +16,7 @@ export const SendTo = ({navigation}) => {
         <View style = {{marginVertical:40,position:'relative',}}>
             <View style = {{justifyContent:'center',alignItems:'center',flexDirection:'row'}}>
             <TextInput 
+                autoFocus = {true}
                 value = {value} 
                 keyboardType="numeric"
                 onChangeText = {(e)=>setValue(e)} 

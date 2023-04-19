@@ -24,7 +24,7 @@ export const Send = ({navigation}) => {
     ])
     return < >
         <View style = {Gstyles.home}>
-            <Input onChange = {(e)=>setPast(e)} value = {past} placeholder = {'24-letter wallet address or TON DNS...'} height={80}/>
+            <Input active = {true} onChange = {(e)=>setPast(e)} value = {past} placeholder = {'24-letter wallet address or TON DNS...'} height={80}/>
             <Text onPress={()=>fetchCopiedText()} style = {styles.past}>Paste</Text>
             <View style = {{flexDirection:'row',justifyContent:'space-between'}}>
                 <Text style = {styles.text}>Recent</Text>

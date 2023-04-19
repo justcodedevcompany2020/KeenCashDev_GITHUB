@@ -6,7 +6,7 @@ import {Svgs} from '../../Svg';
 
 export const Resive = () => {
   return (
-    <ScrollView style={Gstyles.home}>
+    <ScrollView showsVerticalScrollIndicator = {false} style={Gstyles.home}>
       <View>
         <Text style={styles.title}>receive TON</Text>
         <Text style={[Gstyles.text, styles.text_1]}>

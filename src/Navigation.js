@@ -15,7 +15,7 @@ import { ConfirmPassword } from './Pages/ConfirmPassword';
 import { ImportComplete } from './Pages/ImportComplelty';
 import { InportStart } from './Pages/ImportStart';
 import { NftInfo } from './Pages/NftInfo';
-import { Notifications } from './Pages/Notifications';
+import { f } from './Pages/Notifications';
 import { PinPage } from './Pages/PinPage';
 import { PopUp2 } from './Pages/PopUp2';
 import { PopUpPage } from './Pages/PopUpPage';
@@ -47,7 +47,7 @@ export default Navigatiob = () => {
       <StatusBar
             backgroundColor="#161616"
         />
-      <Stack.Navigator initialRouteName="NavigationMenu">
+      <Stack.Navigator initialRouteName="welcome">
         <Stack.Screen
           name="welcome"
           component={Wellcome}
@@ -118,11 +118,6 @@ export default Navigatiob = () => {
             component={WellDone}
             options={{headerShown:false}}
            
-        />
-        <Stack.Screen
-            name = 'Notifications'
-            component={Notifications}
-            options={{headerShown:false}}
         />
         <Stack.Screen
             name = 'InportStart'
@@ -286,7 +281,3 @@ export default Navigatiob = () => {
     </NavigationContainer>
   );
 };
-// Sending
-// Awesome
-// Setting
-// ScanScreen

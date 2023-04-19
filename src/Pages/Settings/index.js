@@ -5,7 +5,7 @@ import { styles } from "./styles"
 
 export const Setting = () => {
     const { width } = Dimensions.get('window');
-    return <ScrollView style = {[Gstyles.home,{paddingHorizontal:25}]}>
+    return <ScrollView showsVerticalScrollIndicator = {false} style = {[Gstyles.home,{paddingHorizontal:25}]}>
         <View style = {{marginBottom:50}}>
         <Svgs title = {'settings_2'} />
         <View style = {styles.continer}>
