@@ -41,6 +41,7 @@ export const Confirm = ({navigation}) => {
             <View>
                 <TextInput 
                     ref={ref}
+                    autoFocus = {true}
                     multiline={true}
                     style = {{
                         borderRadius:15,

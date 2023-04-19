@@ -51,14 +51,14 @@ export const SetConfigPassword = ({title, text, options,navigation,action,Passwo
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', async () => {
+        setIsEnabled(false)
       if(password.password){
-      console.log(password.password.length,'sss')
         setCount(password.password.length)
       }
       if(!password.password){
         setIsEnabled(false)
       }
-      setTimeout(() => inputRef.current.focus(), 100)
+      setTimeout(() => inputRef.current.focus(), 200)
     });
     return unsubscribe;
   }, [navigation]);
@@ -176,7 +176,7 @@ const openKeyboard = () =>{
       />
       <View style = {{justifyContent:'center',alignItems:'center'}}>
         <Svgs title={title} />
-        <Text style={[Gstyles.text, {marginTop: 10}]}>{text}</Text>
+        <Text style={[Gstyles.text, {marginTop: 10}]}>Enter the {count} digits in the passcode.</Text>
       </View> 
       <View style={[styles.password_continer]}>
           <CodeField

@@ -10,7 +10,6 @@ export  const SetPassword = ({navigation}) => {
             navigation ={navigation} 
             options={'Passcode options'} 
             title={'set_password'} 
-            text = {'Enter the 4 digits in the passcode.'} 
         />
     </View>
 }

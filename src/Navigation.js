@@ -1,6 +1,7 @@
 import {NavigationContainer} from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'react-native';
+import { useDispatch } from 'react-redux';
 import { Header } from './Components/Header';
 import { Header1 } from './Components/Header/header2';
 import { Header3 } from './Components/Header/header3';
@@ -31,9 +32,11 @@ import { Wellcome } from './Pages/Wellcome';
 import { WellDone } from './Pages/WellDone';
 import { WhatADay } from './Pages/WhatADay';
 import { YourRecoveryPhrase } from './Pages/YourRecoveryPhrase';
+import { clear_password } from './store/action/action';
 import NavigationMenu from './TabNavigation';
 export default Navigatiob = () => {
   const Stack = createStackNavigator();
+  const dispatch = useDispatch()
   const MyTheme = {
     dark: false,
     colors: {
@@ -97,7 +100,8 @@ export default Navigatiob = () => {
             options={
               {
                 header: ({navigation}) => (
-                  <Header  onPress={() => navigation.goBack()}  />
+                  <Header  onPress={() => 
+                    navigation.goBack()}  />
                 ),
               }
             }
@@ -108,7 +112,9 @@ export default Navigatiob = () => {
             options={
               {
                 header: ({navigation}) => (
-                  <Header  onPress={() => navigation.goBack()}  />
+                  <Header  onPress={() => {
+                    dispatch(clear_password())
+                    navigation.goBack()}  }/>
                 ),
               }
             }

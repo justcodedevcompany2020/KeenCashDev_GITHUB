@@ -19,17 +19,20 @@ export const SecurityNerdCheck = ({navigation}) => {
   };
 
   const handleInput1Submit = () => {
-    ref2.current.focus();
+    ref1.current.blur()
+    setTimeout(()=>{
+      ref2.current.focus();
+    },10)
   };
   const handleInput2Submit = () => {
     ref3.current.focus();
   };
-  useEffect(() => {
-    setTimeout(() => {
-        setA(true)
-        ref1.current.focus();
-      }, 10);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //       setA(true)
+  //       ref1.current.focus();
+  //     }, 10);
+  // }, []);
   return (
     <View style={[Gstyles.wrapper, Gstyles.wrapper2]}>
       <View>
@@ -82,7 +85,7 @@ export const SecurityNerdCheck = ({navigation}) => {
               paddingRight: 40,
             }}
             // autoFocus={true}
-            editable = {a}
+            // editable = {a}
             onSubmitEditing={handleInput2Submit}
             onChange={e => handelChnge(1, e)}
             ref={ref2}
