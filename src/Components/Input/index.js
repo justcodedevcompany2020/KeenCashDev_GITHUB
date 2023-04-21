@@ -3,7 +3,7 @@ import {TextInput, View, Text,TouchableOpacity} from 'react-native';
 import {Svgs} from '../../Svg';
 import {styles} from './style';
 
-export const Input = ({handelSubmit,multiline = true,active,id, height = 50, placeholder, value, onChange, x,onPress,margin =10,ref}) => {
+export const Input = ({font,handelSubmit,multiline = true,active,id, height = 50, placeholder, value, onChange, x,onPress,margin =10,ref}) => {
 
   return (
     <View>
@@ -12,7 +12,7 @@ export const Input = ({handelSubmit,multiline = true,active,id, height = 50, pla
         value={value}
         autoFocus = {active}
         placeholder={placeholder}
-        style={[styles.input, {height: height,paddingHorizontal:margin}]}
+        style={[styles.input, {height: height,paddingHorizontal:margin}, font!=='' && {fontFamily:font} ]}
         multiline={multiline}
         ref ={ref}
         onSubmitEditing = {handelSubmit}

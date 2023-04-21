@@ -18,10 +18,10 @@ export const SuccessScreen = ({children,title,onPress,button_title='Proceed to s
         {close && <TouchableOpacity onPress = {closePress} style = {{backgroundColor:'#313131',justifyContent:'center',width:200,height:50,borderRadius:15,alignItems:'center'}}>
             <Text style = {{color:"#FFFFFF",fontFamily:'Lexend-SemiBold',fontSize:15}}>Close</Text>
         </TouchableOpacity>}
-        </View>
            {opt&& <View>
                 <Text onPress={onPress2} style = {styles.opt}>{opt}</Text>
             </View>}
+        </View>
         </View>
         
     </View>

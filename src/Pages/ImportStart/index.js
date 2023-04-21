@@ -76,7 +76,7 @@ export const InportStart = ({navigation}) => {
         </View>
         <View>
             {input.map((elm,i)=>(
-                <View key={i} style = {{marginVertical:10}}>
+                <View key={i} style = {{marginVertical:5}}>
         <TextInput
             style={{
               height: 50,
@@ -86,6 +86,7 @@ export const InportStart = ({navigation}) => {
               color: '#fff',
               paddingHorizontal: 35  ,
               paddingRight: 40,
+              fontFamily:"Lexend-Medium"
             }}
             ref={input[i].ref}
             autoFocus={i === 0}

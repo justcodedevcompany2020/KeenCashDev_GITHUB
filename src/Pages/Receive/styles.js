@@ -3,7 +3,7 @@ export const styles = StyleSheet.create({
     title:{
         color: '#E9FF61',
             textAlign: 'center',
-            fontFamily: 'Lexend-Black ',
+            fontFamily: 'Lexend-Black',
             fontSize: 30,
     },
     text_1:{

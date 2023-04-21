@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     button_wrapper:{
         flexDirection:'row',
         justifyContent:'space-between',
-        marginTop:20,
+        marginTop:10,
     },
     empty:{
         marginTop:100,
@@ -61,7 +61,7 @@ export const styles = StyleSheet.create({
         justifyContent:'space-between'
     },
     date:{
-        fontFamily:'Lexend-Light ',
+        fontFamily:'Lexend-Light',
         fontSize:13,
         color:'#EAEAEA'
     },
@@ -71,7 +71,7 @@ export const styles = StyleSheet.create({
     },
     token:{
         color:'#8A8A8A',
-        fontFamily:'Lexend-Light ',
+        fontFamily:'Lexend-Light',
         fontSize:13,
         lineHeight:16.25
     },

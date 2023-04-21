@@ -23,28 +23,35 @@ export const Send = ({navigation}) => {
         {date:'25 March',text:'EQDCAfpTMlIh6xGABPSO0oIqMgVy5ncGpq75hgeCl4-UKMY8'},
     ])
     return < >
-        <View style = {Gstyles.home}>
-            <Input active = {true} onChange = {(e)=>setPast(e)} value = {past} placeholder = {'24-letter wallet address or TON DNS...'} height={80}/>
+        <ScrollView showsVerticalScrollIndicator = {false} style = {Gstyles.home}>
+            <Input 
+                active = {true} 
+                onChange = {(e)=>setPast(e)} 
+                value = {past} 
+                placeholder = {'24-letter wallet address or TON DNS...'} 
+                height={80}
+                font = "Lexend-Regular"
+            />
             <Text onPress={()=>fetchCopiedText()} style = {styles.past}>Paste</Text>
             <View style = {{flexDirection:'row',justifyContent:'space-between'}}>
                 <Text style = {styles.text}>Recent</Text>
                 <Text style = {styles.clear}>Clear</Text>
             </View>
-            <ScrollView showsVerticalScrollIndicator = {false}>
+            <View>
             {data.map((elm,i)=>{
                 return <View key={i} style = {{paddingVertical:15,borderBottomWidth:1,borderColor:'#313131'}}>
                     <Text style = {[styles.text1,{marginBottom:5}]}>{elm.date}</Text>
                     <Text style = {styles.text}>{elm.text}</Text>
                 </View>
             })}
-            </ScrollView>
+            </View>
             {false && <ErrorPopUp  visible = {false}/>}
-            <View style = {{marginVertical:20}}>
+            <View style = {{marginVertical:20,marginBottom:60}}>
                 <BlueButton onPress={()=>{
                     navigation.navigate('SendTo')
                     dispatch(SendToken(past))
                     }} loading={false} text={'Continue'} color = '#161616' backgroundColor="#4DFF7E" height={50} />
             </View>
-        </View>
+        </ScrollView>
     </>
 }

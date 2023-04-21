@@ -15,7 +15,7 @@ export const Card = ({price,price_$,token}) => {
         }
       </View>
       <View style={styles.token_wrapper}>
-        <Text style={[styles.price_$, {width: '65%'}]}>{token}</Text>
+        <Text style={[styles.price_$, {width: '80%'}]}>{token}</Text>
         {token && (
           <TouchableOpacity onPress={() => Clipboard.setString(token)}>
             <Svgs title={'copy'} />

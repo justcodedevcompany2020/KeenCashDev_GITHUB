@@ -6,5 +6,6 @@ export const styles = StyleSheet.create({
         width:'auto',
         color:"#fff",
         fontSize:30,
+        fontFamily:'Lexend-Regular'
     }
 })

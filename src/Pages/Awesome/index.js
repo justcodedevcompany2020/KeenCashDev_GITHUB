@@ -19,7 +19,7 @@ export const Awesome = ({navigation}) => {
           }}>
           500 TON was sent to
         </Text>
-        <Text style = {{textAlign:'center',color:'#4DFF7E',fontSize:15,marginVertical:15,paddingHorizontal:20}}>
+        <Text style = {{textAlign:'center',color:'#4DFF7E',fontSize:15,marginVertical:15,paddingHorizontal:20,fontFamily:"Lexend-Light",}}>
             EQDCAfpTMlIh6xGABPSO0oIqMgVy5ncGpq75hgeCl4-UKMY8
         </Text>
       </SuccessScreen>

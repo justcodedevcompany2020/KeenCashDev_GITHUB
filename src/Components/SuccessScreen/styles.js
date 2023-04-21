@@ -9,6 +9,6 @@ export const styles = StyleSheet.create({
         color:'#EAEAEA',
         fontSize:15,
         fontFamily:"Lexend-SemiBold",
-        marginTop:40
+        // marginTop:40
     }
 })

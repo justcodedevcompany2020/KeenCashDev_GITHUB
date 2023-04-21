@@ -11,7 +11,7 @@ export const SendTo = ({navigation}) => {
     const [value,setValue]= useState('')
     const[price,setPrice] = useState('500.5789')
     return <View style = {[Gstyles.home,{justifyContent:'space-around'}]}>
-        <Text style ={{color:'#4DFF7E',textAlign:'center',fontSize:15,paddingHorizontal:20,lineHeight:18,fontFamily:'Lexend-Light ',
+        <Text style ={{color:'#4DFF7E',textAlign:'center',fontSize:15,paddingHorizontal:20,lineHeight:18,fontFamily:'Lexend-Regular',
     }}>{send.token}</Text>
         <View style = {{marginVertical:40,position:'relative',}}>
             <View style = {{justifyContent:'center',alignItems:'center',flexDirection:'row'}}>
@@ -22,13 +22,14 @@ export const SendTo = ({navigation}) => {
                 onChangeText = {(e)=>setValue(e)} 
                 placeholder="0 TON" 
                 placeholderTextColor = {'#8A8A8A'} 
+                
                 style = {[styles.input,value>+price && {color:"red"},value !== '' && (value.length >2 ? {width:value.length*19}:{width:value.length*25})]} />
             {value !=='' &&<Text style = {[{fontSize:30,top:-4,color:"#fff"},value>+price && {color:"red"}]}>TON</Text>}
             </View>
-            <Text style = {{color:'red',textAlign:'center'}}>{value>+price && 'Insufficient funds'}</Text>
+            <Text style = {{color:'red',textAlign:'center',fontFamily:'Lexend-Regular'}}>{value>+price && 'Insufficient funds'}</Text>
         </View> 
         <View>
-            <Text onPress={()=>setValue(price)} style = {{color:"#EAEAEA",textAlign:'center',marginBottom:30}}>Send all: {price} TON</Text>
+            <Text onPress={()=>setValue(price)} style = {{color:"#EAEAEA",textAlign:'center',marginBottom:30,fontFamily:'Lexend-Regular'}}>Send all: {price} TON</Text>
             <BlueButton onPress={()=>{
                     if(value<=+price){
                         navigation.navigate('Confirm')

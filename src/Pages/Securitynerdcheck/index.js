@@ -45,7 +45,7 @@ export const SecurityNerdCheck = ({navigation}) => {
         </Text>
       </View>
       <View>
-        <View style={{marginVertical: 10}}>
+        <View style={{marginVertical: 5}}>
           <TextInput
             style={{
               height: 50,
@@ -73,7 +73,7 @@ export const SecurityNerdCheck = ({navigation}) => {
             {'1.'}
           </Text>
         </View>
-        <View style={{marginVertical: 10}}>
+        <View style={{marginVertical: 5}}>
           <TextInput
             style={{
               height: 50,
@@ -100,7 +100,7 @@ export const SecurityNerdCheck = ({navigation}) => {
             {'2.'}
           </Text>
         </View>
-        <View style={{marginVertical: 10}}>
+        <View style={{marginVertical: 5}}>
           <TextInput
             style={{
               height: 50,

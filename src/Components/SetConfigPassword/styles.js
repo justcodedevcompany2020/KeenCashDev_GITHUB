@@ -59,5 +59,6 @@ export const styles = StyleSheet.create({
   },
   focusCell: {
     backgroundColor: '#4DFF7E',
+    borderWidth:0
   },
 });
