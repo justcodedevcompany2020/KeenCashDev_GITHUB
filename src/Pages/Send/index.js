@@ -28,9 +28,11 @@ export const Send = ({navigation}) => {
                 active = {true} 
                 onChange = {(e)=>setPast(e)} 
                 value = {past} 
+                multiline = {false}
                 placeholder = {'24-letter wallet address or TON DNS...'} 
                 height={80}
                 font = "Lexend-Regular"
+                handelSubmit = {()=>navigation.navigate('SendTo')}
             />
             <Text onPress={()=>fetchCopiedText()} style = {styles.past}>Paste</Text>
             <View style = {{flexDirection:'row',justifyContent:'space-between'}}>

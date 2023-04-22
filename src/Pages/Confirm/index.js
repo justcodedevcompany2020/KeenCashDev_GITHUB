@@ -1,19 +1,16 @@
-import { View,Text,Keyboard,TextInput,TouchableOpacity } from "react-native"
+import { View,Text,Keyboard,TextInput,TouchableOpacity,ScrollView } from "react-native"
 import {useRef, useState} from 'react'
 import { useSelector } from "react-redux"
 import { BlueButton } from "../../Components/Button.js/BlueButton"
-import { Input } from "../../Components/Input"
 import { Gstyles } from "../../Gstyle"
-import { LogBox } from "react-native/Libraries/LogBox/LogBox"
 import { Svgs } from "../../Svg"
 
 export const Confirm = ({navigation}) => {
     const {send} = useSelector(st=>st)
     const [comment,setComment] = useState('')
-    const [comment1, setComment1] = useState('')
     const [errorMsg,setErrorMSg] = useState('')
+    const [active,setActive] = useState(false)
     const ref = useRef()
-    const ref1 = useRef()
 
     const handlePress = () =>{
         Keyboard.dismiss()
@@ -31,7 +28,7 @@ export const Confirm = ({navigation}) => {
             }
     }
     return <View style = {[Gstyles.home,{justifyContent:'space-between'}]}>
-        <View>
+        <ScrollView showsVerticalScrollIndicator = {false}>
             <Text style ={{color:'#4DFF7E',textAlign:'center',fontSize:15,lineHeight:18,fontFamily:"Lexend-Light"}}>markmartemianov.ton</Text>
             <Text style = {{textAlign:'center',color:'#8A8A8A',fontSize:15,marginTop:15,paddingHorizontal:20,fontFamily:"Lexend-Light"}}>{'EQDCAfpTMlIh6xGABPSO0oIqMgVy5ncGpq75hgeCl4-UKMY8'}</Text>
             <View style = {{marginVertical:50}}>
@@ -50,11 +47,16 @@ export const Confirm = ({navigation}) => {
                         paddingHorizontal:10,
                         paddingRight:40,
                         height:'auto',
-                        fontFamily:'Lexend-Regular'
+                        fontFamily:'Lexend-Regular',
+                        borderWidth:1,
+                        borderColor:(active ? '#525252':'#313131'),
                     }}
                     placeholder = 'Add comment...'
                     onChangeText={(e)=>handelChange(e)} 
+                    onFocus = {()=>setActive(true)}
+                    onBlur = {()=>setActive(false)}
                     blurOnSubmit={false} 
+                    onSubmitEditing={()=>navigation.navigate('PinPage')}
                 >
                                  
                         {comment.length <100  &&<Text style = {{color:'#EAEAEA'}}>{comment}</Text>}
@@ -64,7 +66,10 @@ export const Confirm = ({navigation}) => {
                         </Text>}
                 </TextInput>
                 {comment.length>10 && (
-                    <TouchableOpacity onPress = {()=>setComment('')} style = {[{right:20,position:'absolute',justifyContent:'center',alignItems:'center',height:'100%'}]}>
+                    <TouchableOpacity onPress = {()=>{
+                        setComment('')
+                        setErrorMSg('')
+                        }} style = {[{right:20,position:'absolute',justifyContent:'center',alignItems:'center',height:'100%'}]}>
                         <Svgs title={'x'} />
                     </TouchableOpacity>
                         )}   
@@ -75,8 +80,8 @@ export const Confirm = ({navigation}) => {
                     <Text style = {{color:'red'}}> {errorMsg}</Text>
                 </Text>
             </View>
-        </View>
-        <View style = {{marginBottom:30}}>
+        </ScrollView>
+        <View style = {{marginBottom:30,marginTop:20}}>
             <BlueButton  onPress={()=>handlePress()} text={'Confirm and send'} color = {'#161616'} backgroundColor = {'#4DFF7E'} height = {50} />
         </View>
     </View>

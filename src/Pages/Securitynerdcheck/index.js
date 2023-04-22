@@ -4,14 +4,12 @@ import {Button} from '../../Components/Button.js';
 import {Gstyles} from '../../Gstyle';
 
 export const SecurityNerdCheck = ({navigation}) => {
-  useEffect(() => {
-    // Keyboard.isVisible(true);
-  }, []);
+
   const [input, setInput] = useState([{value: ''}, {value: ''}, {value: ''}]);
-  const [a,setA] = useState(false)
   const ref1 = useRef();
   const ref2 = useRef();
   const ref3 = useRef();
+  const [acitve,setActive] = useState(null)
   const handelChnge = (i, e) => {
     let item = [...input];
     item[i] = e;
@@ -27,12 +25,10 @@ export const SecurityNerdCheck = ({navigation}) => {
   const handleInput2Submit = () => {
     ref3.current.focus();
   };
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //       setA(true)
-  //       ref1.current.focus();
-  //     }, 10);
-  // }, []);
+  const handleInput3Submit = () => {
+    navigation.navigate('SetPassword')
+  }
+
   return (
     <View style={[Gstyles.wrapper, Gstyles.wrapper2]}>
       <View>
@@ -54,8 +50,11 @@ export const SecurityNerdCheck = ({navigation}) => {
               position: 'relative',
               color: '#fff',
               paddingHorizontal: 30,
+              borderWidth:1,
+              borderColor:(acitve ===0 ? '#525252':'#313131'),
               paddingRight: 40,
             }}
+            onFocus = {()=>setActive(0)}
             ref={ref1}
             autoFocus={true}
             onChange={e => handelChnge(0, e)}
@@ -81,11 +80,12 @@ export const SecurityNerdCheck = ({navigation}) => {
               backgroundColor: '#313131',
               position: 'relative',
               color: '#fff',
+              borderWidth:1,
+              borderColor:(acitve ===1 ? '#525252':'#313131'),
               paddingHorizontal: 30,
               paddingRight: 40,
             }}
-            // autoFocus={true}
-            // editable = {a}
+            onFocus = {()=>setActive(1)}
             onSubmitEditing={handleInput2Submit}
             onChange={e => handelChnge(1, e)}
             ref={ref2}
@@ -106,6 +106,8 @@ export const SecurityNerdCheck = ({navigation}) => {
               height: 50,
               borderRadius: 15,
               backgroundColor: '#313131',
+              borderWidth:1,
+              borderColor:(acitve ===2 ? '#525252':'#313131'),
               position: 'relative',
               color: '#fff',
               paddingRight: 40,
@@ -113,6 +115,9 @@ export const SecurityNerdCheck = ({navigation}) => {
             }}
             ref={ref3}
             onChange={e => handelChnge(2, e)}
+            onSubmitEditing={handleInput3Submit}
+            onFocus = {()=>setActive(2)}
+            onBlur = {()=>setActive(null)}
           />
           <Text
             style={{

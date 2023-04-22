@@ -5,7 +5,7 @@ import { styles } from './styles';
 export const TransactionWithMessage = ({text,navigation}) =>{
     const [show,setShow] = useState(false)
     return <View >
-        <TouchableOpacity  style = {[styles.block,text.length*2 <100 ?{width:(`${text.length*2.3}%`)}:{width:'100%'}]} onPress ={()=>setShow(!show)}>
+        <TouchableOpacity  style = {[styles.block,text.length*2.5<100 ?{width:(`${text.length*2.5}%`)}:{width:'100%'}]} onPress ={()=>setShow(!show)}>
             <Text onPress ={()=>setShow(!show)} style = {[styles.text]}>{text}</Text>
         </TouchableOpacity>
         {show &&

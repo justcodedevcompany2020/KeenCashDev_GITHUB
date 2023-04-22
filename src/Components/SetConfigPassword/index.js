@@ -1,18 +1,14 @@
-import {View, Text,Switch,TextInput } from 'react-native';
+import {View, Text,Switch } from 'react-native';
 import React,{useState,  useEffect,useRef} from 'react';
 import { useDispatch,useSelector } from 'react-redux'
 import {Gstyles} from '../../Gstyle';
 import {Svgs} from '../../Svg';
 import {styles} from './styles';
-import {
-  CodeField,
-  // useClearByFocusCell,
-} from 'react-native-confirmation-code-field';
+import {CodeField} from 'react-native-confirmation-code-field';
 import {  clear_password, set_password } from '../../store/action/action';
 import { PopUp } from '../PopUp';
 export const SetConfigPassword = ({title, text, options,navigation,action,Passwordcount}) => {
   const [count, setCount] = useState(Passwordcount?Passwordcount:4);
-  // const [enableMask] = useState(true);
   const [value, setValue] = useState('');
   const dispatch = useDispatch()
   const {password} = useSelector((st)=>st)
@@ -20,12 +16,7 @@ export const SetConfigPassword = ({title, text, options,navigation,action,Passwo
   const [match,setMatch] = useState(true)
   const [constErrorPassword,setConstErrorPassword] = useState(0)
   const [isEnabled, setIsEnabled] = useState(false);
-  // const [props, getCellOnLayoutHandler] = useClearByFocusCell({
-  //   value,
-  //   setValue,
-  // });
   const inputRef = useRef();
-  const inputRef1 = useRef();
   const renderCell = ({index, symbol, isFocused}) => {
     let textChild = null;
     let color = false;
@@ -82,6 +73,7 @@ export const SetConfigPassword = ({title, text, options,navigation,action,Passwo
               navigation.navigate('ConfirmPassword')
             }
             else if(e == password.password){
+
               navigation.navigate('WellDone')
             }
             else if (constErrorPassword === 2 ){
@@ -101,6 +93,8 @@ export const SetConfigPassword = ({title, text, options,navigation,action,Passwo
             navigation.navigate('ConfirmPassword')
           }
           else if(e == password.password){
+            setIsEnabled(false)
+            setValue('')
             navigation.navigate('WellDone')
           }
           else if (constErrorPassword === 2 ){

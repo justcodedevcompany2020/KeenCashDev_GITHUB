@@ -10,6 +10,8 @@ export const styles = StyleSheet.create({
         color:'#fff',
         paddingHorizontal:10,
         paddingRight:40,
+        borderWidth:1,
+              
     },
     text:{
         position:'absolute',

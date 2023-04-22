@@ -12,7 +12,7 @@ export const Input = ({font,handelSubmit,multiline = true,active,id, height = 50
         value={value}
         autoFocus = {active}
         placeholder={placeholder}
-        style={[styles.input, {height: height,paddingHorizontal:margin}, font!=='' && {fontFamily:font} ]}
+        style={[styles.input, {height: height,paddingHorizontal:margin,borderColor:(active ? '#525252':'#313131'),}, font!=='' && {fontFamily:font} ]}
         multiline={multiline}
         ref ={ref}
         onSubmitEditing = {handelSubmit}

@@ -1,7 +1,6 @@
 import {useState,useRef} from 'react'
 import {View,Text,ScrollView,StatusBar, TextInput} from 'react-native'
 import { Button } from '../../Components/Button.js'
-import { Input } from '../../Components/Input'
 import { Gstyles } from '../../Gstyle'
 
 export const InportStart = ({navigation}) => {
@@ -55,6 +54,7 @@ export const InportStart = ({navigation}) => {
         {value:"",ref:ref22},
         {value:"",ref:ref23},
     ])
+    const [active,setActive] = useState(null)
     const handelChnge = (i,e) => {
         let item =[...input]
         item[i].value = e
@@ -63,6 +63,9 @@ export const InportStart = ({navigation}) => {
     const handelSubmit = (i) => {
         if(i !== 24){
             input[i].ref.current?.focus();
+        }
+        else if(i === 24){
+            navigation.navigate('ImportComplete')
         }
     }
     return <ScrollView showsVerticalScrollIndicator = {false} style = {Gstyles.wrapper}>
@@ -86,14 +89,18 @@ export const InportStart = ({navigation}) => {
               color: '#fff',
               paddingHorizontal: 35  ,
               paddingRight: 40,
+              borderWidth:1,
+              borderColor:(active ===i ? '#525252':'#313131'),
               fontFamily:"Lexend-Medium"
             }}
+            onFocus = {()=>setActive(i)}
             ref={input[i].ref}
             autoFocus={i === 0}
             onChange={e => handelChnge(i, e)}
             onSubmitEditing={()=>handelSubmit(i+1)}
             keyboardAppearance="default"
             enablesReturnKeyAutomatically
+            
           />
           <Text
             style={{
