@@ -1,11 +1,11 @@
-import React, { Fragment,useState} from 'react';
+import React, { Fragment,useState,useEffect} from 'react';
 import {
   TouchableOpacity,
   Text,
   Linking,
   View,
   ImageBackground,
-
+  PermissionsAndroid 
 } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import {RNCamera} from 'react-native-camera';
@@ -17,7 +17,7 @@ const ScanScreen = ({navigation}) => {
   const [scanResult, setScanResult] = useState(false);
   const [result, setResult] = useState(null);
   const [permision, setPermision] = useState(true);
-
+  const [r,setR] = useState(false)
   const [flashMode, setFlashMode] = useState(
     RNCamera.Constants.FlashMode.torch,
   );
@@ -43,6 +43,39 @@ const ScanScreen = ({navigation}) => {
     setScan(true);
     setResult(true);
   };
+  useEffect(()=>{
+    
+    const per = async() =>{
+      let result =r
+      if(!result){
+        const interval = setInterval(async() => {
+          result =  await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.CAMERA)
+          setR(result)
+          if(result){
+            setPermision(true)
+          }
+          else {
+            setPermision(false)
+          }
+        }, 1000);
+        return () => clearInterval(interval);
+      }
+      else {
+        result =  await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.CAMERA)
+        setR(result)
+        if(result){
+          setPermision(true)
+        }
+        else {
+          setPermision(false)
+        }
+      }
+    }
+    per()
+},[r])
+console.log()
+
+if(permision){
   return (
     <View style={styles.scrollViewStyle}>
       <Fragment>
@@ -50,6 +83,7 @@ const ScanScreen = ({navigation}) => {
           flashMode={flashMode}
           reactivate={true}
           showMarker={true}
+          checkAndroid6Permissions
           notAuthorizedView={
             <PremissionAcces
               navigation={navigation}
@@ -110,6 +144,15 @@ const ScanScreen = ({navigation}) => {
         />
       </Fragment>
     </View>
-  );
+  )}
+  else {
+
+    return(
+      <PremissionAcces
+      navigation={navigation}
+      permision={e => setPermision(e)}
+    />
+    )
+  }
 };
 export default ScanScreen;

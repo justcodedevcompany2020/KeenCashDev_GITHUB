@@ -7,7 +7,7 @@ export const SuccessScreen = ({children,title,onPress,button_title='Proceed to s
     return <View style = {styles.success_screen}>
         <View></View>
         <View>
-            <View style = {{marginBottom:10}}>
+            <View style = {{marginBottom:10,alignItems:'center'}}>
                 <Svgs title={title} />
             </View>
             {children}
