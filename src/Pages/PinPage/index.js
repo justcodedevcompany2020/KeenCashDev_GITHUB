@@ -1,9 +1,10 @@
 import {useState} from 'react'
 import { View,Text,TouchableOpacity } from "react-native"
 import { Gstyles } from "../../Gstyle"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { styles } from './style'
 import { Svgs } from "../../Svg"
-export const PinPage =({navigation}) => {
+export const PinPage =({navigation,title = 'Awesome'}) => {
     const [pin,setPin] = useState([
         {key:''},
         {key:''},
@@ -12,7 +13,7 @@ export const PinPage =({navigation}) => {
     ])
 
     const [count,setCoint] = useState(0)
-    const handelClick = (number) => {
+    const handelClick = async(number) => {
         let item = [...pin]
         if(number !== 'd'){
             if(count <4){
@@ -27,11 +28,30 @@ export const PinPage =({navigation}) => {
             }
         }
         if(count == 3){
-            navigation.navigate('Awesome')
+            if(title === 'Awesome'){
+                navigation.navigate('Awesome')
+            }
+            else if(title === 'NavigationMenu') {
+                let code = await AsyncStorage.getItem('passcode')
+                let code2 = ''
+                pin.map((elm,i)=>{
+                    code2 += elm.key
+                })
+                if(code2 === code){
+                    navigation.navigate('NavigationMenu')
+                }
+                else {
+                    item.map((elm,i)=>{
+                        elm.key = ''
+                    })
+                    setCoint(0)
+                    setPin(item)
+                }
+            }
         }
         setPin(item)
     }
-    return <View style = {Gstyles.home}>
+    return <View style = {[Gstyles.home,title === 'NavigationMenu' && {justifyContent:'center'}]}>
         <View style = {{justifyContent:'center',alignItems:'center'}}>
             <Svgs title={'diamond'} />
         </View>

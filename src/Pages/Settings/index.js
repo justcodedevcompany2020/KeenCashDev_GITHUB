@@ -65,12 +65,12 @@ export const Setting = () => {
                 <Svgs title={'>'} />
             </View>
          </View>  
-         <View style = {[styles.continer,{marginTop:-10}]}>
+         {/* <View style = {[styles.continer,{marginTop:-10}]}>
             <View style = {styles.item}>
                 <Text style = {styles.text}>Delete account</Text>
                 <Svgs title={'>'} width ={width} />
             </View>
-         </View>   
+         </View>    */}
         </View>
 
     </ScrollView>

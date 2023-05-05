@@ -6,6 +6,7 @@ import {Svgs} from '../../Svg';
 import {styles} from './styles';
 import {CodeField} from 'react-native-confirmation-code-field';
 import {  clear_password, set_password } from '../../store/action/action';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { PopUp } from '../PopUp';
 export const SetConfigPassword = ({title, text, options,navigation,action,Passwordcount}) => {
   const [count, setCount] = useState(Passwordcount?Passwordcount:4);
@@ -16,6 +17,7 @@ export const SetConfigPassword = ({title, text, options,navigation,action,Passwo
   const [match,setMatch] = useState(true)
   const [constErrorPassword,setConstErrorPassword] = useState(0)
   const [isEnabled, setIsEnabled] = useState(false);
+  const {createWallet} = useSelector(r=>r)
   const inputRef = useRef();
   const renderCell = ({index, symbol, isFocused}) => {
     let textChild = null;
@@ -65,7 +67,7 @@ export const SetConfigPassword = ({title, text, options,navigation,action,Passwo
       setValue(e)
       }
     }
-    setTimeout(()=>{
+    setTimeout(async()=>{
       if(!password.password.length){
         if(e.length === count){
             if(action === 'set'){
@@ -73,7 +75,9 @@ export const SetConfigPassword = ({title, text, options,navigation,action,Passwo
               navigation.navigate('ConfirmPassword')
             }
             else if(e == password.password){
-
+              await AsyncStorage.setItem('passcode',e)
+              await AsyncStorage.setItem('token',createWallet.ID)
+              await AsyncStorage.setItem('addres',JSON.stringify([createWallet.addres]))
               navigation.navigate('WellDone')
             }
             else if (constErrorPassword === 2 ){
@@ -95,6 +99,9 @@ export const SetConfigPassword = ({title, text, options,navigation,action,Passwo
           else if(e == password.password){
             setIsEnabled(false)
             setValue('')
+            await AsyncStorage.setItem('passcode',e)
+            await AsyncStorage.setItem('token',createWallet.ID)
+            await AsyncStorage.setItem('addres',JSON.stringify([createWallet.addres]))
             navigation.navigate('WellDone')
           }
           else if (constErrorPassword === 2 ){

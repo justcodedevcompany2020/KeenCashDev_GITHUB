@@ -5,10 +5,8 @@ import { useDispatch } from 'react-redux';
 import { Header } from './Components/Header';
 import { Header1 } from './Components/Header/header2';
 import { Header3 } from './Components/Header/header3';
-import { HomeHeader } from './Components/Header/HomeHeader';
 import { NameHEader } from './Components/Header/nameHeader';
 import ScanScreen from './Components/QRCodeScanner';
-
 
 import { Awesome } from './Pages/Awesome';
 import { Confirm } from './Pages/Confirm';
@@ -16,8 +14,8 @@ import { ConfirmPassword } from './Pages/ConfirmPassword';
 import { ImportComplete } from './Pages/ImportComplelty';
 import { InportStart } from './Pages/ImportStart';
 import { NftInfo } from './Pages/NftInfo';
-// import { f } from './Pages/Notifications';
 import { PinPage } from './Pages/PinPage';
+import { PinPageUser } from './Pages/PinPageUser';
 import { PopUp2 } from './Pages/PopUp2';
 import { PopUpPage } from './Pages/PopUpPage';
 import { Resive } from './Pages/Receive';
@@ -34,7 +32,7 @@ import { WhatADay } from './Pages/WhatADay';
 import { YourRecoveryPhrase } from './Pages/YourRecoveryPhrase';
 import { clear_password } from './store/action/action';
 import NavigationMenu from './TabNavigation';
-export default Navigatiob = () => {
+export default Navigatiob = ({initialRouteName}) => {
   const Stack = createStackNavigator();
   const dispatch = useDispatch()
   const MyTheme = {
@@ -45,12 +43,13 @@ export default Navigatiob = () => {
       border: '#161616',
     },
   };
+
   return (
     <NavigationContainer theme ={MyTheme}>
       <StatusBar
             backgroundColor="#161616"
         />
-      <Stack.Navigator initialRouteName="welcome">
+      <Stack.Navigator initialRouteName={initialRouteName}>
         <Stack.Screen
           name="welcome"
           component={Wellcome}
@@ -243,6 +242,11 @@ export default Navigatiob = () => {
               ),
             }
         }
+        />
+        <Stack.Screen 
+          name="PinPageUser"
+          component={PinPageUser}
+          options={{headerShown:false}}
         />
         <Stack.Screen 
           name="Sending"

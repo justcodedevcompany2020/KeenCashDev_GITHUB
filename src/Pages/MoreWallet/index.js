@@ -1,9 +1,16 @@
 import { View,Text } from "react-native"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { BlueButton } from "../../Components/Button.js/BlueButton"
 import { Gstyles } from "../../Gstyle"
 import { Svgs } from "../../Svg"
 
 export const MoreWallet = ({navigation}) => {
+    const WalletCreadet = async() =>{
+        await AsyncStorage.setItem('passcode','')
+        await AsyncStorage.setItem('token','')
+        await AsyncStorage.setItem('addres','')
+        navigation.navigate('WalletCreadet')
+    }
     return <View style = {[Gstyles.homeWrapper,{justifyContent:'center'}]}>
         <View style = {{alignItems:'center'}}>
             <Svgs title={'more_wallet'}/>
@@ -12,7 +19,7 @@ export const MoreWallet = ({navigation}) => {
             </Text>
         </View>
         <View>
-            <BlueButton  onPress={()=>navigation.navigate('WalletCreadet')}  height={70} text = 'Create new TON wallet' />
+            <BlueButton  onPress={()=>WalletCreadet()}  height={70} text = 'Create new TON wallet' />
             <Text onPress={()=>navigation.navigate('InportStart')} style = {{color:'#FFFFFF',textAlign:'center',marginTop:20,fontSize:15,fontFamily:'Lexend-SemiBold'}}>Import existing TON wallet</Text>
         </View>
     </View>

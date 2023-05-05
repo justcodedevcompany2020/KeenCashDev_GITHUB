@@ -73,7 +73,6 @@ const ScanScreen = ({navigation}) => {
     }
     per()
 },[r])
-console.log()
 
 if(permision){
   return (

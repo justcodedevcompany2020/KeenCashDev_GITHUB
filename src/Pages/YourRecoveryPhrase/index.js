@@ -4,34 +4,11 @@ import { Button } from '../../Components/Button.js'
 import { Gstyles } from '../../Gstyle'
 import { styles } from './styles.js'
 import { PopUp } from '../../Components/PopUp/index.js'
+import { useSelector } from 'react-redux'
 
 export const YourRecoveryPhrase = ({navigation}) => {
-    const item = [
-        'reading',
-        'this',
-        'makes',
-        'your',
-        'eyes',
-        'shining',
-        'like',
-        'diamond',
-        'steel',
-        'execution',
-        'drift',
-        'sparrow',
-        'angel',
-        'sidewalk',
-        'tank',
-        'space',
-        'heart',
-        'sun',
-        'revolver',
-        'redneck',
-        'hatred',
-        'snake  ',
-        'collision',
-        'hoverbike',
-    ]
+
+    const {createWallet} = useSelector(r=>r)
     const [click,setClick] = useState(0)
     const [accept,setAccept] = useState(false)
     useEffect(() => {
@@ -79,7 +56,7 @@ export const YourRecoveryPhrase = ({navigation}) => {
             <Text style = {[Gstyles.text,{marginBottom:20}]}>If you lose it, you will irrevocably lose access to your TON account.</Text>
         </View>
         <View style = {styles.list}>
-            {item.map((elm,i)=>(
+            {createWallet.seed.map((elm,i)=>(
                 <View key={i} style = {styles.item}>
                     <Text ></Text>
                     <Text style = {styles.name}><Text style = {styles.number}>{i+1}.</Text> {elm}</Text>

@@ -1,6 +1,8 @@
 import {useEffect, useRef, useState} from 'react';
 import {View, Text, TextInput } from 'react-native';
+import { useSelector } from 'react-redux';
 import {Button} from '../../Components/Button.js';
+import { PopUp } from '../../Components/PopUp/index.js';
 import {Gstyles} from '../../Gstyle';
 
 export const SecurityNerdCheck = ({navigation}) => {
@@ -9,10 +11,20 @@ export const SecurityNerdCheck = ({navigation}) => {
   const ref1 = useRef();
   const ref2 = useRef();
   const ref3 = useRef();
+  const {createWallet} = useSelector(r=>r)
+  const [open,setOpen] = useState(false)
+  const Check = () => {
+    if(input[0].value ===createWallet.seed[4] && input[1].value ===createWallet.seed[14] && input[2].value === createWallet.seed[17]){
+      navigation.navigate('SetPassword')
+    }
+    else {
+      setOpen(true)
+    }
+  }
   const [acitve,setActive] = useState(null)
   const handelChnge = (i, e) => {
     let item = [...input];
-    item[i] = e;
+    item[i].value = e;
     setInput(item);
   };
 
@@ -31,6 +43,7 @@ export const SecurityNerdCheck = ({navigation}) => {
 
   return (
     <View style={[Gstyles.wrapper, Gstyles.wrapper2]}>
+      <PopUp onPress = {()=>setOpen(false)} onPress1 = {()=>navigation.navigate('YourRecoveryPhrase')} open = {open} button_text = 'Try again' text_2 = 'See words' title ='Incorrect words' text={'The secret words you have entered do not match the ones in the list.'} />
       <View>
         <Text style={[Gstyles.title, {marginBottom: 10}]}>
           Security nerd check!
@@ -57,7 +70,7 @@ export const SecurityNerdCheck = ({navigation}) => {
             onFocus = {()=>setActive(0)}
             ref={ref1}
             autoFocus={true}
-            onChange={e => handelChnge(0, e)}
+            onChangeText={e => handelChnge(0, e)}
             onSubmitEditing={handleInput1Submit}
             keyboardAppearance="default"
             enablesReturnKeyAutomatically
@@ -87,7 +100,7 @@ export const SecurityNerdCheck = ({navigation}) => {
             }}
             onFocus = {()=>setActive(1)}
             onSubmitEditing={handleInput2Submit}
-            onChange={e => handelChnge(1, e)}
+            onChangeText={e => handelChnge(1, e)}
             ref={ref2}
           />
           <Text
@@ -114,7 +127,7 @@ export const SecurityNerdCheck = ({navigation}) => {
               paddingHorizontal: 30,
             }}
             ref={ref3}
-            onChange={e => handelChnge(2, e)}
+            onChangeText={e => handelChnge(2, e)}
             onSubmitEditing={handleInput3Submit}
             onFocus = {()=>setActive(2)}
             onBlur = {()=>setActive(null)}
@@ -133,7 +146,7 @@ export const SecurityNerdCheck = ({navigation}) => {
       <View>
         <Button
           title={'Continue'}
-          onPress={() => navigation.navigate('SetPassword')}
+          onPress={() => Check()}
         />
       </View>
     </View>
