@@ -77,7 +77,10 @@ export const SetConfigPassword = ({title, text, options,navigation,action,Passwo
             else if(e == password.password){
               await AsyncStorage.setItem('passcode',e)
               await AsyncStorage.setItem('token',createWallet.ID)
-              await AsyncStorage.setItem('addres',JSON.stringify([createWallet.addres]))
+              let addres = createWallet.address
+              let arr = []
+              arr.push(addres)
+              await AsyncStorage.setItem('addres',JSON.stringify(arr))
               navigation.navigate('WellDone')
             }
             else if (constErrorPassword === 2 ){
@@ -101,7 +104,10 @@ export const SetConfigPassword = ({title, text, options,navigation,action,Passwo
             setValue('')
             await AsyncStorage.setItem('passcode',e)
             await AsyncStorage.setItem('token',createWallet.ID)
-            await AsyncStorage.setItem('addres',JSON.stringify([createWallet.addres]))
+            let addres = createWallet.address
+            let arr = []
+            arr.push(addres)
+            await AsyncStorage.setItem('addres',JSON.stringify(arr))
             navigation.navigate('WellDone')
           }
           else if (constErrorPassword === 2 ){

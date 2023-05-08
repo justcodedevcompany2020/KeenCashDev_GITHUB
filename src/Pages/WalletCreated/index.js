@@ -1,12 +1,19 @@
 import {View,Text,StatusBar} from 'react-native'
+import { useDispatch } from 'react-redux'
 import { SuccessScreen } from '../../Components/SuccessScreen'
 import { Gstyles } from '../../Gstyle'
+import { create_wallet } from '../../store/action/action'
 export const WalletCreadet = ({navigation}) => {
+    const dispatch = useDispatch()
+    const hadnelClicl = () =>{
+        dispatch(create_wallet())
+        navigation.navigate('YourRecoveryPhrase')
+    }
     return <View style = {Gstyles.wrapper}>
         <StatusBar
             backgroundColor="#000"
         />
-        <SuccessScreen onPress = {()=>navigation.navigate('YourRecoveryPhrase')} title={'wallet_created'} >
+        <SuccessScreen  onPress = {()=>hadnelClicl()} title={'wallet_created'} >
             <View>
                 <Text style = {[Gstyles.text,{marginBottom:10}]}>Only you control it.</Text>
                 <Text style = {Gstyles.text}>Please  save  secret words carefully and set up a secure passcode.</Text>

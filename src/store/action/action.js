@@ -1,7 +1,10 @@
 import axios from "axios"
 import { error_create_wallet } from "./errorAction"
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { start_create_wallet } from "./startAction"
 import { succes_create_wallet } from "./successAction"
+
 const api_addres = 'http://3.85.188.199'
 export const set_password = (password) =>{
     return {
@@ -52,5 +55,22 @@ export  const create_wallet = () =>{
             dispatch(error_create_wallet())
           })
 
+    }
+}
+
+export const checkToken = () =>{
+    return {
+        type:'checkToken',
+    }
+}
+
+export const getTransactionHistory = (addres) =>{
+    return (dispatch)=>{
+        axios.get(`${api_addres}/getTransactionHistory`,{addres}).then((r)=>{
+            console.log(r)
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
     }
 }

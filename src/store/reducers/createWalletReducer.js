@@ -1,9 +1,11 @@
+
 const initialState = {
     loading:false,
     success:false,
     address:'',
     ID:'',
-    seed:[]
+    seed:[],
+    address:[]
 }
 const createWalletReducer = (state = initialState, action) => {
     let item = {...state}
@@ -22,6 +24,8 @@ const createWalletReducer = (state = initialState, action) => {
             item.loading = false
             item.success = false
             break
+        case 'checkToken':
+            item.address = action.data
         default:
           break
       }

@@ -2,12 +2,9 @@ import {View,StatusBar,TouchableOpacity,Text} from 'react-native'
 import {styles} from './styles'
 import { Gstyles } from '../../Gstyle'
 import { Svgs } from '../../Svg'
-import { useDispatch } from 'react-redux'
-import { create_wallet } from '../../store/action/action'
 export const Wellcome = ({navigation}) => {
-  const dispathc = useDispatch()
+
   const CreateWallet = () =>{
-    dispathc(create_wallet())
     navigation.navigate('WalletCreadet')
   }
     return <View style = {Gstyles.welcome} >
