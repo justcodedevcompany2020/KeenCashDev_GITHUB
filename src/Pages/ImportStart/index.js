@@ -62,7 +62,12 @@ export const InportStart = ({navigation}) => {
     }
     const handelSubmit = (i) => {
         if(i !== 24){
-            input[i].ref.current?.focus();
+            
+            const timeoutId = setTimeout(() => {
+                input[i].ref.current?.focus();
+              }, 200);
+            return () => clearTimeout(timeoutId);
+
         }
         else if(i === 24){
             navigation.navigate('ImportComplete')
@@ -78,42 +83,41 @@ export const InportStart = ({navigation}) => {
             <Text onPress={()=>navigation.navigate('WhatADay')} style = {{color:'#8A8A8A',fontSize:15,fontFamily:'Lexend-Medium',textAlign:"center",marginVertical:20}}>I don’t have those</Text>
         </View>
         <View>
-            {input.map((elm,i)=>(
-                <View key={i} style = {{marginVertical:5}}>
-        <TextInput
-            style={{
-              height: 50,
-              borderRadius: 15,
-              backgroundColor: '#313131',
-              position: 'relative',
-              color: '#fff',
-              paddingHorizontal: 35  ,
-              paddingRight: 40,
-              borderWidth:1,
-              borderColor:(active ===i ? '#525252':'#313131'),
-              fontFamily:"Lexend-Medium"
-            }}
-            onFocus = {()=>setActive(i)}
-            ref={input[i].ref}
-            autoFocus={i === 0}
-            onChange={e => handelChnge(i, e)}
-            onSubmitEditing={()=>handelSubmit(i+1)}
-            keyboardAppearance="default"
-            enablesReturnKeyAutomatically
-            
-          />
-          <Text
-            style={{
-              position: 'absolute',
-              color: '#8A8A8A',
-              top: 15,
-              left: 15,
-            }}>
-            {`${i+1}.`}
-          </Text>
+        {input.map((elm,i)=>(
+            <View key={i} style = {{marginVertical:5}}>
+                <TextInput
+                    style={{
+                    height: 50,
+                    borderRadius: 15,
+                    backgroundColor: '#313131',
+                    position: 'relative',
+                    color: '#fff',
+                    paddingHorizontal: 35  ,
+                    paddingRight: 40,
+                    borderWidth:1,
+                    borderColor:(active ===i ? '#525252':'#313131'),
+                    fontFamily:"Lexend-Medium"
+                    }}
+                    onFocus = {()=>setActive(i)}
+                    ref={input[i].ref}
+                    autoFocus={i === 0}
+                    // value = {elm.value}
+                    onChange={e => handelChnge(i, e)}
+                    onSubmitEditing={()=>handelSubmit(i+1)}
+                    keyboardAppearance="default"
+                    enablesReturnKeyAutomatically
+                />
+                <Text
+                    style={{
+                    position: 'absolute',
+                    color: '#8A8A8A',
+                    top: 15,
+                    left: 15,
+                    }}>
+                    {`${i+1}.`}
+                </Text>
                 </View>
-            ))
-            }
+        ))}
             <View style = {{marginVertical:5}}>
                 <Button onPress={()=>navigation.navigate('ImportComplete')} title={'Continue'}  />
             </View>

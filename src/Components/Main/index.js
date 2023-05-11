@@ -1,18 +1,18 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {View, Text,TouchableOpacity, ScrollView,RefreshControl} from 'react-native';
 import {Gstyles} from '../../Gstyle';
 import {Svgs} from '../../Svg';
 import {BlueButton} from '../Button.js/BlueButton';
 import {styles} from './style';
-import Clipboard from '@react-native-clipboard/clipboard';
 import Item from './item';
-import { useDispatch } from 'react-redux';
-import { change_header_title } from '../../store/action/action';
+import { useDispatch, useSelector } from 'react-redux';
+import { change_header_title, getBalance } from '../../store/action/action';
 import { Card } from './card';
 
 export const Main = ({data, loading,price,price_$,token,navigation}) => {
 
     const [refreshing, setRefreshing] = useState(false);
+    const {getMyBalance} = useSelector((st)=>st)
     const dispatch = useDispatch()
     const handelScroll = (e)=>{
         const currentOffset  = e.nativeEvent.contentOffset.y
@@ -25,10 +25,9 @@ export const Main = ({data, loading,price,price_$,token,navigation}) => {
     }
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
-        setTimeout(() => {
-          setRefreshing(false);
-        }, 2000);
-      }, []);
+        dispatch(getBalance())
+        setRefreshing(getMyBalance.loading);
+      }, [getMyBalance.loading]);
   return (
     <ScrollView 
         onScroll = {(e)=>handelScroll(e)} 

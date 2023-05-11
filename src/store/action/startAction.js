@@ -3,3 +3,8 @@ export const start_create_wallet = () =>{
         type:'start_create_wallet'
     }
 }
+export const start_get_balance = () =>{
+    return {
+        type:'start_get_balance'
+    }
+}

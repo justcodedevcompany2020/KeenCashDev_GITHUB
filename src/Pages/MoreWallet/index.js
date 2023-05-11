@@ -3,8 +3,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { BlueButton } from "../../Components/Button.js/BlueButton"
 import { Gstyles } from "../../Gstyle"
 import { Svgs } from "../../Svg"
+import { useDispatch } from "react-redux";
+import { clear_password } from "../../store/action/action";
 
 export const MoreWallet = ({navigation}) => {
+    const dispatch = useDispatch()
     const WalletCreadet = async() =>{
         await AsyncStorage.setItem('passcode','')
         await AsyncStorage.setItem('token','')
@@ -20,7 +23,10 @@ export const MoreWallet = ({navigation}) => {
         </View>
         <View>
             <BlueButton  onPress={()=>WalletCreadet()}  height={70} text = 'Create new TON wallet' />
-            <Text onPress={()=>navigation.navigate('InportStart')} style = {{color:'#FFFFFF',textAlign:'center',marginTop:20,fontSize:15,fontFamily:'Lexend-SemiBold'}}>Import existing TON wallet</Text>
+            <Text onPress={()=>{
+                navigation.navigate('InportStart')
+                dispatch(clear_password())
+            }} style = {{color:'#FFFFFF',textAlign:'center',marginTop:20,fontSize:15,fontFamily:'Lexend-SemiBold'}}>Import existing TON wallet</Text>
         </View>
     </View>
 }

@@ -4,3 +4,9 @@ export const succes_create_wallet = (data) => {
         data:data
     }
 }
+export const success_get_balance = (data) =>{
+    return {
+        type:'success_get_balance',
+        data
+    }
+}

@@ -26,6 +26,7 @@ const createWalletReducer = (state = initialState, action) => {
             break
         case 'checkToken':
             item.address = action.data
+            break
         default:
           break
       }

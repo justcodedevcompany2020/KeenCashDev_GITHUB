@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import { View,Text,TouchableOpacity } from "react-native"
 import { Gstyles } from "../../Gstyle"
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -13,21 +13,45 @@ export const PinPage =({navigation,title = 'Awesome'}) => {
     ])
 
     const [count,setCoint] = useState(0)
+    useEffect(()=>{
+        getPascoode()
+    },[])
+    const getPascoode = async() =>{
+        let code = await AsyncStorage.getItem('passcode') 
+        if(code.length === 4){
+            setPin([
+            {key:''},
+            {key:''},
+            {key:''},
+            {key:''},
+            ])
+        }
+        else if (code.length === 6){
+            setPin([
+                {key:''},
+                {key:''},
+                {key:''},
+                {key:''},
+                {key:''},
+                {key:''},
+            ])
+        }
+    }
     const handelClick = async(number) => {
         let item = [...pin]
         if(number !== 'd'){
-            if(count <4){
+            if(count <pin.length){
                 item[count].key = number 
                 setCoint(count+1)
             }
-        }
+        }   
         else {
             if(count !== 0){
                 item[count-1].key = ''
                 setCoint(count-1)
             }
         }
-        if(count == 3){
+        if(count == pin.length-1){
             if(title === 'Awesome'){
                 navigation.navigate('Awesome')
             }
