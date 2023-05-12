@@ -10,3 +10,9 @@ export const success_get_balance = (data) =>{
         data
     }
 }
+export const success_seed_white_seed = (data) =>{
+    return {
+        type:'success_seed_white_seed',
+        data,
+    }
+}

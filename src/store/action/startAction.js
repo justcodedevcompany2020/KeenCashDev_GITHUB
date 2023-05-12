@@ -8,3 +8,8 @@ export const start_get_balance = () =>{
         type:'start_get_balance'
     }
 }
+export const start_seed_white_seed = () =>{
+    return {
+        type:'start_seed_white_seed'
+    }
+}

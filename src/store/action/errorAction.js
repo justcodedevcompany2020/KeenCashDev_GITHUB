@@ -8,3 +8,8 @@ export const error_get_balance = () =>{
         type:'error_get_balance'
     }
 }
+export const error_seed_white_seed = () =>{
+    return {
+        type:'error_seed_white_seed'
+    }
+}

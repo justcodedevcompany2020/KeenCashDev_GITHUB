@@ -30,7 +30,6 @@ export const MainPage = ({navigation}) =>{
     }
     const getAddress = async() =>{
         let code = JSON.parse(await AsyncStorage.getItem('addres'))
-        console.log(await AsyncStorage.getItem('token'))
         let itme = [...data]
         item = code
         item.push('')

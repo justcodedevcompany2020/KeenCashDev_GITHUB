@@ -1,8 +1,13 @@
-import {useState,useRef} from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import {useState,useRef, useEffect } from 'react'
 import {View,Text,ScrollView,StatusBar, TextInput} from 'react-native'
 import { Button } from '../../Components/Button.js'
 import { Gstyles } from '../../Gstyle'
-
+import uuid from 'react-native-uuid';
+import { useDispatch, useSelector } from 'react-redux'
+import { close_seed_popOp, sign_With_Seed } from '../../store/action/action.js'
+import { PopUp } from '../../Components/PopUp/index.js'
+import { BlueButton } from '../../Components/Button.js/BlueButton.js'
 export const InportStart = ({navigation}) => {
     const ref = useRef()
     const ref1 = useRef()
@@ -54,6 +59,45 @@ export const InportStart = ({navigation}) => {
         {value:"",ref:ref22},
         {value:"",ref:ref23},
     ])
+    const dispatch = useDispatch()
+    const {signWithSeed} = useSelector((st=>st))
+    console.log(signWithSeed)
+    const Continue = async() =>{
+        // navigation.navigate('ImportComplete')
+        let data =''
+        input.map((elm,i)=>{
+            data += elm.value + " "
+        })
+        let id = await AsyncStorage.getItem('token')
+        // console.log(id)
+        id = uuid.v4()
+        if(!id){
+            id = uuid.v4()
+        }
+        dispatch(sign_With_Seed(data.slice(0,-1),id))
+    }
+    useEffect(()=>{
+        console.log('8888')
+        if(signWithSeed.address !== '' && signWithSeed.address){
+            setStorage(signWithSeed.address)
+        }
+    },[signWithSeed.address])
+    const setStorage = async(item) =>{
+        let arr = await AsyncStorage.getItem('addres')
+        if(!arr){
+            arr = []
+            arr.push(item)
+            await AsyncStorage.setItem('addres',JSON.stringify(arr))
+        }
+        else {
+            let arr2 =JSON.parse(arr) 
+            arr2.push(item)
+            await AsyncStorage.setItem('addres',JSON.stringify(arr2))
+        }
+        navigation.navigate('ImportComplete')
+    }
+
+
     const [active,setActive] = useState(null)
     const handelChnge = (i,e) => {
         let item =[...input]
@@ -62,20 +106,28 @@ export const InportStart = ({navigation}) => {
     }
     const handelSubmit = (i) => {
         if(i !== 24){
-            
             const timeoutId = setTimeout(() => {
                 input[i].ref.current?.focus();
               }, 200);
             return () => clearTimeout(timeoutId);
-
         }
         else if(i === 24){
-            navigation.navigate('ImportComplete')
+            Continue()
+            // navigation.navigate('ImportComplete')
         }
     }
     return <ScrollView showsVerticalScrollIndicator = {false} style = {Gstyles.wrapper}>
         <StatusBar
             backgroundColor="#000"
+        />
+        <PopUp 
+            open ={signWithSeed.error} 
+            onPress = {()=>dispatch(close_seed_popOp())} 
+            title = {'Incorrect words'} 
+            text = {'The secret words you have entered do not match the ones in the list.'} 
+            button_text ={'Try again'} 
+            text_2 = {'Create new TON wallet'}
+            onPress1 ={()=>navigation.navigate('WalletCreadet')}
         />
         <View>
             <Text style = {[Gstyles.title,{marginVertical:20}]}>24 Secret Words</Text>
@@ -101,8 +153,8 @@ export const InportStart = ({navigation}) => {
                     onFocus = {()=>setActive(i)}
                     ref={input[i].ref}
                     autoFocus={i === 0}
-                    // value = {elm.value}
-                    onChange={e => handelChnge(i, e)}
+                    value = {elm.value}
+                    onChangeText={e => handelChnge(i, e)}
                     onSubmitEditing={()=>handelSubmit(i+1)}
                     keyboardAppearance="default"
                     enablesReturnKeyAutomatically
@@ -119,7 +171,15 @@ export const InportStart = ({navigation}) => {
                 </View>
         ))}
             <View style = {{marginVertical:5}}>
-                <Button onPress={()=>navigation.navigate('ImportComplete')} title={'Continue'}  />
+                {/* <Button onPress={()=>Continue()} title={'Continue'}  /> */}
+                <BlueButton 
+                    backgroundColor="#4DFF7E"
+                    color="#161616"
+                    onPress ={()=>Continue()} 
+                    text={'Continue'}
+                    loading = {signWithSeed.loading}
+                    height = {50}
+                />
             </View>
         </View>
     </ScrollView>
