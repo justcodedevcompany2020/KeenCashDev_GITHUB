@@ -32,7 +32,11 @@ export const Send = ({navigation}) => {
                 placeholder = {'24-letter wallet address or TON DNS...'} 
                 height={80}
                 font = "Lexend-Regular"
-                handelSubmit = {()=>navigation.navigate('SendTo')}
+                handelSubmit = {()=>{
+                    dispatch(SendToken(past))
+                    navigation.navigate('SendTo')
+                }
+                }
             />
             <Text onPress={()=>fetchCopiedText()} style = {styles.past}>Paste</Text>
             <View style = {{flexDirection:'row',justifyContent:'space-between'}}>
@@ -50,8 +54,8 @@ export const Send = ({navigation}) => {
             {false && <ErrorPopUp  visible = {false}/>}
             <View style = {{marginVertical:20,marginBottom:60}}>
                 <BlueButton onPress={()=>{
-                    navigation.navigate('SendTo')
                     dispatch(SendToken(past))
+                    navigation.navigate('SendTo')
                     }} loading={false} text={'Continue'} color = '#161616' backgroundColor="#4DFF7E" height={50} />
             </View>
         </ScrollView>

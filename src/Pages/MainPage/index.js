@@ -15,9 +15,17 @@ export const MainPage = ({navigation}) =>{
     const [data,setData] = useState([])
     const dispatch = useDispatch()
     useEffect(()=>{
-        getAddress()
+        // getAddress()
         bottomSheetRef.current?.present()
     },[])
+
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', async () => {
+            getAddress()
+        });
+        return unsubscribe;
+      }, [navigation]);
+
     useEffect(()=>{
         if(data[0]){
             dispatch(getBalance(data[0]))
@@ -30,9 +38,12 @@ export const MainPage = ({navigation}) =>{
     }
     const getAddress = async() =>{
         let code = JSON.parse(await AsyncStorage.getItem('addres'))
+        let id = await AsyncStorage.getItem('token')
+        console.log(id)
         let itme = [...data]
         item = code
         item.push('')
+        console.log(item)
         setData(item)
     }
     const close = ()=>{
@@ -53,7 +64,7 @@ export const MainPage = ({navigation}) =>{
                 {data.map((elm,i)=>{
                    return <View key={i} style = {{width:width-38}}>
                         {i!==data.length-1 ?
-                            <Main navigation = {navigation} data={data} price={getMyBalance.balance} price_$ ={'0'} token = {elm} />
+                            <Main loading1={getMyBalance.loading} navigation = {navigation} data={data} price={getMyBalance.balance} price_$ ={'0'}  token = {elm} />
                             :
                             <MoreWallet navigation = {navigation} />
                         }

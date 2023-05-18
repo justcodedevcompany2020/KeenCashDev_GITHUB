@@ -3,7 +3,7 @@ import {error_create_wallet, error_get_balance, error_seed_white_seed} from './e
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {start_create_wallet, start_get_balance, start_seed_white_seed} from './startAction';
-import {success_get_balance, success_seed_white_seed, succes_create_wallet} from './successAction';
+import {success_get_balance, success_seed_white_seed, succes_create_wallet, succes_transfer_ton} from './successAction';
 
 const api_addres = 'http://3.85.188.199';
 export const set_password = password => {
@@ -64,6 +64,7 @@ export const checkToken = () => {
 };
 
 export const getBalance = (address) => {
+  console.log('ppp')
   return (dispatch) => {
     dispatch(start_get_balance())
     axios.post('http://3.85.188.199/checkBalance',{address:address})
@@ -90,5 +91,33 @@ export const sign_With_Seed = (seed,id) =>{
 export const close_seed_popOp = () =>{
   return {
     type:'close_seed_popOp'
+  }
+}
+export const snedTon = (address) =>{
+  return {
+    type:'snedTon',
+    address,
+  }
+}
+export const send_balance = (data) =>{
+  return {
+    type:'send_balance',
+    data,
+  }
+}
+export const send_comment = (data) =>{
+    return {
+      type:'send_comment',
+      data
+    }
+}
+export const transfer_ton = (data) =>{
+  console.log(data)
+  return (dispatch) =>{
+    axios.post(`${api_addres}/transferTON`,{data}).then((r)=>{
+      dispatch(succes_transfer_ton())
+    }).catch((error)=>{
+      console.log(error )
+    })
   }
 }

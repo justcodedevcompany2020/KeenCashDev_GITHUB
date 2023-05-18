@@ -4,7 +4,7 @@ import { Gstyles } from "../../Gstyle"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { styles } from './style'
 import { Svgs } from "../../Svg"
-export const PinPage =({navigation,title = 'Awesome'}) => {
+export const PinPage =({navigation,title = 'Sending'}) => {
     const [pin,setPin] = useState([
         {key:''},
         {key:''},
@@ -52,15 +52,18 @@ export const PinPage =({navigation,title = 'Awesome'}) => {
             }
         }
         if(count == pin.length-1){
-            if(title === 'Awesome'){
-                navigation.navigate('Awesome')
+            let code = await AsyncStorage.getItem('passcode')
+            let code2 = ''
+            pin.map((elm,i)=>{
+                code2 += elm.key
+            })
+            if(title === 'Sending'){
+                if(code2 === code){
+                    navigation.navigate('Sending')
+                }
             }
             else if(title === 'NavigationMenu') {
-                let code = await AsyncStorage.getItem('passcode')
-                let code2 = ''
-                pin.map((elm,i)=>{
-                    code2 += elm.key
-                })
+              
                 if(code2 === code){
                     navigation.navigate('NavigationMenu')
                 }

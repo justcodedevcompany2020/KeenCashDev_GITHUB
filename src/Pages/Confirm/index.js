@@ -1,17 +1,19 @@
 import { View,Text,Keyboard,TextInput,TouchableOpacity,ScrollView } from "react-native"
 import {useRef, useState} from 'react'
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { BlueButton } from "../../Components/Button.js/BlueButton"
 import { Gstyles } from "../../Gstyle"
 import { Svgs } from "../../Svg"
+import { send_comment } from "../../store/action/action"
 
 export const Confirm = ({navigation}) => {
     const {send} = useSelector(st=>st)
+    const {transfer} = useSelector(st=>st)
     const [comment,setComment] = useState('')
     const [errorMsg,setErrorMSg] = useState('')
     const [active,setActive] = useState(false)
     const ref = useRef()
-
+    const dispatch = useDispatch()
     const handlePress = () =>{
         Keyboard.dismiss()
         if(!errorMsg){
@@ -20,6 +22,7 @@ export const Confirm = ({navigation}) => {
     }
     const handelChange = (e) => {
             setComment(e)
+            dispatch(send_comment(comment))
             if(e.length >100){
                 setErrorMSg('Message size has been exceeded by 6 characters.')
             }
@@ -29,11 +32,11 @@ export const Confirm = ({navigation}) => {
     }
     return <View style = {[Gstyles.home,{justifyContent:'space-between'}]}>
         <ScrollView showsVerticalScrollIndicator = {false}>
-            <Text style ={{color:'#4DFF7E',textAlign:'center',fontSize:15,lineHeight:18,fontFamily:"Lexend-Light"}}>markmartemianov.ton</Text>
-            <Text style = {{textAlign:'center',color:'#8A8A8A',fontSize:15,marginTop:15,paddingHorizontal:20,fontFamily:"Lexend-Light"}}>{'EQDCAfpTMlIh6xGABPSO0oIqMgVy5ncGpq75hgeCl4-UKMY8'}</Text>
+            {/* <Text style ={{color:'#4DFF7E',textAlign:'center',fontSize:15,lineHeight:18,fontFamily:"Lexend-Light"}}>markmartemianov.ton</Text> */}
+            <Text style = {{textAlign:'center',color:'#8A8A8A',fontSize:15,marginTop:15,paddingHorizontal:20,fontFamily:"Lexend-Light"}}>{transfer.address}</Text>
             <View style = {{marginVertical:50}}>
-                <Text style = {{color:'#EAEAEA',fontSize:30,fontFamily:"Lexend-Regular",textAlign:'center'}}>102.6847 TON</Text>
-                <Text style = {{color:'#8A8A8A',textAlign:'center',fontSize:15}}>≈ 0.007 fee</Text>
+                <Text style = {{color:'#EAEAEA',fontSize:30,fontFamily:"Lexend-Regular",textAlign:'center'}}>{transfer.balance} TON</Text>
+                {/* <Text style = {{color:'#8A8A8A',textAlign:'center',fontSize:15}}>≈ 0.007 fee</Text> */}
             </View>
             <View>
                 <TextInput 

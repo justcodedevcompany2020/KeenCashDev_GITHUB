@@ -16,3 +16,8 @@ export const success_seed_white_seed = (data) =>{
         data,
     }
 }
+export const succes_transfer_ton = () =>{
+    return {
+        type:'succes_transfer_ton'
+    }
+}

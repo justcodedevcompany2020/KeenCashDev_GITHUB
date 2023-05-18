@@ -1,7 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {useState,useRef, useEffect } from 'react'
 import {View,Text,ScrollView,StatusBar, TextInput} from 'react-native'
-import { Button } from '../../Components/Button.js'
 import { Gstyles } from '../../Gstyle'
 import uuid from 'react-native-uuid';
 import { useDispatch, useSelector } from 'react-redux'
@@ -61,29 +60,28 @@ export const InportStart = ({navigation}) => {
     ])
     const dispatch = useDispatch()
     const {signWithSeed} = useSelector((st=>st))
-    console.log(signWithSeed)
     const Continue = async() =>{
-        // navigation.navigate('ImportComplete')
         let data =''
         input.map((elm,i)=>{
             data += elm.value + " "
         })
         let id = await AsyncStorage.getItem('token')
-        // console.log(id)
-        id = uuid.v4()
+        console.log(id)
+        // id = uuid.v4()
         if(!id){
             id = uuid.v4()
         }
         dispatch(sign_With_Seed(data.slice(0,-1),id))
     }
     useEffect(()=>{
-        console.log('8888')
         if(signWithSeed.address !== '' && signWithSeed.address){
-            setStorage(signWithSeed.address)
+            setStorage(signWithSeed.address,signWithSeed.ID)
         }
     },[signWithSeed.address])
-    const setStorage = async(item) =>{
+    const setStorage = async(item,id) =>{
         let arr = await AsyncStorage.getItem('addres')
+        let arr1 = await AsyncStorage.getItem('token')
+        await AsyncStorage.setItem('token',id)
         if(!arr){
             arr = []
             arr.push(item)

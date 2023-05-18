@@ -1,15 +1,15 @@
-import React,{useState,useEffect} from 'react'
-import {View, Text,TouchableOpacity, ScrollView,RefreshControl} from 'react-native';
+import React,{useState} from 'react'
+import {View, Text, ScrollView,RefreshControl} from 'react-native';
 import {Gstyles} from '../../Gstyle';
 import {Svgs} from '../../Svg';
 import {BlueButton} from '../Button.js/BlueButton';
 import {styles} from './style';
 import Item from './item';
 import { useDispatch, useSelector } from 'react-redux';
-import { change_header_title, getBalance } from '../../store/action/action';
+import { change_header_title, getBalance, snedTon } from '../../store/action/action';
 import { Card } from './card';
 
-export const Main = ({data, loading,price,price_$,token,navigation}) => {
+export const Main = ({data, loading,price,price_$,token,navigation,loading1}) => {
 
     const [refreshing, setRefreshing] = useState(false);
     const {getMyBalance} = useSelector((st)=>st)
@@ -28,6 +28,7 @@ export const Main = ({data, loading,price,price_$,token,navigation}) => {
         dispatch(getBalance())
         setRefreshing(getMyBalance.loading);
       }, [getMyBalance.loading]);
+  
   return (
     <ScrollView 
         onScroll = {(e)=>handelScroll(e)} 
@@ -38,7 +39,7 @@ export const Main = ({data, loading,price,price_$,token,navigation}) => {
     >
         <View style = {[styles.main]}>
             <View >
-                <Card price={price} price_$ = {price_$} token = {token} />
+                <Card loading = {loading1} price={price} price_$ = {price_$} token = {token} />
                 <View style={styles.button_wrapper}>
                 <BlueButton
                     width={'48.5%'}
@@ -52,8 +53,11 @@ export const Main = ({data, loading,price,price_$,token,navigation}) => {
                     height={50} 
                     text={'Send'} 
                     svg={'vector1'} 
-                    onPress = {()=>navigation.navigate('send')}
-                    
+                    onPress = {()=>{
+                        dispatch(snedTon(token))
+                        navigation.navigate('send')
+                    }
+                    }
                     />
                 </View>
             </View>
@@ -77,7 +81,7 @@ export const Main = ({data, loading,price,price_$,token,navigation}) => {
                 ) : (
                     <View style={[styles.data,styles.data_iten]}>
                     <Text style ={styles.date} >25 March, Sat</Text>
-                    { data.map((elm,i)=>(
+                    {data.map((elm,i)=>(
                         <Item navigation = {navigation} plus={true} key={i} token = {'EQDCAfpTMlIh6xGABPSO0oIqMgVy5ncGpq75hgeCl4-UKMY8'} date = {'22:52'} price = {'+1.091'} />
                     ))}
                     </View> 
