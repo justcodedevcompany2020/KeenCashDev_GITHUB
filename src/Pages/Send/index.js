@@ -2,13 +2,13 @@ import { View ,Text,ScrollView} from "react-native"
 import {styles} from './styles'
 import { Input } from "../../Components/Input"
 import { Gstyles } from "../../Gstyle"
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import { BlueButton } from "../../Components/Button.js/BlueButton"
 import { ErrorPopUp } from "../../Components/ErrorPopUp"
-import { SendToken } from "../../store/action/action"
-import { useDispatch } from "react-redux"
-
+import { check_accaunt, clear_error_check_account, SendToken } from "../../store/action/action"
+import { useDispatch, useSelector } from "react-redux"
 export const Send = ({navigation}) => {
+    const {check} = useSelector(st=>st)
     const [past,setPast] = useState('')
     const dispatch = useDispatch()
     const fetchCopiedText = async () => {
@@ -22,6 +22,24 @@ export const Send = ({navigation}) => {
         {date:'25 March',text:'EQDCAfpTMlIh6xGABPSO0oIqMgVy5ncGpq75hgeCl4-UKMY8'},
         {date:'25 March',text:'EQDCAfpTMlIh6xGABPSO0oIqMgVy5ncGpq75hgeCl4-UKMY8'},
     ])
+    const hadnelPress = () =>{
+        dispatch(check_accaunt(past))
+    }
+    useEffect(()=>{
+        if(check.status === 'checked'){
+            dispatch(SendToken(past))
+            navigation.navigate('SendTo')
+        }
+    },[check.status])
+    useEffect(()=>{
+
+    },[])
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', async () => {
+            dispatch(clear_error_check_account())
+        });
+        return unsubscribe;
+      }, [navigation]);
     return < >
         <ScrollView showsVerticalScrollIndicator = {false} style = {Gstyles.home}>
             <Input 
@@ -33,8 +51,9 @@ export const Send = ({navigation}) => {
                 height={80}
                 font = "Lexend-Regular"
                 handelSubmit = {()=>{
-                    dispatch(SendToken(past))
-                    navigation.navigate('SendTo')
+                    hadnelPress()
+                    // dispatch(SendToken(past))
+                    // navigation.navigate('SendTo')
                 }
                 }
             />
@@ -45,19 +64,20 @@ export const Send = ({navigation}) => {
             </View>
             <View>
             {data.map((elm,i)=>{
-                return <View key={i} style = {{paddingVertical:15,borderBottomWidth:1,borderColor:'#313131'}}>
+                return <View key={i} style = {[{paddingVertical:15,borderBottomWidth:1,borderColor:'#313131'},i===data.length-1&&{marginBottom:35} ]}>
                     <Text style = {[styles.text1,{marginBottom:5}]}>{elm.date}</Text>
                     <Text style = {styles.text}>{elm.text}</Text>
                 </View>
             })}
             </View>
-            {false && <ErrorPopUp  visible = {false}/>}
-            <View style = {{marginVertical:20,marginBottom:60}}>
-                <BlueButton onPress={()=>{
-                    dispatch(SendToken(past))
-                    navigation.navigate('SendTo')
-                    }} loading={false} text={'Continue'} color = '#161616' backgroundColor="#4DFF7E" height={50} />
-            </View>
         </ScrollView>
+        <View style = {{paddingHorizontal:20,backgroundColor:'#161616',}}>
+            {check.status === 'error_checked' && <ErrorPopUp  />}
+            <View style = {{marginVertical:20}}>
+                <BlueButton  onPress={()=>{
+                    hadnelPress()
+                    }} loading={check.loading} text={'Continue'} color = '#161616' backgroundColor="#4DFF7E" height={50} />
+            </View>
+        </View>
     </>
 }

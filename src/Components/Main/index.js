@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { change_header_title, getBalance, snedTon } from '../../store/action/action';
 import { Card } from './card';
 
-export const Main = ({data, loading,price,price_$,token,navigation,loading1}) => {
+export const Main = ({data, loading,price,price_$,token,navigation,loading1,index}) => {
 
     const [refreshing, setRefreshing] = useState(false);
     const {getMyBalance} = useSelector((st)=>st)
@@ -25,10 +25,9 @@ export const Main = ({data, loading,price,price_$,token,navigation,loading1}) =>
     }
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
-        dispatch(getBalance())
+        dispatch(getBalance(token))
         setRefreshing(getMyBalance.loading);
       }, [getMyBalance.loading]);
-  
   return (
     <ScrollView 
         onScroll = {(e)=>handelScroll(e)} 
@@ -89,7 +88,6 @@ export const Main = ({data, loading,price,price_$,token,navigation,loading1}) =>
                 </View>
             )}
             </View>
-           
       </View>
     </ScrollView>
   );

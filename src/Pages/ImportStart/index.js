@@ -66,7 +66,6 @@ export const InportStart = ({navigation}) => {
             data += elm.value + " "
         })
         let id = await AsyncStorage.getItem('token')
-        console.log(id)
         // id = uuid.v4()
         if(!id){
             id = uuid.v4()

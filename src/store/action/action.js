@@ -1,9 +1,9 @@
 import axios from 'axios';
-import {error_create_wallet, error_get_balance, error_seed_white_seed} from './errorAction';
+import {error_check_account, error_create_wallet, error_get_accaunt, error_get_balance, error_seed_white_seed} from './errorAction';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {start_create_wallet, start_get_balance, start_seed_white_seed} from './startAction';
-import {success_get_balance, success_seed_white_seed, succes_create_wallet, succes_transfer_ton} from './successAction';
+import {start_check_account, start_create_wallet, start_get_accaunt, start_get_balance, start_seed_white_seed} from './startAction';
+import {success_check_accaunt, success_get_balance, success_seed_white_seed, succes_check_account, succes_create_wallet, succes_transfer_ton} from './successAction';
 
 const api_addres = 'http://3.85.188.199';
 export const set_password = password => {
@@ -64,12 +64,11 @@ export const checkToken = () => {
 };
 
 export const getBalance = (address) => {
-  console.log('ppp')
   return (dispatch) => {
     dispatch(start_get_balance())
     axios.post('http://3.85.188.199/checkBalance',{address:address})
     .then((r)=>{
-      dispatch(success_get_balance(r.data.balance?.slice(0, -4)))
+      dispatch(success_get_balance(r.data.balance))
     })
     .catch((error)=>{
       dispatch(error_get_balance())
@@ -112,12 +111,50 @@ export const send_comment = (data) =>{
     }
 }
 export const transfer_ton = (data) =>{
-  console.log(data)
   return (dispatch) =>{
-    axios.post(`${api_addres}/transferTON`,{data}).then((r)=>{
+    axios.post(`${api_addres}/transferTON`,data).then((r)=>{
       dispatch(succes_transfer_ton())
     }).catch((error)=>{
       console.log(error )
     })
   }
+}
+export const check_accaunt = (addres) =>{
+  return (dispatch) =>{
+    dispatch(start_check_account())
+    axios.post(`${api_addres}/checkAccount`,{address:addres}).then((r)=>{
+      dispatch(succes_check_account())
+    })
+    .catch((error)=>{
+      dispatch(error_check_account())
+    })
+  }
+}
+export const clear_error_check_account = () =>{
+  return {
+    type:'clear_error_check_account'
+  }
+}
+
+export const get_accaunt = (id) =>{
+  return (dispatch) =>{
+    dispatch(start_get_accaunt())
+    axios.post(`${api_addres}/getAccounts`,{id:id}).then((r)=>{
+      if(r.data){
+        let arr =[]
+        r.data.map((elm,i)=>{
+          arr.push(elm.address)
+        })
+          setAddress(arr)
+      }
+      dispatch(success_check_accaunt(r.data))
+    })
+    .catch((error)=>{
+      dispatch(error_get_accaunt())
+    })
+  }
+}
+
+const  setAddress = async(arr) =>{
+  await AsyncStorage.setItem('addres',JSON.stringify(arr)) 
 }

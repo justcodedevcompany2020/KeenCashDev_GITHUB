@@ -19,7 +19,7 @@ export const SendTo = ({navigation}) => {
     },[getMyBalance.balance])
     const handelChange = (e) =>{
         setValue(e)
-        dispatch(send_balance(e))
+        
     }
     const [value,setValue]= useState('')
     const[price,setPrice] = useState('')
@@ -50,6 +50,7 @@ export const SendTo = ({navigation}) => {
             <Text onPress={()=>setValue(price)} style = {{color:"#EAEAEA",textAlign:'center',marginBottom:30,fontFamily:'Lexend-Regular'}}>Send all: {price} TON</Text>
             <BlueButton onPress={()=>{
                     if(value<=+price && value !==''){
+                        dispatch(send_balance(value))
                         navigation.navigate('Confirm')
                     }
                 }} backgroundColor="#4DFF7E" color="#161616" text='Continue' height ={50} />

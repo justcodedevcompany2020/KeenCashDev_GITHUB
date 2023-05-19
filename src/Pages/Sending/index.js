@@ -20,11 +20,11 @@ export const Sending = ({navigation}) => {
     const transferTon = async() =>{
         const id = await AsyncStorage.getItem('token')
         dispatch(transfer_ton({
-            senderAddress:transfer.address,
-            accountID:id,
+            sender_address:transfer.address,
+            account_id:id,
             amount:transfer.balance,
             comment:transfer.comment,
-            recipientAddress:send.token
+            recipient_address:send.token
         }))
     }
     return  <View style = {Gstyles.wrapper}>

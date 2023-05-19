@@ -13,3 +13,13 @@ export const error_seed_white_seed = () =>{
         type:'error_seed_white_seed'
     }
 }
+export const error_check_account = () =>{
+    return {
+        type:'error_check_account'
+    }
+}
+export const error_get_accaunt = () =>{
+    return {
+        type:'error_get_accaunt'
+    }
+}

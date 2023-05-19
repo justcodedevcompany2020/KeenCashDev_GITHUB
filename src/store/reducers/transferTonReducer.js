@@ -10,6 +10,9 @@ const transferTonReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'snedTon':
             item.address = action.address
+            item.status = false,
+            item.balance = 0
+            item.comment =''
           break
         case 'send_balance':
             item.balance = action.data

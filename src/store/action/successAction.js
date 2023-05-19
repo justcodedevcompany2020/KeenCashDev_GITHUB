@@ -21,3 +21,13 @@ export const succes_transfer_ton = () =>{
         type:'succes_transfer_ton'
     }
 }
+export const succes_check_account = () =>{
+    return {
+        type:'succes_check_account'
+    }
+}
+export const success_check_accaunt = () =>{
+    return {
+        type:'success_check_accaunt'
+    }
+}

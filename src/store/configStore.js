@@ -1,5 +1,6 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from "redux-thunk" 
+import checkAccauntReducer from './reducers/checkAccauntReducer';
 import createWalletReducer from './reducers/createWalletReducer';
 import getBalanceReducer from './reducers/getBalanceReducer';
 import HeaderReducer from './reducers/headerReducer';
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   createWallet:createWalletReducer,
   getMyBalance:getBalanceReducer,
   signWithSeed:signWithSeedReducer,
-  transfer:transferTonReducer
+  transfer:transferTonReducer,
+  check:checkAccauntReducer
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk) );

@@ -13,3 +13,13 @@ export const start_seed_white_seed = () =>{
         type:'start_seed_white_seed'
     }
 }
+export const start_check_account = () =>{
+    return {
+        type:'start_check_account',
+    }
+}
+export const start_get_accaunt = () =>{
+    return {
+        type:'start_get_accaunt'
+    }
+}

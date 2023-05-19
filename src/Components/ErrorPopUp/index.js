@@ -2,7 +2,7 @@ import { View ,Text} from "react-native"
 import { Svgs } from "../../Svg"
 import { styles } from "./styles"
 
-export const ErrorPopUp =() =>{
+export const ErrorPopUp =({visible}) =>{
     return <View style = {styles.modal}>
         <View style = {{marginRight:20}}>
             <Svgs title={'error'} />

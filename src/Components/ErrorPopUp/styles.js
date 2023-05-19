@@ -8,5 +8,7 @@ export const styles = StyleSheet.create({
         borderRadius:15,
         paddingHorizontal:20,
         flexDirection:'row',
+        // position:'absolute',
+        // bottom:0,
     },
 })

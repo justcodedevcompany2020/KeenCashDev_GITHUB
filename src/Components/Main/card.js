@@ -5,7 +5,6 @@ import { Svgs } from '../../Svg';
 import { ActivityIndicator } from 'react-native';
 
 export const Card = ({price,price_$,token,loading}) => {
-  console.log(loading)
   return (
     <View style={styles.card}>
       <View style={styles.price_wrapper}>

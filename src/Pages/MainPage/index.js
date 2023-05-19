@@ -8,7 +8,7 @@ import { MoreWallet } from '../MoreWallet'
 import {Connetct} from '../Connect/index'
 import { useDispatch, useSelector } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getBalance } from '../../store/action/action';
+import { getBalance, get_accaunt } from '../../store/action/action';
 
 export const MainPage = ({navigation}) =>{
     const bottomSheetRef = useRef(null);
@@ -16,9 +16,13 @@ export const MainPage = ({navigation}) =>{
     const dispatch = useDispatch()
     useEffect(()=>{
         // getAddress()
+        checkId()
         bottomSheetRef.current?.present()
     },[])
-
+    const checkId = async () =>{
+        let id = await AsyncStorage.getItem('token')
+        dispatch(get_accaunt(id))
+    }
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', async () => {
             getAddress()
@@ -38,12 +42,9 @@ export const MainPage = ({navigation}) =>{
     }
     const getAddress = async() =>{
         let code = JSON.parse(await AsyncStorage.getItem('addres'))
-        let id = await AsyncStorage.getItem('token')
-        console.log(id)
         let itme = [...data]
         item = code
         item.push('')
-        console.log(item)
         setData(item)
     }
     const close = ()=>{
@@ -64,7 +65,7 @@ export const MainPage = ({navigation}) =>{
                 {data.map((elm,i)=>{
                    return <View key={i} style = {{width:width-38}}>
                         {i!==data.length-1 ?
-                            <Main loading1={getMyBalance.loading} navigation = {navigation} data={data} price={getMyBalance.balance} price_$ ={'0'}  token = {elm} />
+                            <Main index = {i} loading1={getMyBalance.loading} navigation = {navigation} data={data} price={getMyBalance.balance} price_$ ={'0'}  token = {elm} />
                             :
                             <MoreWallet navigation = {navigation} />
                         }
