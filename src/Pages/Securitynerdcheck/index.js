@@ -14,7 +14,7 @@ export const SecurityNerdCheck = ({navigation}) => {
   const {createWallet} = useSelector(r=>r)
   const [open,setOpen] = useState(false)
   const Check = () => {
-    if(input[0].value ===createWallet.seed[4] && input[1].value ===createWallet.seed[14] && input[2].value === createWallet.seed[17]){
+    if(input[0].value.toLowerCase() ===createWallet.seed[4] && input[1].value.toLowerCase() ===createWallet.seed[14] && input[2].value.toLowerCase() === createWallet.seed[17]){
       navigation.navigate('SetPassword')
     }
     else {

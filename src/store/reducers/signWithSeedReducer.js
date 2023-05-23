@@ -25,6 +25,12 @@ const signWithSeedReducer = (state = initialState, action) => {
         case 'close_seed_popOp':
             item.error = false
             break
+        case 'clear_import_data':
+            item.address = '',
+            item.seed = '',
+            item.loading = false,
+            item.error = false
+            break
         default:
           break
       }

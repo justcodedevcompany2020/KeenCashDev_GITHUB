@@ -111,12 +111,18 @@ export const send_comment = (data) =>{
     }
 }
 export const transfer_ton = (data) =>{
+  console.log(data)
   return (dispatch) =>{
     axios.post(`${api_addres}/transferTON`,data).then((r)=>{
       dispatch(succes_transfer_ton())
     }).catch((error)=>{
       console.log(error )
     })
+  }
+}
+export const clear_reansfer_ton = ()=>{
+  return {
+    type:'clear_reansfer_ton'
   }
 }
 export const check_accaunt = (addres) =>{
@@ -157,4 +163,14 @@ export const get_accaunt = (id) =>{
 
 const  setAddress = async(arr) =>{
   await AsyncStorage.setItem('addres',JSON.stringify(arr)) 
+}
+export const clear_import_data = () =>{
+  return {
+    type:'clear_import_data'
+  }
+}
+export const clear_create_new_walllet = () =>{
+  return {
+    type:'clear_create_new_walllet'
+  }
 }

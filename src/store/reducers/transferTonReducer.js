@@ -23,6 +23,12 @@ const transferTonReducer = (state = initialState, action) => {
         case 'succes_transfer_ton':
           item.status = true
           break
+        case 'clear_reansfer_ton':
+          address = '',
+          balance = 0,
+          comment = ''
+          status = false
+          break
         default:
           break
       }

@@ -4,7 +4,7 @@ import {View,Text,ScrollView,StatusBar, TextInput} from 'react-native'
 import { Gstyles } from '../../Gstyle'
 import uuid from 'react-native-uuid';
 import { useDispatch, useSelector } from 'react-redux'
-import { close_seed_popOp, sign_With_Seed } from '../../store/action/action.js'
+import { clear_import_data, close_seed_popOp, sign_With_Seed } from '../../store/action/action.js'
 import { PopUp } from '../../Components/PopUp/index.js'
 import { BlueButton } from '../../Components/Button.js/BlueButton.js'
 export const InportStart = ({navigation}) => {
@@ -59,11 +59,19 @@ export const InportStart = ({navigation}) => {
         {value:"",ref:ref23},
     ])
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', async () => {
+            // getAddress()
+            dispatch(clear_import_data())
+        });
+        return unsubscribe;
+      }, [navigation]);
     const {signWithSeed} = useSelector((st=>st))
     const Continue = async() =>{
         let data =''
         input.map((elm,i)=>{
-            data += elm.value + " "
+            data += elm.value.toLowerCase() + " "
         })
         let id = await AsyncStorage.getItem('token')
         // id = uuid.v4()

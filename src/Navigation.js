@@ -138,13 +138,14 @@ export default Navigatiob = ({initialRouteName}) => {
         <Stack.Screen
             name = 'ImportComplete'
             component={ImportComplete}
-            options={
-              {
-                header: ({navigation}) => (
-                  <Header  onPress={() => navigation.goBack()}  />
-                ),
-              }
-            }
+            options={{headerShown:false}}
+            // options={
+            //   {
+            //     header: ({navigation}) => (
+            //       <Header  onPress={() => navigation.goBack()}  />
+            //     ),
+            //   }
+            // }
         />
         <Stack.Screen
             name = 'WhatADay'

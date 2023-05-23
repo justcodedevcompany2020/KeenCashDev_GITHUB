@@ -27,6 +27,13 @@ const createWalletReducer = (state = initialState, action) => {
         case 'checkToken':
             item.address = action.data
             break
+        case 'clear_create_new_walllet':
+            item.loading = false
+            item.success = false
+            item.address = ''
+            item.ID =''
+            item.seed =[]
+            item.address = []
         default:
           break
       }

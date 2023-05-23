@@ -4,7 +4,7 @@ import { BlueButton } from "../../Components/Button.js/BlueButton"
 import { Gstyles } from "../../Gstyle"
 import { Svgs } from "../../Svg"
 import { useDispatch } from "react-redux";
-import { clear_password } from "../../store/action/action";
+import { clear_create_new_walllet, clear_import_data, clear_password } from "../../store/action/action";
 
 export const MoreWallet = ({navigation}) => {
     const dispatch = useDispatch()
@@ -12,6 +12,8 @@ export const MoreWallet = ({navigation}) => {
         await AsyncStorage.setItem('passcode','')
         await AsyncStorage.setItem('token','')
         await AsyncStorage.setItem('addres','')
+        dispatch(clear_password())
+        dispatch(clear_create_new_walllet())
         navigation.navigate('WalletCreadet')
     }
     return <View style = {[Gstyles.homeWrapper,{justifyContent:'center'}]}>
@@ -25,6 +27,7 @@ export const MoreWallet = ({navigation}) => {
             <BlueButton  onPress={()=>WalletCreadet()}  height={70} text = 'Create new TON wallet' />
             <Text onPress={()=>{
                 navigation.navigate('InportStart')
+                dispatch(clear_import_data())
                 dispatch(clear_password())
             }} style = {{color:'#FFFFFF',textAlign:'center',marginTop:20,fontSize:15,fontFamily:'Lexend-SemiBold'}}>Import existing TON wallet</Text>
         </View>

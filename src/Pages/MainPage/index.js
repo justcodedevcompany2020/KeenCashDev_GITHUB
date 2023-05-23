@@ -32,7 +32,7 @@ export const MainPage = ({navigation}) =>{
 
     useEffect(()=>{
         if(data[0]){
-            dispatch(getBalance(data[0]))
+            dispatch(getBalance(data[0]))                
         }
     },[data])
     const getHistory = ({index}) =>{
@@ -55,6 +55,7 @@ export const MainPage = ({navigation}) =>{
     return <View style = {Gstyles.home}>
         <View style = {Gstyles.container}>
             <SwiperFlatList
+                // renderAll={true}
                 onChangeIndex = {(index)=>{getHistory(index)}}
                 showPagination
                 paginationStyle = {{position:'absolute',top:-30}}
@@ -63,7 +64,7 @@ export const MainPage = ({navigation}) =>{
                 paginationStyleItem ={{width:10,height:10,marginHorizontal:3}}
             >
                 {data.map((elm,i)=>{
-                   return <View key={i} style = {{width:width-38}}>
+                   return <View key={i} style = {{width:width-40}}>
                         {i!==data.length-1 ?
                             <Main index = {i} loading1={getMyBalance.loading} navigation = {navigation} data={data} price={getMyBalance.balance} price_$ ={'0'}  token = {elm} />
                             :
