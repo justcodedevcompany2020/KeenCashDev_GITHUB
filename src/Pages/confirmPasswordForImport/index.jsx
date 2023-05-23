@@ -3,7 +3,6 @@ import { SetConfigPassword } from "../../Components/SetConfigPassword"
 
 export const ConfirmPasswordForImport = ({navigation}) => {
   const {password} = useSelector((st)=>st)
-  console.log('899')
     return <SetConfigPassword  
       navigation ={navigation} 
       title={'confirm_password'} 

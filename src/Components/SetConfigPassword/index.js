@@ -70,7 +70,6 @@ export const SetConfigPassword = ({title, text, options,navigation,action,Passwo
     setTimeout(async()=>{
       if(!password.password.length){
         if(e.length === count){
-          console.log(type,e == password.password)
             if(type === 'SetConfigPassword'){
               dispatch(set_password(e))
               navigation.navigate('ConfirmPasswordForImport')
@@ -89,7 +88,6 @@ export const SetConfigPassword = ({title, text, options,navigation,action,Passwo
               navigation.navigate('ImportComplete')
             }
             else if(e == password.password){
-              console.log('881')
               await AsyncStorage.setItem('passcode',e)
               await AsyncStorage.setItem('token',createWallet.ID)
               let addres = createWallet.address
@@ -110,7 +108,6 @@ export const SetConfigPassword = ({title, text, options,navigation,action,Passwo
       }
       else {
         if(e.length === password.password.length){
-          console.log(type,e == password.password)
 
           if(type === 'SetConfigPassword'){
             dispatch(set_password(e))

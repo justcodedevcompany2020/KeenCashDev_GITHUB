@@ -22,6 +22,9 @@ const checkAccauntReducer = (state = initialState, action) => {
           item.loading = false
           item.status = 'not_checked'
           break
+        case 'clear_reansfer_ton':
+          loading  =false
+          item.status = 'not_checked'
         default:
           break
       }

@@ -111,12 +111,10 @@ export const send_comment = (data) =>{
     }
 }
 export const transfer_ton = (data) =>{
-  console.log(data)
   return (dispatch) =>{
     axios.post(`${api_addres}/transferTON`,data).then((r)=>{
       dispatch(succes_transfer_ton())
     }).catch((error)=>{
-      console.log(error )
     })
   }
 }

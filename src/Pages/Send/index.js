@@ -31,9 +31,7 @@ export const Send = ({navigation}) => {
             navigation.navigate('SendTo')
         }
     },[check.status])
-    useEffect(()=>{
 
-    },[])
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', async () => {
             dispatch(clear_error_check_account())
