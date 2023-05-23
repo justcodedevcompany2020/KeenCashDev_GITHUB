@@ -8,7 +8,7 @@ import {CodeField} from 'react-native-confirmation-code-field';
 import {  clear_password, set_password } from '../../store/action/action';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { PopUp } from '../PopUp';
-export const SetConfigPassword = ({title, text, options,navigation,action,Passwordcount}) => {
+export const SetConfigPassword = ({title, text, options,navigation,action,Passwordcount,type}) => {
   const [count, setCount] = useState(Passwordcount?Passwordcount:4);
   const [value, setValue] = useState('');
   const dispatch = useDispatch()
@@ -70,11 +70,26 @@ export const SetConfigPassword = ({title, text, options,navigation,action,Passwo
     setTimeout(async()=>{
       if(!password.password.length){
         if(e.length === count){
-            if(action === 'set'){
+          console.log(type,e == password.password)
+            if(type === 'SetConfigPassword'){
+              dispatch(set_password(e))
+              navigation.navigate('ConfirmPasswordForImport')
+            }
+            else if(action === 'set'){
               dispatch(set_password(e))
               navigation.navigate('ConfirmPassword')
             }
+            else if(type === 'confirmforImport' && e == password.password){
+              await AsyncStorage.setItem('passcode',e)
+              // await AsyncStorage.setItem('token',createWallet.ID)
+              // let addres = createWallet.address
+              // let arr = []
+              // arr.push(addres)
+              // await AsyncStorage.setItem('addres',JSON.stringify(arr))
+              navigation.navigate('ImportComplete')
+            }
             else if(e == password.password){
+              console.log('881')
               await AsyncStorage.setItem('passcode',e)
               await AsyncStorage.setItem('token',createWallet.ID)
               let addres = createWallet.address
@@ -95,9 +110,26 @@ export const SetConfigPassword = ({title, text, options,navigation,action,Passwo
       }
       else {
         if(e.length === password.password.length){
-          if(action === 'set'){
+          console.log(type,e == password.password)
+
+          if(type === 'SetConfigPassword'){
+            dispatch(set_password(e))
+            navigation.navigate('ConfirmPasswordForImport')
+          }
+          else if(action === 'set'){
             dispatch(set_password(e))
             navigation.navigate('ConfirmPassword')
+          }
+          else if(type === 'confirmforImport' && e == password.password){
+            setIsEnabled(false)
+            setValue('')
+            await AsyncStorage.setItem('passcode',e)
+            // await AsyncStorage.setItem('token',createWallet.ID)
+            // let addres = createWallet.address
+            // let arr = []
+            // arr.push(addres)
+            // await AsyncStorage.setItem('addres',JSON.stringify(arr))
+            navigation.navigate('ImportComplete')
           }
           else if(e == password.password){
             setIsEnabled(false)

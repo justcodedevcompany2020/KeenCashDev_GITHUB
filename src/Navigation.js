@@ -11,6 +11,7 @@ import ScanScreen from './Components/QRCodeScanner';
 import { Awesome } from './Pages/Awesome';
 import { Confirm } from './Pages/Confirm';
 import { ConfirmPassword } from './Pages/ConfirmPassword';
+import { ConfirmPasswordForImport } from './Pages/confirmPasswordForImport';
 import { ImportComplete } from './Pages/ImportComplelty';
 import { InportStart } from './Pages/ImportStart';
 import { NftInfo } from './Pages/NftInfo';
@@ -24,6 +25,7 @@ import { Send } from './Pages/Send';
 import { Sending } from './Pages/Sending';
 import { SendTo } from './Pages/SendTo';
 import { SetPassword } from './Pages/SetPassword';
+import { SetPasswordForImport } from './Pages/setPasswordForImport';
 import { Setting } from './Pages/Settings';
 import { WalletCreadet } from './Pages/WalletCreated';
 import { Wellcome } from './Pages/Wellcome';
@@ -106,8 +108,34 @@ export default Navigatiob = ({initialRouteName}) => {
             }
         />
         <Stack.Screen
+            name = 'SetPasswordForImport'
+            component={SetPasswordForImport}
+            options={
+              {
+                header: ({navigation}) => (
+                  <Header  onPress={() => 
+                    navigation.goBack()}  />
+                ),
+              }
+            }
+        />
+        {/* ConfirmPasswordForImport */}
+        <Stack.Screen
             name = 'ConfirmPassword'
             component={ConfirmPassword}
+            options={
+              {
+                header: ({navigation}) => (
+                  <Header  onPress={() => {
+                    dispatch(clear_password())
+                    navigation.goBack()}  }/>
+                ),
+              }
+            }
+        />
+         <Stack.Screen
+            name = 'ConfirmPasswordForImport'
+            component={ConfirmPasswordForImport}
             options={
               {
                 header: ({navigation}) => (

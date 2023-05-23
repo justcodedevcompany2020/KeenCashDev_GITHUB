@@ -99,7 +99,13 @@ export const InportStart = ({navigation}) => {
             arr2.push(item)
             await AsyncStorage.setItem('addres',JSON.stringify(arr2))
         }
-        navigation.navigate('ImportComplete')
+        let passcode = await AsyncStorage.getItem('passcode')
+        if(passcode){
+            navigation.navigate('ImportComplete')
+        }
+        else {
+            navigation.navigate('SetPasswordForImport')
+        }
     }
 
 
