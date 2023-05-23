@@ -1,5 +1,5 @@
 import {useState,useEffect} from 'react'
-import { View,Text,TouchableOpacity } from "react-native"
+import { View,Text,TouchableOpacity, Vibration } from "react-native"
 import { Gstyles } from "../../Gstyle"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { styles } from './style'
@@ -71,6 +71,7 @@ export const PinPage =({navigation,title = 'Sending'}) => {
                     item.map((elm,i)=>{
                         elm.key = ''
                     })
+                    Vibration.vibrate()
                     setCoint(0)
                     setPin(item)
                 }
