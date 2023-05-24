@@ -2,8 +2,8 @@ import axios from 'axios';
 import {error_check_account, error_create_wallet, error_get_accaunt, error_get_balance, error_seed_white_seed} from './errorAction';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {start_check_account, start_create_wallet, start_get_accaunt, start_get_balance, start_seed_white_seed} from './startAction';
-import {success_check_accaunt, success_get_balance, success_seed_white_seed, succes_check_account, succes_create_wallet, succes_transfer_ton} from './successAction';
+import {start_check_account, start_create_wallet, start_get_accaunt, start_get_balance, start_get_history, start_seed_white_seed} from './startAction';
+import {successs_get_hisstory, success_check_accaunt, success_get_balance, success_seed_white_seed, succes_check_account, succes_create_wallet, succes_transfer_ton} from './successAction';
 
 const api_addres = 'http://3.85.188.199';
 export const set_password = password => {
@@ -172,3 +172,17 @@ export const clear_create_new_walllet = () =>{
     type:'clear_create_new_walllet'
   }
 }
+
+export const get_transaction_history = (address) =>{
+  return (dispatch) =>{
+    dispatch(start_get_history())
+    axios.post('http://3.85.188.199:80/getTransactionsHistory',{address:address}).then((r)=>{
+      let data = r.data.split(']_')
+      console.log(data[0].split(','),188)
+      dispatch(successs_get_hisstory(data))
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  } 
+} 

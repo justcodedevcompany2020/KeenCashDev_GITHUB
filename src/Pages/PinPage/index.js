@@ -60,6 +60,13 @@ export const PinPage =({navigation,title = 'Sending'}) => {
             if(title === 'Sending'){
                 if(code2 === code){
                     navigation.navigate('Sending')
+                }else {
+                    item.map((elm,i)=>{
+                        elm.key = ''
+                    })
+                    Vibration.vibrate()
+                    setCoint(0)
+                    setPin(item)
                 }
             }
             else if(title === 'NavigationMenu') {

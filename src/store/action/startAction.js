@@ -23,3 +23,8 @@ export const start_get_accaunt = () =>{
         type:'start_get_accaunt'
     }
 }
+export const start_get_history = () =>{
+    return {
+        type:'start_get_history'
+    }
+}

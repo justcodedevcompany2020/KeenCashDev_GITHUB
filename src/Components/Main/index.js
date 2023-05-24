@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import {View, Text, ScrollView,RefreshControl} from 'react-native';
 import {Gstyles} from '../../Gstyle';
 import {Svgs} from '../../Svg';
@@ -9,10 +9,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { change_header_title, clear_reansfer_ton, getBalance, snedTon } from '../../store/action/action';
 import { Card } from './card';
 
-export const Main = ({data, loading,price,price_$,token,navigation,loading1,index}) => {
-
+export const Main = ({history,data, loading,price,price_$,token,navigation,loading1,index}) => {
+    
     const [refreshing, setRefreshing] = useState(false);
     const {getMyBalance} = useSelector((st)=>st)
+    console.log(history[0])
     const dispatch = useDispatch()
     const handelScroll = (e)=>{
         const currentOffset  = e.nativeEvent.contentOffset.y
@@ -28,6 +29,14 @@ export const Main = ({data, loading,price,price_$,token,navigation,loading1,inde
         dispatch(getBalance(token))
         setRefreshing(getMyBalance.loading);
       }, [getMyBalance.loading]);
+    //   useEffect(()=>{
+    //     console.log(token)
+    //     if(token){
+    //         console.log(getMyBalance.balance)
+    //         dispatch(getBalance(token))                
+    //     }
+    // },[index])
+    // console.log(index)
   return (
     <ScrollView 
         onScroll = {(e)=>handelScroll(e)} 
@@ -62,7 +71,7 @@ export const Main = ({data, loading,price,price_$,token,navigation,loading1,inde
                 </View>
             </View>
             <View style={styles.data}>
-            {loading ? (
+            {getMyBalance.historyLoading ? (
                 <View >
                     <View style = {styles.empty}>
                         <Svgs title={'loading'} />
@@ -70,8 +79,8 @@ export const Main = ({data, loading,price,price_$,token,navigation,loading1,inde
                 </View>
             ) : (
                 <View style={styles.data}>
-                {!data ? (
-                    <View >
+                {history[0] === '' ? (
+                    <View style = {{justifyContent:'center',alignItems:'center'}}>
                     <Svgs title={'love_u_smiling'} />
                     <Text style={Gstyles.text}>
                         You have no transactions yet, so it’s only a friendly
@@ -80,10 +89,19 @@ export const Main = ({data, loading,price,price_$,token,navigation,loading1,inde
                     </View>
                 ) : (
                     <View style={[styles.data,styles.data_iten]}>
-                    <Text style ={styles.date} >25 March, Sat</Text>
-                    {data.map((elm,i)=>(
-                        <Item navigation = {navigation} plus={true} key={i} token = {'EQDCAfpTMlIh6xGABPSO0oIqMgVy5ncGpq75hgeCl4-UKMY8'} date = {'22:52'} price = {'+1.091'} />
-                    ))}
+                    {/* <Text style ={styles.date} >25 March, Sat</Text> */}
+                    {history.map((elm,i)=>{
+                        let item = elm.split(',')
+                        return<Item 
+                            navigation = {navigation} 
+                            plus={true} 
+                            key={i} 
+                            token = {item[2] && item[2]?.split(' ')[2]} 
+                            // date = {item[0].replace("LT: ",'')} 
+                            price = {`${item[1] &&  item[1].split(':')[1].split(' ')[1]}`} 
+                            from = {item[3] && item[3]?.split(' ')[1]}
+                            />
+                    })}
                     </View> 
                 )}
                 </View>

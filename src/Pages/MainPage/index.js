@@ -8,11 +8,12 @@ import { MoreWallet } from '../MoreWallet'
 import {Connetct} from '../Connect/index'
 import { useDispatch, useSelector } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getBalance, get_accaunt } from '../../store/action/action';
+import { getBalance, get_accaunt, get_transaction_history } from '../../store/action/action';
 
 export const MainPage = ({navigation}) =>{
     const bottomSheetRef = useRef(null);
     const [data,setData] = useState([])
+    const [activeCard,setActiveCard] = useState(0)
     const dispatch = useDispatch()
     useEffect(()=>{
         // getAddress()
@@ -29,22 +30,28 @@ export const MainPage = ({navigation}) =>{
         });
         return unsubscribe;
       }, [navigation]);
-
     useEffect(()=>{
-        if(data[0]){
-            dispatch(getBalance(data[0]))                
+        if(data[activeCard]){
+            dispatch(getBalance(data[activeCard]))             
+            dispatch(get_transaction_history(data[activeCard]))                
         }
     },[data])
-    const getHistory = ({index}) =>{
-        if(index !== data.length-1){
-            dispatch(getBalance(data[index]))
+    useEffect(()=>{
+        if(data[activeCard]){
+            dispatch(getBalance(data[activeCard]))
+            dispatch(get_transaction_history(data[activeCard]))                
         }
-    }
+    },[activeCard])
+    // const getHistory = ({index}) =>{
+    //     if(index !== data.length-1){
+    //         dispatch(getBalance(data[index]))
+    //     }
+    // }
     const getAddress = async() =>{
         let code = JSON.parse(await AsyncStorage.getItem('addres'))
         let itme = [...data]
         item = code
-        item.push('')
+        item.push('')     
         setData(item)
     }
     const close = ()=>{
@@ -55,8 +62,7 @@ export const MainPage = ({navigation}) =>{
     return <View style = {Gstyles.home}>
         <View style = {Gstyles.container}>
             <SwiperFlatList
-                // renderAll={true}
-                onChangeIndex = {(index)=>{getHistory(index)}}
+                onChangeIndex = {(index)=>{setActiveCard(index.index)}}
                 showPagination
                 paginationStyle = {{position:'absolute',top:-30}}
                 paginationDefaultColor ='#8A8A8A'
@@ -66,7 +72,7 @@ export const MainPage = ({navigation}) =>{
                 {data.map((elm,i)=>{
                    return <View key={i} style = {{width:width-40}}>
                         {i!==data.length-1 ?
-                            <Main index = {i} loading1={getMyBalance.loading} navigation = {navigation} data={data} price={getMyBalance.balance} price_$ ={'0'}  token = {elm} />
+                            <Main history = {getMyBalance.history} index = {i} loading1={getMyBalance.loading} navigation = {navigation} data={data} price={getMyBalance.balance} price_$ ={'0'}  token = {elm} />
                             :
                             <MoreWallet navigation = {navigation} />
                         }

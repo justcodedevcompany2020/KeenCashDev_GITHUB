@@ -18,8 +18,7 @@ export const SendTo = ({navigation}) => {
         setPrice(getMyBalance.balance)
     },[getMyBalance.balance])
     const handelChange = (e) =>{
-        setValue(e)
-        
+        setValue(e.replace(',','.'))
     }
     const [value,setValue]= useState('')
     const[price,setPrice] = useState('')

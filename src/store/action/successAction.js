@@ -31,3 +31,9 @@ export const success_check_accaunt = () =>{
         type:'success_check_accaunt'
     }
 }
+export const successs_get_hisstory = (data) =>{
+    return {
+        type:'successs_get_hisstory',
+        data
+    }
+}

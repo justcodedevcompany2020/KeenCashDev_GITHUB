@@ -1,7 +1,9 @@
 
 const initialState = {
     loading:false,
-    balance:''
+    balance:'',
+    history:[],
+    historyLoading:false,
 }
 const getBalanceReducer = (state = initialState, action) => {
     let item = {...state}
@@ -15,6 +17,13 @@ const getBalanceReducer = (state = initialState, action) => {
           break
         case 'error_get_balance':
             item.loading = false
+            break
+        case 'start_get_history':
+          item.historyLoading = true
+          break
+        case 'successs_get_hisstory':
+            item.history = action.data
+            item.historyLoading = false
             break
         default:
           break
