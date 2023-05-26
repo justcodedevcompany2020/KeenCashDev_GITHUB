@@ -1,4 +1,4 @@
-import {View,Dimensions} from 'react-native'
+import {View,Dimensions,TouchableOpacity} from 'react-native'
 import SwiperFlatList from 'react-native-swiper-flatlist'
 import React, { useRef,useEffect,useState } from 'react';
 import { Main } from '../../Components/Main'
@@ -9,6 +9,7 @@ import {Connetct} from '../Connect/index'
 import { useDispatch, useSelector } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getBalance, get_accaunt, get_transaction_history } from '../../store/action/action';
+import { QR } from '../../Svg';
 
 export const MainPage = ({navigation}) =>{
     const bottomSheetRef = useRef(null);
@@ -81,5 +82,8 @@ export const MainPage = ({navigation}) =>{
             </SwiperFlatList>
             {/* <Connetct ref1 = {bottomSheetRef} onPress = {()=>close()} /> */}
         </View>
+        <TouchableOpacity onPress={()=>(navigation.navigate('QrNavigation'))} style = {{position:'absolute',bottom:30,left:0,right:0,alignItems:'center'}}>
+            <QR />
+        </TouchableOpacity>
     </View>
 }

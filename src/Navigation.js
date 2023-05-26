@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { Header } from './Components/Header';
 import { Header1 } from './Components/Header/header2';
 import { Header3 } from './Components/Header/header3';
+import { HomeHeader } from './Components/Header/HomeHeader';
 import { NameHEader } from './Components/Header/nameHeader';
 import ScanScreen from './Components/QRCodeScanner';
 
@@ -14,6 +15,7 @@ import { ConfirmPassword } from './Pages/ConfirmPassword';
 import { ConfirmPasswordForImport } from './Pages/confirmPasswordForImport';
 import { ImportComplete } from './Pages/ImportComplelty';
 import { InportStart } from './Pages/ImportStart';
+import { MainPage } from './Pages/MainPage';
 import { NftInfo } from './Pages/NftInfo';
 import { PinPage } from './Pages/PinPage';
 import { PinPageUser } from './Pages/PinPageUser';
@@ -32,6 +34,7 @@ import { Wellcome } from './Pages/Wellcome';
 import { WellDone } from './Pages/WellDone';
 import { WhatADay } from './Pages/WhatADay';
 import { YourRecoveryPhrase } from './Pages/YourRecoveryPhrase';
+import { QrNavigation } from './QrNavigation';
 import { clear_password } from './store/action/action';
 import NavigationMenu from './TabNavigation';
 export default Navigatiob = ({initialRouteName}) => {
@@ -199,12 +202,16 @@ export default Navigatiob = ({initialRouteName}) => {
         />
         <Stack.Screen
             name = 'NavigationMenu'
-            component={NavigationMenu}
-            options={
-              {
-              headerShown: false
-              }
-            }
+            component={MainPage}
+            // options={
+            //   {
+            //   headerShown: false
+            //   }
+            options = {{
+              header: ({navigation}) => (
+                <HomeHeader navigation = {navigation} onPress={() => navigation.goBack()}  />
+              ),
+            }}
         />
         <Stack.Screen 
           name="nftinfo"
@@ -313,6 +320,11 @@ export default Navigatiob = ({initialRouteName}) => {
         <Stack.Screen 
           name="ScanScreen"
           component={ScanScreen}
+          options={{headerShown:false}}
+        />
+        <Stack.Screen 
+          name="QrNavigation"
+          component={QrNavigation}
           options={{headerShown:false}}
         />
         
