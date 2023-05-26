@@ -10,7 +10,7 @@ import { StyleSheet } from 'react-native';
       color:'#EAEAEA',
       marginVertical:10,
       fontFamily:'Lexend-Medium',
-      fonSize:20
+      fontSize:20
     },
     text:{
       fontFamily:'Lexend-Light',

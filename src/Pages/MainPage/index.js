@@ -8,19 +8,25 @@ import { MoreWallet } from '../MoreWallet'
 import {Connetct} from '../Connect/index'
 import { useDispatch, useSelector } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getBalance, get_accaunt, get_transaction_history } from '../../store/action/action';
+import { active_card, clear_reansfer_ton, clear_ton_white_qr, getBalance, get_accaunt, get_transaction_history, snedTon } from '../../store/action/action';
 import { QR } from '../../Svg';
 
 export const MainPage = ({navigation}) =>{
     const bottomSheetRef = useRef(null);
     const [data,setData] = useState([])
     const [activeCard,setActiveCard] = useState(0)
+    const {sendQr} = useSelector((st)=>st)
     const dispatch = useDispatch()
     useEffect(()=>{
         // getAddress()
         checkId()
-        bottomSheetRef.current?.present()
+        // bottomSheetRef.current?.present()
     },[])
+    useEffect(()=>{
+        if(sendQr.open){
+            bottomSheetRef?.current?.present()
+        }
+    },[sendQr.open])
     const checkId = async () =>{
         let id = await AsyncStorage.getItem('token')
         dispatch(get_accaunt(id))
@@ -28,6 +34,7 @@ export const MainPage = ({navigation}) =>{
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', async () => {
             getAddress()
+
         });
         return unsubscribe;
       }, [navigation]);
@@ -38,10 +45,12 @@ export const MainPage = ({navigation}) =>{
         }
     },[data])
     useEffect(()=>{
+        dispatch(snedTon(activeCard))
         if(data[activeCard]){
             dispatch(getBalance(data[activeCard]))
-            dispatch(get_transaction_history(data[activeCard]))                
+            dispatch(get_transaction_history(data[activeCard]))       
         }
+
     },[activeCard])
     // const getHistory = ({index}) =>{
     //     if(index !== data.length-1){
@@ -80,9 +89,13 @@ export const MainPage = ({navigation}) =>{
                     </View>
                 })}
             </SwiperFlatList>
-            {/* <Connetct ref1 = {bottomSheetRef} onPress = {()=>close()} /> */}
+            <Connetct ref1 = {bottomSheetRef} onPress = {()=>close()} />
         </View>
-        <TouchableOpacity onPress={()=>(navigation.navigate('QrNavigation'))} style = {{position:'absolute',bottom:30,left:0,right:0,alignItems:'center'}}>
+        <TouchableOpacity onPress={()=>{
+                dispatch(clear_ton_white_qr())
+                dispatch(clear_reansfer_ton())
+                navigation.navigate('QrNavigation')
+            }} style = {{position:'absolute',bottom:30,left:0,right:0,alignItems:'center'}}>
             <QR />
         </TouchableOpacity>
     </View>

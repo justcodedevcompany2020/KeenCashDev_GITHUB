@@ -12,15 +12,19 @@ import {RNCamera} from 'react-native-camera';
 import styles from './styles';
 import {Svgs} from '../../Svg';
 import {PremissionAcces} from '../PremissionAcces';
+import { useDispatch, useSelector } from 'react-redux';
+import {check_accaunt, SendToken, send_ton_white_qr} from '../../store/action/action'
+
 const ScanScreen = ({navigation}) => {
   const [scan, setScan] = useState(true);
   const [scanResult, setScanResult] = useState(false);
   const [result, setResult] = useState(null);
   const [permision, setPermision] = useState(true);
   const [r,setR] = useState(false)
-  const [flashMode, setFlashMode] = useState(
-    RNCamera.Constants.FlashMode.torch,
-  );
+  const [flashMode, setFlashMode] = useState(RNCamera.Constants.FlashMode.torch);
+  const {check} = useSelector((st)=>st)
+  const [qrCode,setQrCode] = useState('')
+  const dispatch = useDispatch()
   const flash = () => {
     if (flashMode === RNCamera.Constants.FlashMode.torch) {
       setFlashMode(RNCamera.Constants.FlashMode.off);
@@ -29,12 +33,9 @@ const ScanScreen = ({navigation}) => {
     }
   };
   const onSuccess = e => {
-    const check = e.data.substring(0, 4);
-    if (check === 'http') {
-      Linking.openURL(e.data).catch(err =>
-        console.error('An error occured', err),
-      );
-    }
+    const check = e.data;
+    setQrCode(check)
+    dispatch(check_accaunt(check))
   };
   activeQR = () => {
     setScan(true);
@@ -43,8 +44,8 @@ const ScanScreen = ({navigation}) => {
     setScan(true);
     setResult(true);
   };
+
   useEffect(()=>{
-    
     const per = async() =>{
       let result =r
       if(!result){
@@ -73,6 +74,14 @@ const ScanScreen = ({navigation}) => {
     }
     per()
 },[r])
+useEffect(()=>{
+  if(check.status === 'checked'){
+    dispatch(SendToken(qrCode))
+    dispatch(send_ton_white_qr())
+    // navigation.goBack('')
+    navigation.navigate('NavigationMenu')
+  }
+},[check.status])
 
 if(permision){
   return (

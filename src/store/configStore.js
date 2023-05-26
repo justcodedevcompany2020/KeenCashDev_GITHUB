@@ -8,6 +8,7 @@ import Password from './reducers/Password';
 import SendReducer from './reducers/sendReducer';
 import signWithSeedReducer from './reducers/signWithSeedReducer';
 import transferTonReducer from './reducers/transferTonReducer';
+import snedToneWhiteQr from './reducers/snedToneWhiteQr';
 
 const rootReducer = combineReducers({
   password:Password,
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   getMyBalance:getBalanceReducer,
   signWithSeed:signWithSeedReducer,
   transfer:transferTonReducer,
-  check:checkAccauntReducer
+  check:checkAccauntReducer,
+  sendQr:snedToneWhiteQr
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk) );

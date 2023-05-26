@@ -13,7 +13,6 @@ export const Main = ({history,data, loading,price,price_$,token,navigation,loadi
     
     const [refreshing, setRefreshing] = useState(false);
     const {getMyBalance} = useSelector((st)=>st)
-    console.log(history[0])
     const dispatch = useDispatch()
     const handelScroll = (e)=>{
         const currentOffset  = e.nativeEvent.contentOffset.y

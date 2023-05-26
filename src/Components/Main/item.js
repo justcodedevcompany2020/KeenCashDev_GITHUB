@@ -3,7 +3,6 @@ import { TransactionWithMessage } from "../transactionwithmessage"
 import { styles } from "./style"
 
 export default Item = ({plus,price,date,from,token,navigation}) => {
-    console.log(from)
     return <View style = {styles.item}>
         <View style = {styles.plus_date}>
             <Text style = {[styles.plus_minus,{color:(plus?"#4DFF7E":'#FF372B')}]}>{price}</Text>

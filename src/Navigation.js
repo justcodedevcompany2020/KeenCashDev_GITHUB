@@ -36,7 +36,10 @@ import { WhatADay } from './Pages/WhatADay';
 import { YourRecoveryPhrase } from './Pages/YourRecoveryPhrase';
 import { QrNavigation } from './QrNavigation';
 import { clear_password } from './store/action/action';
+import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
+
 import NavigationMenu from './TabNavigation';
+import { PremissionAcces } from './Components/PremissionAcces';
 export default Navigatiob = ({initialRouteName}) => {
   const Stack = createStackNavigator();
   const dispatch = useDispatch()
@@ -50,285 +53,293 @@ export default Navigatiob = ({initialRouteName}) => {
   };
 
   return (
-    <NavigationContainer theme ={MyTheme}>
-      <StatusBar
-            backgroundColor="#161616"
-        />
-      <Stack.Navigator initialRouteName={initialRouteName}>
-        <Stack.Screen
-          name="welcome"
-          component={Wellcome}
-          options={{headerShown:false}}
-        />
-        <Stack.Screen
-            name = 'WalletCreadet'
-            component={WalletCreadet}
+    <BottomSheetModalProvider>
+      <NavigationContainer theme ={MyTheme}>
+        <StatusBar
+              backgroundColor="#161616"
+          />
+        <Stack.Navigator initialRouteName={initialRouteName}>
+          <Stack.Screen
+            name="welcome"
+            component={Wellcome}
             options={{headerShown:false}}
-        />
-        <Stack.Screen
-            name = 'YourRecoveryPhrase'
-            component={YourRecoveryPhrase}
+          />
+          <Stack.Screen
+              name = 'WalletCreadet'
+              component={WalletCreadet}
+              options={{headerShown:false}}
+          />
+          <Stack.Screen
+              name = 'YourRecoveryPhrase'
+              component={YourRecoveryPhrase}
+              options={
+                {
+                  header: ({navigation}) => (
+                    <Header  onPress={() => navigation.goBack()}  />
+                  ),
+                }
+              }
+          />
+          <Stack.Screen
+              name = 'popupPage'
+              component={PopUpPage}
+              options={
+                {
+                  header: ({navigation}) => (
+                    <Header  onPress={() => navigation.goBack()}  />
+                  ),
+                }
+              }
+          />
+          <Stack.Screen
+              name = 'SecurityNerdCheck'
+              component={SecurityNerdCheck}
+              options={
+                {
+                  header: ({navigation}) => (
+                    <Header  onPress={() => navigation.goBack()}  />
+                  ),
+                }
+              }
+          />
+          <Stack.Screen
+              name = 'SetPassword'
+              component={SetPassword}
+              options={
+                {
+                  header: ({navigation}) => (
+                    <Header  onPress={() => 
+                      navigation.goBack()}  />
+                  ),
+                }
+              }
+          />
+          <Stack.Screen
+              name = 'SetPasswordForImport'
+              component={SetPasswordForImport}
+              options={
+                {
+                  header: ({navigation}) => (
+                    <Header  onPress={() => 
+                      navigation.goBack()}  />
+                  ),
+                }
+              }
+          />
+          {/* ConfirmPasswordForImport */}
+          <Stack.Screen
+              name = 'ConfirmPassword'
+              component={ConfirmPassword}
+              options={
+                {
+                  header: ({navigation}) => (
+                    <Header  onPress={() => {
+                      dispatch(clear_password())
+                      navigation.goBack()}  }/>
+                  ),
+                }
+              }
+          />
+          <Stack.Screen
+              name = 'ConfirmPasswordForImport'
+              component={ConfirmPasswordForImport}
+              options={
+                {
+                  header: ({navigation}) => (
+                    <Header  onPress={() => {
+                      dispatch(clear_password())
+                      navigation.goBack()}  }/>
+                  ),
+                }
+              }
+          />
+          <Stack.Screen
+              name = 'WellDone'
+              component={WellDone}
+              options={{headerShown:false}}
+            
+          />
+          <Stack.Screen
+              name = 'InportStart'
+              component={InportStart}
+              options={
+                {
+                  header: ({navigation}) => (
+                    <Header  onPress={() => navigation.goBack()}  />
+                  ),
+                }
+              }
+          />
+          <Stack.Screen
+              name = 'ImportComplete'
+              component={ImportComplete}
+              options={{headerShown:false}}
+              // options={
+              //   {
+              //     header: ({navigation}) => (
+              //       <Header  onPress={() => navigation.goBack()}  />
+              //     ),
+              //   }
+              // }
+          />
+          <Stack.Screen
+              name = 'WhatADay'
+              component={WhatADay}
+              options={
+                {
+                  header: ({navigation}) => (
+                    <Header  onPress={() => navigation.goBack()}  />
+                  ),
+                }
+              }
+          />
+          <Stack.Screen
+              name = 'PopUp2'
+              component={PopUp2}
+              options={
+                {
+                  header: ({navigation}) => (
+                    <Header  onPress={() => navigation.goBack()}  />
+                  ),
+                }
+              }
+          />
+          <Stack.Screen
+              name = 'NavigationMenu'
+              component={MainPage}
+              // options={
+              //   {
+              //   headerShown: false
+              //   }
+              options = {{
+                header: ({navigation}) => (
+                  <HomeHeader navigation = {navigation} onPress={() => navigation.goBack()}  />
+                ),
+              }}
+          />
+          <Stack.Screen 
+            name="nftinfo"
+            component={NftInfo}
             options={
               {
                 header: ({navigation}) => (
-                  <Header  onPress={() => navigation.goBack()}  />
+                  <Header1  onPress={() => navigation.goBack()}  />
                 ),
               }
-            }
-        />
-         <Stack.Screen
-            name = 'popupPage'
-            component={PopUpPage}
+          }
+          />
+          <Stack.Screen 
+            name="recive"
+            component={Resive}
             options={
               {
                 header: ({navigation}) => (
-                  <Header  onPress={() => navigation.goBack()}  />
+                  <Header1  onPress={() => navigation.goBack()}  />
                 ),
               }
-            }
-        />
-        <Stack.Screen
-            name = 'SecurityNerdCheck'
-            component={SecurityNerdCheck}
+          }
+          />
+          <Stack.Screen 
+            name="send"
+            component={Send}
             options={
               {
                 header: ({navigation}) => (
-                  <Header  onPress={() => navigation.goBack()}  />
+                  <Header3  onPress1={() => navigation.navigate('ScanScreen')} onPress={() => navigation.goBack()}  />
                 ),
               }
-            }
-        />
-        <Stack.Screen
-            name = 'SetPassword'
-            component={SetPassword}
+          }
+          />
+          <Stack.Screen 
+            name="SendTo"
+            component={SendTo}
             options={
               {
                 header: ({navigation}) => (
-                  <Header  onPress={() => 
-                    navigation.goBack()}  />
+                  <Header1 text = {'Send to:'} onPress={() => navigation.goBack()}  />
                 ),
               }
-            }
-        />
-        <Stack.Screen
-            name = 'SetPasswordForImport'
-            component={SetPasswordForImport}
+          }
+          />
+          <Stack.Screen 
+            name="Confirm"
+            component={Confirm}
             options={
               {
                 header: ({navigation}) => (
-                  <Header  onPress={() => 
-                    navigation.goBack()}  />
+                  <Header1 text = 'Send to' onPress={() => navigation.goBack()}  />
                 ),
               }
-            }
-        />
-        {/* ConfirmPasswordForImport */}
-        <Stack.Screen
-            name = 'ConfirmPassword'
-            component={ConfirmPassword}
+          }
+          />
+          <Stack.Screen 
+            name="PinPage"
+            component={PinPage}
             options={
               {
                 header: ({navigation}) => (
-                  <Header  onPress={() => {
-                    dispatch(clear_password())
-                    navigation.goBack()}  }/>
+                  <Header1  onPress={() => navigation.goBack()}  />
                 ),
               }
-            }
-        />
-         <Stack.Screen
-            name = 'ConfirmPasswordForImport'
-            component={ConfirmPasswordForImport}
-            options={
-              {
-                header: ({navigation}) => (
-                  <Header  onPress={() => {
-                    dispatch(clear_password())
-                    navigation.goBack()}  }/>
-                ),
-              }
-            }
-        />
-        <Stack.Screen
-            name = 'WellDone'
-            component={WellDone}
+          }
+          />
+          <Stack.Screen 
+            name="PinPageUser"
+            component={PinPageUser}
             options={{headerShown:false}}
-           
-        />
-        <Stack.Screen
-            name = 'InportStart'
-            component={InportStart}
+          />
+          <Stack.Screen 
+            name="Sending"
+            component={Sending}
             options={
               {
                 header: ({navigation}) => (
-                  <Header  onPress={() => navigation.goBack()}  />
+                  <NameHEader name = {'Sending...'}/>
                 ),
               }
-            }
-        />
-        <Stack.Screen
-            name = 'ImportComplete'
-            component={ImportComplete}
+          }
+          />
+          <Stack.Screen 
+            name="Awesome"
+            component={Awesome}
+            options={
+              {
+                header: ({navigation}) => (
+                  <NameHEader name = {'Success!'}/>
+                ),
+              }
+          }
+          />
+          <Stack.Screen 
+            name="Settings"
+            component={Setting}
+            options={
+              {
+                header: ({navigation}) => (
+                  <Header1 onPress = {()=>navigation.goBack()}/>
+                ),
+              }
+          }
+          />
+          <Stack.Screen 
+            name="QrNavigation"
+            component={ScanScreen}
             options={{headerShown:false}}
-            // options={
-            //   {
-            //     header: ({navigation}) => (
-            //       <Header  onPress={() => navigation.goBack()}  />
-            //     ),
-            //   }
-            // }
-        />
-        <Stack.Screen
-            name = 'WhatADay'
-            component={WhatADay}
-            options={
-              {
-                header: ({navigation}) => (
-                  <Header  onPress={() => navigation.goBack()}  />
-                ),
-              }
-            }
-        />
-        <Stack.Screen
-            name = 'PopUp2'
-            component={PopUp2}
-            options={
-              {
-                header: ({navigation}) => (
-                  <Header  onPress={() => navigation.goBack()}  />
-                ),
-              }
-            }
-        />
-        <Stack.Screen
-            name = 'NavigationMenu'
-            component={MainPage}
-            // options={
-            //   {
-            //   headerShown: false
-            //   }
-            options = {{
-              header: ({navigation}) => (
-                <HomeHeader navigation = {navigation} onPress={() => navigation.goBack()}  />
-              ),
-            }}
-        />
-        <Stack.Screen 
-          name="nftinfo"
-          component={NftInfo}
-          options={
-            {
-              header: ({navigation}) => (
-                <Header1  onPress={() => navigation.goBack()}  />
-              ),
-            }
-        }
-        />
-         <Stack.Screen 
-          name="recive"
-          component={Resive}
-          options={
-            {
-              header: ({navigation}) => (
-                <Header1  onPress={() => navigation.goBack()}  />
-              ),
-            }
-        }
-        />
-        <Stack.Screen 
-          name="send"
-          component={Send}
-          options={
-            {
-              header: ({navigation}) => (
-                <Header3  onPress1={() => navigation.navigate('ScanScreen')} onPress={() => navigation.goBack()}  />
-              ),
-            }
-        }
-        />
-        <Stack.Screen 
-          name="SendTo"
-          component={SendTo}
-          options={
-            {
-              header: ({navigation}) => (
-                <Header1 text = {'Send to:'} onPress={() => navigation.goBack()}  />
-              ),
-            }
-        }
-        />
-        <Stack.Screen 
-          name="Confirm"
-          component={Confirm}
-          options={
-            {
-              header: ({navigation}) => (
-                <Header1 text = 'Send to' onPress={() => navigation.goBack()}  />
-              ),
-            }
-        }
-        />
-        <Stack.Screen 
-          name="PinPage"
-          component={PinPage}
-          options={
-            {
-              header: ({navigation}) => (
-                <Header1  onPress={() => navigation.goBack()}  />
-              ),
-            }
-        }
-        />
-        <Stack.Screen 
-          name="PinPageUser"
-          component={PinPageUser}
-          options={{headerShown:false}}
-        />
-        <Stack.Screen 
-          name="Sending"
-          component={Sending}
-          options={
-            {
-              header: ({navigation}) => (
-                <NameHEader name = {'Sending...'}/>
-              ),
-            }
-        }
-        />
-        <Stack.Screen 
-          name="Awesome"
-          component={Awesome}
-          options={
-            {
-              header: ({navigation}) => (
-                <NameHEader name = {'Success!'}/>
-              ),
-            }
-        }
-        />
-        <Stack.Screen 
-          name="Settings"
-          component={Setting}
-          options={
-            {
-              header: ({navigation}) => (
-                <Header1 onPress = {()=>navigation.goBack()}/>
-              ),
-            }
-        }
-        />
-        <Stack.Screen 
-          name="ScanScreen"
-          component={ScanScreen}
-          options={{headerShown:false}}
-        />
-        <Stack.Screen 
-          name="QrNavigation"
-          component={QrNavigation}
-          options={{headerShown:false}}
-        />
-        
-      </Stack.Navigator>
-    </NavigationContainer>
+          />
+          <Stack.Screen 
+            name="PremissionAcces"
+            component={PremissionAcces}
+            options={{headerShown:false}}
+          />
+          {/* <Stack.Screen 
+            name="QrNavigation"
+            component={QrNavigation}
+            options={{headerShown:false}}
+          /> */}
+          
+          
+        </Stack.Navigator>
+      </NavigationContainer>
+    </BottomSheetModalProvider>
   );
 };

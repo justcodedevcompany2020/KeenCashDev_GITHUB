@@ -15,9 +15,6 @@ export const QrNavigation = () => {
             component={PremissionAcces}
             options={{headerShown:false}}
         />
-        
-      
-        
     </Stack.Navigator>
 }
 // PremissionAcces

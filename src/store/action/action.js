@@ -178,7 +178,6 @@ export const get_transaction_history = (address) =>{
     dispatch(start_get_history())
     axios.post('http://3.85.188.199:80/getTransactionsHistory',{address:address}).then((r)=>{
       let data = r.data.split(']_')
-      console.log(data[0].split(','),188)
       dispatch(successs_get_hisstory(data))
     })
     .catch((error)=>{
@@ -186,3 +185,15 @@ export const get_transaction_history = (address) =>{
     })
   } 
 } 
+
+export const send_ton_white_qr = () =>{
+  return {
+    type:'send_ton_white_qr',
+  }
+}
+
+export const clear_ton_white_qr = () =>{
+  return {
+    type:'clear_ton_white_qr'
+  }
+}
