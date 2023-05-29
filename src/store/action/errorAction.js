@@ -23,3 +23,8 @@ export const error_get_accaunt = () =>{
         type:'error_get_accaunt'
     }
 }
+export const error_transfer_ton = () =>{
+    return {
+        type:'error_send_tone'
+    }
+}

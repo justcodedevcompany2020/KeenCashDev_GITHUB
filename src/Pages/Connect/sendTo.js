@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Keyboard } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { BlueButton } from '../../Components/Button.js/BlueButton';
 import { transfer_ton } from '../../store/action/action';
@@ -13,6 +13,7 @@ export const SendToBottomSheetModal = ({close}) =>{
     const [value,setValue] = useState('')
     const dispatch = useDispatch()
     const handelClick = async() =>{
+        Keyboard.dismiss()
         const id = await AsyncStorage.getItem('token')
         dispatch(transfer_ton({
             sender_address:send.activeAdress,
@@ -35,7 +36,7 @@ export const SendToBottomSheetModal = ({close}) =>{
                 autoFocus = {true}
                 value = {value} 
                 keyboardType="numeric"
-                onChangeText = {(e)=>setValue(e)} 
+                onChangeText = {(e)=>setValue(e.replace(',','.'))} 
                 placeholder="0 TON" 
                 placeholderTextColor = {'#8A8A8A'} 
                 // onSubmitEditing={()=>navigation.navigate('Confirm')}

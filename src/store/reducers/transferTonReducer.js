@@ -25,6 +25,10 @@ const transferTonReducer = (state = initialState, action) => {
           item.status = true
           item.loading = false
           break
+        case 'error_transfer_ton':
+          item.status = false
+          item.loading = false
+          break
         case 'start_transfer_ton':
           item.loading = true
           item.status = false

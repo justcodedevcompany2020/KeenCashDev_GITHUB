@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {error_check_account, error_create_wallet, error_get_accaunt, error_get_balance, error_seed_white_seed} from './errorAction';
+import {error_check_account, error_create_wallet, error_get_accaunt, error_get_balance, error_seed_white_seed, error_transfer_ton} from './errorAction';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {start_check_account, start_create_wallet, start_get_accaunt, start_get_balance, start_get_history, start_seed_white_seed, start_transfer_ton} from './startAction';
@@ -116,6 +116,7 @@ export const transfer_ton = (data) =>{
     axios.post(`${api_addres}/transferTON`,data).then((r)=>{
       dispatch(succes_transfer_ton())
     }).catch((error)=>{
+      dispatch(error_transfer_ton())
     })
   }
 }
