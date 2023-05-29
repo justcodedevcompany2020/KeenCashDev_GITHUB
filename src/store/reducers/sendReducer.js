@@ -1,5 +1,6 @@
 const initialState = {
     token:'',
+    activeAdress:''
   };
   
   const SendReducer = (state = initialState, action) => {
@@ -7,6 +8,9 @@ const initialState = {
     switch (action.type) {
       case 'send_token':
         item.token = action.value
+        break
+      case 'active_address':
+        item.activeAdress = action.value
         break
       default:
         break

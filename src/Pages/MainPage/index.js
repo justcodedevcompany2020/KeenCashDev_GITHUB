@@ -8,7 +8,7 @@ import { MoreWallet } from '../MoreWallet'
 import {Connetct} from '../Connect/index'
 import { useDispatch, useSelector } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { active_card, clear_reansfer_ton, clear_ton_white_qr, getBalance, get_accaunt, get_transaction_history, snedTon } from '../../store/action/action';
+import { active_address, active_card, clear_reansfer_ton, clear_ton_white_qr, getBalance, get_accaunt, get_transaction_history, snedTon } from '../../store/action/action';
 import { QR } from '../../Svg';
 
 export const MainPage = ({navigation}) =>{
@@ -94,6 +94,7 @@ export const MainPage = ({navigation}) =>{
         <TouchableOpacity onPress={()=>{
                 dispatch(clear_ton_white_qr())
                 dispatch(clear_reansfer_ton())
+                dispatch(active_address(data[activeCard]))
                 navigation.navigate('QrNavigation')
             }} style = {{position:'absolute',bottom:30,left:0,right:0,alignItems:'center'}}>
             <QR />

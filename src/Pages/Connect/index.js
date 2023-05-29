@@ -36,7 +36,7 @@ export const Connetct = ({ref1, onPress}) => {
           return <HandleComponent onPress={onPress} />;
         }}>
         {/* <ConnectModal /> */}
-        <SendToBottomSheetModal />
+        <SendToBottomSheetModal close = {onPress} />
       </BottomSheetModal>
     </View>
   );

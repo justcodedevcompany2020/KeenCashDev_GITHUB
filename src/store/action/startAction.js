@@ -28,3 +28,8 @@ export const start_get_history = () =>{
         type:'start_get_history'
     }
 }
+export const start_transfer_ton = () =>{
+    return {
+        type:'start_transfer_ton'
+    }
+}

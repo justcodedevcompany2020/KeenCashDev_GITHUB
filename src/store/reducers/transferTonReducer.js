@@ -4,6 +4,7 @@ const initialState = {
     balance:0,
     comment:'',
     status:false,
+    loading:false
 }
 const transferTonReducer = (state = initialState, action) => {
     let item = {...state}
@@ -22,12 +23,18 @@ const transferTonReducer = (state = initialState, action) => {
             break
         case 'succes_transfer_ton':
           item.status = true
+          item.loading = false
+          break
+        case 'start_transfer_ton':
+          item.loading = true
+          item.status = false
           break
         case 'clear_reansfer_ton':
-          address = '',
-          balance = 0,
-          comment = ''
-          status = false
+          item.address = '',
+          item.balance = 0,
+          item.comment = ''
+          item.status = false
+          item.loading = false
           break
         default:
           break

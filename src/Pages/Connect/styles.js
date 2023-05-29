@@ -17,5 +17,11 @@ import { StyleSheet } from 'react-native';
       fontSize:15,
       color:'#8A8A8A',
       textAlign:'center',
+    },
+    confirm:{
+      fontFamily:'Lexend-Light',
+      fontSize:30,
+      color:'#EAEAEA',
+      textAlign:'center',
     }
   });

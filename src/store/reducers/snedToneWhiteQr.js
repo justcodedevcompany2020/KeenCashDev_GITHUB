@@ -9,7 +9,6 @@ const initialState = {
         item.open = true
         break
       case 'clear_ton_white_qr':
-        console.log(333)
         item.open = false
         break
       default:
