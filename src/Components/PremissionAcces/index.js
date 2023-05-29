@@ -13,12 +13,10 @@ export const PremissionAcces = ({navigation,permision}) =>{
             title={'no_permisoin'}
             button_title={'Go to Settings'}
             onPress = {()=>navigation.navigate('Settings')}
-            closePress = {()=>navigation.navigate('Main')}
+            closePress = {()=>navigation.navigate('NavigationMenu')}
             close 
         >
             <Text style = {{fontSize:15,fontFamily:'Lexend-Light',color:'#FFFFFF',paddingHorizontal:40,textAlign:'center'}}>TON Wallet doesn’t have access to the camera. Please enable camera access to scan QR codes.</Text>
         </SuccessScreen>
-       
     </View>
 }
-// cc

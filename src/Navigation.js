@@ -315,9 +315,13 @@ export default Navigatiob = ({initialRouteName}) => {
             component={Setting}
             options={
               {
-                header: ({navigation}) => (
-                  <Header1 onPress = {()=>navigation.goBack()}/>
-                ),
+                header: ({navigation}) => {
+                  const routes = navigation.getState()?.routes;
+                  const prevRoute = routes[routes.length - 2]
+                  return <Header1 navigation = {navigation} onPress = {()=>prevRoute.name === 'QrNavigation'?navigation.navigate('NavigationMenu'):navigation.goBack()}/>
+                }
+
+                ,
               }
           }
           />
