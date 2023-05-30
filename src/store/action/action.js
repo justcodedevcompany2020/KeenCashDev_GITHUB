@@ -200,7 +200,6 @@ export const clear_ton_white_qr = () =>{
   }
 }
 export const active_address = (value) =>{
-  console.log(value)
   return {
     type:'active_address',
     value

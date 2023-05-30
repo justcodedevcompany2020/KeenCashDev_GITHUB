@@ -3,8 +3,13 @@ import {BlueButton} from '../../Components/Button.js/BlueButton';
 import {Gstyles} from '../../Gstyle';
 import {styles} from './styles';
 import {Svgs} from '../../Svg';
+import QRCode from 'react-native-qrcode-svg';
+import { useSelector } from 'react-redux';
+
 
 export const Resive = () => {
+  const {send} = useSelector((st)=>st)
+  console.log(send.activeAdress)
   return (
     <ScrollView showsVerticalScrollIndicator = {false} style={Gstyles.home}>
       <View>
@@ -14,11 +19,17 @@ export const Resive = () => {
           in permanent loss.
         </Text>
         <View style={styles.view_1}>
-          <Svgs title={'QRCode'} />
+          <View style = {{width:210,backgroundColor:'white',justifyContent:'center',alignItems:'center',height:210,borderRadius:14}}>
+            <QRCode 
+              value={send.activeAdress}
+              size={180}
+              backgroundColor="white"
+            />
+          </View>
           <Text style={styles.text_2}>Your wallet</Text>
         </View>
         <Text style={styles.text_3}>
-          EQAQxrU1G0D9-FQ3h1mO7o5qex-JJWvrAE82QnezDHqrS16B
+          {send.activeAdress}
         </Text>
         <View style={{marginVertical: 30}}>
           <BlueButton

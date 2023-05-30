@@ -6,7 +6,7 @@ import {BlueButton} from '../Button.js/BlueButton';
 import {styles} from './style';
 import Item from './item';
 import { useDispatch, useSelector } from 'react-redux';
-import { change_header_title, clear_reansfer_ton, getBalance, snedTon } from '../../store/action/action';
+import { active_address, change_header_title, clear_reansfer_ton, getBalance, snedTon } from '../../store/action/action';
 import { Card } from './card';
 
 export const Main = ({history,data, loading,price,price_$,token,navigation,loading1,index}) => {
@@ -53,7 +53,10 @@ export const Main = ({history,data, loading,price,price_$,token,navigation,loadi
                     height={50}
                     text={'Receive'}
                     svg={'vector2'}
-                    onPress = {()=>navigation.navigate('recive')}
+                    onPress = {()=>{
+                        dispatch(active_address(token))
+                        navigation.navigate('recive')
+                    }}
                 />
                 <BlueButton 
                     width={'48.5%'} 

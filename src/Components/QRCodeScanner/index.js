@@ -21,7 +21,7 @@ const ScanScreen = ({navigation}) => {
   const [result, setResult] = useState(null);
   const [permision, setPermision] = useState(true);
   const [r,setR] = useState(false)
-  const [flashMode, setFlashMode] = useState(RNCamera.Constants.FlashMode.torch);
+  const [flashMode, setFlashMode] = useState(RNCamera.Constants.FlashMode.off);
   const {check} = useSelector((st)=>st)
   const [qrCode,setQrCode] = useState('')
   const dispatch = useDispatch()
